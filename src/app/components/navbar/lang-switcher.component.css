@@ -1,0 +1,246 @@
+/* ─── Language Switcher ─────────────────────────────────────────── */
+/* WCAG 2.2 compliant: focus appearance (2.4.11), target size 44px (2.5.8),  */
+/* contrast AA, keyboard navigation, proper ARIA roles                        */
+
+.ls {
+  position: relative;
+  margin-left: .75rem;
+  padding-left: .75rem;
+  /* Hairline separator matching navbar rhythm */
+  border-left: 1px solid rgba(255, 255, 255, .12);
+}
+
+/* ── Trigger button ── */
+.ls__trigger {
+  display: flex;
+  align-items: center;
+  gap: .35rem;
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: 6px;
+  cursor: pointer;
+  color: rgba(255, 255, 255, .7);
+  font-family: var(--font-display, 'Josefin Sans', sans-serif);
+  font-size: .72rem;
+  font-weight: 400;
+  letter-spacing: .12em;
+  line-height: 1;
+  /* WCAG 2.5.8: minimum target 44×44px */
+  min-height: 44px;
+  min-width: 44px;
+  padding: .3rem .55rem;
+  transition: color 180ms ease, border-color 180ms ease, background 180ms ease;
+}
+
+.ls__trigger:hover {
+  color: #fff;
+  background: rgba(255, 255, 255, .06);
+}
+
+/* WCAG 2.4.11 Focus Appearance — 3px solid, ≥ 3:1 contrast */
+.ls__trigger:focus-visible {
+  outline: 3px solid var(--teal, #5fa8c8);
+  outline-offset: 2px;
+  border-color: transparent;
+}
+
+/* ── Globe icon ── */
+.ls__globe {
+  width: 15px;
+  height: 15px;
+  opacity: .65;
+  flex-shrink: 0;
+  transition: opacity 180ms ease;
+}
+.ls__trigger:hover .ls__globe { opacity: .9; }
+
+/* ── Language code  ── */
+.ls__code {
+  font-family: var(--font-display, 'Josefin Sans', sans-serif);
+  font-size: .68rem;
+  font-weight: 600;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: inherit;
+  transition: color 180ms ease;
+}
+
+.ls__trigger[aria-expanded="true"] .ls__code {
+  color: var(--teal, #5fa8c8);
+}
+
+/* ── Chevron ── */
+.ls__chevron {
+  width: 9px;
+  height: 6px;
+  flex-shrink: 0;
+  opacity: .5;
+  transition: transform 220ms cubic-bezier(.4, 0, .2, 1), opacity 180ms ease;
+}
+.ls__chevron--open {
+  transform: rotate(180deg);
+  opacity: .85;
+}
+
+/* ── Dropdown ── */
+.ls__dropdown {
+  position: absolute;
+  top: calc(100% + 10px);
+  right: 0;
+  z-index: 1200;
+  list-style: none;
+  margin: 0;
+  padding: .35rem;
+
+  /* Glass-dark card */
+  background: rgba(8, 12, 17, .97);
+  border: 1px solid rgba(95, 168, 200, .22);
+  border-radius: 10px;
+  box-shadow:
+    0 4px 24px rgba(0, 0, 0, .55),
+    0 1px 3px rgba(0, 0, 0, .4),
+    inset 0 1px 0 rgba(255, 255, 255, .04);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+
+  /* Slide-in animation */
+  animation: lsSlideIn 180ms cubic-bezier(.2, 0, 0, 1) both;
+
+  /* Wide enough for all labels */
+  min-width: 148px;
+  outline: none; /* focus managed via aria-activedescendant */
+}
+
+@keyframes lsSlideIn {
+  from { opacity: 0; transform: translateY(-6px) scale(.97); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+/* Staggered entrance per option */
+.ls__option:nth-child(1) { animation-delay:  0ms; }
+.ls__option:nth-child(2) { animation-delay: 25ms; }
+.ls__option:nth-child(3) { animation-delay: 50ms; }
+.ls__option:nth-child(4) { animation-delay: 75ms; }
+
+/* ── Option items ── */
+.ls__option {
+  display: flex;
+  align-items: center;
+  gap: .65rem;
+  padding: .6rem .75rem;
+  border-radius: 7px;
+  cursor: pointer;
+  /* WCAG 2.5.8: min 44px total */
+  min-height: 44px;
+  /* Staggered fade */
+  animation: lsFadeOpt 200ms ease both;
+
+  transition: background 140ms ease;
+  position: relative;
+}
+
+@keyframes lsFadeOpt {
+  from { opacity: 0; transform: translateX(-4px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+.ls__option:hover,
+.ls__option--focused {
+  background: rgba(95, 168, 200, .1);
+}
+
+/* Teal left accent when active OR focused */
+.ls__option--active {
+  background: rgba(95, 168, 200, .08);
+}
+
+.ls__option--active::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 20%;
+  height: 60%;
+  width: 2px;
+  background: var(--teal, #5fa8c8);
+  border-radius: 0 2px 2px 0;
+}
+
+/* WCAG 2.4.11 on focused option */
+.ls__option--focused:focus-visible,
+.ls__option:focus-visible {
+  outline: 3px solid var(--teal, #5fa8c8);
+  outline-offset: -2px;
+}
+
+/* ── Code badge: bold, display font ── */
+.ls__opt-code {
+  font-family: var(--font-display, 'Josefin Sans', sans-serif);
+  font-size: .75rem;
+  font-weight: 700;
+  letter-spacing: .1em;
+  color: rgba(255, 255, 255, .9);
+  min-width: 22px;
+  text-align: center;
+  line-height: 1;
+}
+
+.ls__option--active .ls__opt-code {
+  color: var(--teal, #5fa8c8);
+}
+
+/* ── Full language name ── */
+.ls__opt-label {
+  font-family: var(--font-body, 'DM Sans', sans-serif);
+  font-size: .8rem;
+  font-weight: 400;
+  color: rgba(255, 255, 255, .55);
+  flex: 1;
+  line-height: 1.2;
+}
+
+.ls__option--active .ls__opt-label {
+  color: rgba(255, 255, 255, .85);
+}
+
+/* ── Checkmark ── */
+.ls__opt-check {
+  width: 12px;
+  height: 9px;
+  color: var(--teal, #5fa8c8);
+  flex-shrink: 0;
+}
+
+/* ── Mobile: full-width trigger, dropdown left-aligned ── */
+@media (max-width: 768px) {
+  .ls {
+    border-left: none;
+    margin-left: 0;
+    padding-left: 0;
+    padding-top: .5rem;
+    border-top: 1px solid rgba(255, 255, 255, .08);
+    width: 100%;
+  }
+
+  .ls__trigger {
+    width: 100%;
+    justify-content: flex-start;
+    padding: .85rem .25rem;
+    min-height: 48px;
+  }
+
+  .ls__dropdown {
+    left: 0;
+    right: 0;
+    min-width: unset;
+    width: 100%;
+    position: relative;
+    top: auto;
+    border-radius: 8px;
+    margin-top: .35rem;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, .45);
+  }
+
+  .ls__option {
+    min-height: 48px;
+  }
+}
