@@ -51,6 +51,7 @@ export class EmailService {
       environment.emailjsServiceId,
       environment.emailjsTemplateId,
       {
+        to_email:      'info@soulhousebermeo.com',
         nombre:        this.sanitize(data.nombre),
         email:         this.sanitize(data.email),
         telefono:      this.sanitize(data.telefono ?? '') || 'No indicado',
