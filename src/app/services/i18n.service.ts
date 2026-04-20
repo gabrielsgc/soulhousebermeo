@@ -90,7 +90,7 @@ const es: Translations = {
     features: [
       { icon: 'house', label: '3 habitaciones' }, { icon: 'users', label: '6 plazas' },
       { icon: 'wave', label: 'Vistas a la ría' }, { icon: 'wifi', label: 'WiFi fibra' },
-      { icon: 'car', label: 'Parking gratuito' }, { icon: 'check-circle', label: 'Reserva directa' },
+      { icon: 'car', label: 'Parking disponible' }, { icon: 'check-circle', label: 'Reserva directa' },
     ],
   },
   highlights: {
@@ -166,7 +166,7 @@ const es: Translations = {
       { question: '¿Cuáles son las horas de check-in y check-out?', answer: 'El check-in es a partir de las 16:00 h y el check-out hasta las 11:00 h. Para entradas o salidas fuera de este horario, consúltanos con antelación.' },
       { question: '¿Se permiten mascotas?', answer: 'Las mascotas pequeñas son bienvenidas bajo petición previa. Por favor indícalo en el formulario de contacto para que podamos confirmártelo.' },
       { question: '¿Puedo llegar en transporte público?', answer: 'Sí. La estación de EuskoTren de Bermeo está a 100 m. Desde Bilbao (Atxuri) hay trenes directos cada hora. También hay líneas de autobús Bizkaibus.' },
-      { question: '¿Qué incluye el precio?', answer: 'Ropa de cama, toallas, WiFi de fibra, parking, agua caliente y calefacción. No cobramos gastos de gestión ni comisiones de plataformas.' },
+      { question: '¿Qué incluye el precio?', answer: 'Ropa de cama, toallas, WiFi de fibra, agua caliente y calefacción. No cobramos gastos de gestión ni comisiones de plataformas. Parking disponible (no incluido en el precio).' },
       { question: '¿Cuál es la política de cancelación?', answer: 'Cancelación gratuita hasta 7 días antes de la llegada. Cancelaciones posteriores: 50% del importe total. Consúltanos en fechas especiales.' },
       { question: '¿Hay mínimo de noches?', answer: 'En temporada alta (julio-agosto) el mínimo es de 3 noches. El resto del año aceptamos reservas de 1 noche. Consúltanos para estancias largas con descuento.' },
     ],
@@ -243,7 +243,7 @@ const eu: Translations = {
     features: [
       { icon: 'house', label: '3 logela' }, { icon: 'users', label: '6 leku' },
       { icon: 'wave', label: 'Itsasadarraren ikuspegia' }, { icon: 'wifi', label: 'WiFi zuntz' },
-      { icon: 'car', label: 'Doako aparkamendua' }, { icon: 'check-circle', label: 'Erreserba zuzena' },
+      { icon: 'car', label: 'Aparkamendua eskuragarri' }, { icon: 'check-circle', label: 'Erreserba zuzena' },
     ],
   },
   highlights: {
@@ -319,7 +319,7 @@ const eu: Translations = {
       { question: 'Zeintzuk dira check-in eta check-out orduak?', answer: 'Check-ina 16:00etatik aurrera da eta check-outa 11:00etara arte. Ordutegi honetatik kanpoko sarrerak edo irteerak, kontsultatu aldez aurretik.' },
       { question: 'Onartzen al dira animaliak?', answer: 'Animal txikiak ongi etorriak dira aldez aurretiko eskaerarekin. Mesedez adierazi kontaktu formularioan berretsi dezagun.' },
       { question: 'Garraio publikoz iritsi al naiteke?', answer: 'Bai. Bermeoko EuskoTren geltokia 100 metrora dago. Bilbotik (Atxuri) ororo trenbide zuzenak. Bizkaibuseko lineak ere badaude.' },
-      { question: 'Zer sartzen da prezioaren barruan?', answer: 'Oheko arropa, eskuoihalak, WiFi zuntz, aparkamendua, ur beroa eta berokuntzea. Ez dugu kudeaketa-gasturik edo plataforma-komisinorik kobratzen.' },
+      { question: 'Zer sartzen da prezioaren barruan?', answer: 'Oheko arropa, eskuoihalak, WiFi zuntz, ur beroa eta berokuntzea. Ez dugu kudeaketa-gasturik edo plataforma-komisinorik kobratzen. Aparkamendua eskuragarri dago (prezioan ez dago barne).' },
       { question: 'Zein da bertemate-politika?', answer: 'Etorrera baino 7 egun lehenago doan bertemate. Geroagoko bertematea: kopuru osoaren %50. Kontsultatu data berezietan.' },
       { question: 'Gauaren gutxieneko bermerik al dago?', answer: 'Goi-denboraldian (uztaila-abuztua) gutxieneko 3 gau. Urteko gainerakoan 1 gaueko erreserbak onartzen ditugu. Kontsultatu iraupen luzeagorako deskontuak.' },
     ],
@@ -396,7 +396,7 @@ const en: Translations = {
     features: [
       { icon: 'house', label: '3 bedrooms' }, { icon: 'users', label: '6 guests' },
       { icon: 'wave', label: 'Estuary views' }, { icon: 'wifi', label: 'Fibre WiFi' },
-      { icon: 'car', label: 'Free parking' }, { icon: 'check-circle', label: 'Direct booking' },
+      { icon: 'car', label: 'Parking available' }, { icon: 'check-circle', label: 'Direct booking' },
     ],
   },
   highlights: {
@@ -472,7 +472,7 @@ const en: Translations = {
       { question: 'What are the check-in and check-out times?', answer: 'Check-in is from 16:00 and check-out by 11:00. For arrivals or departures outside these times, please contact us in advance.' },
       { question: 'Are pets allowed?', answer: 'Small pets are welcome upon prior request. Please mention it in the contact form so we can confirm.' },
       { question: 'Can I arrive by public transport?', answer: 'Yes. The EuskoTren station in Bermeo is 100 m away. Direct trains from Bilbao (Atxuri) run every hour. Bizkaibus lines also serve the area.' },
-      { question: 'What is included in the price?', answer: 'Bed linen, towels, fibre WiFi, parking, hot water and heating. No management fees or platform commissions.' },
+      { question: 'What is included in the price?', answer: 'Bed linen, towels, fibre WiFi, hot water and heating. No management fees or platform commissions. Parking available (not included in the price).' },
       { question: 'What is the cancellation policy?', answer: 'Free cancellation up to 7 days before arrival. Later cancellations: 50% of the total amount. Contact us for special dates.' },
       { question: 'Is there a minimum stay?', answer: 'During high season (July–August) the minimum is 3 nights. The rest of the year we accept 1-night bookings. Ask about discounts for longer stays.' },
     ],
@@ -549,7 +549,7 @@ const fr: Translations = {
     features: [
       { icon: 'house', label: '3 chambres' }, { icon: 'users', label: '6 personnes' },
       { icon: 'wave', label: 'Vue sur l\'estuaire' }, { icon: 'wifi', label: 'WiFi fibre' },
-      { icon: 'car', label: 'Parking gratuit' }, { icon: 'check-circle', label: 'Réservation directe' },
+      { icon: 'car', label: 'Parking disponible' }, { icon: 'check-circle', label: 'Réservation directe' },
     ],
   },
   highlights: {
@@ -625,7 +625,7 @@ const fr: Translations = {
       { question: 'Quelles sont les heures de check-in et check-out ?', answer: 'Le check-in est à partir de 16h00 et le check-out jusqu\'à 11h00. Pour des arrivées ou départs en dehors de ces horaires, contactez-nous à l\'avance.' },
       { question: 'Les animaux de compagnie sont-ils acceptés ?', answer: 'Les petits animaux sont les bienvenus sur demande préalable. Veuillez l\'indiquer dans le formulaire de contact pour que nous puissions confirmer.' },
       { question: 'Puis-je venir en transport en commun ?', answer: 'Oui. La gare EuskoTren de Bermeo est à 100 m. Des trains directs depuis Bilbao (Atxuri) circulent toutes les heures. Des lignes Bizkaibus desservent également la zone.' },
-      { question: 'Qu\'est-ce qui est inclus dans le prix ?', answer: 'Linge de lit, serviettes, WiFi fibre, parking, eau chaude et chauffage. Aucuns frais de gestion ni commissions de plateforme.' },
+      { question: 'Qu\'est-ce qui est inclus dans le prix ?', answer: 'Linge de lit, serviettes, WiFi fibre, eau chaude et chauffage. Aucuns frais de gestion ni commissions de plateforme. Parking disponible (non inclus dans le prix).' },
       { question: 'Quelle est la politique d\'annulation ?', answer: 'Annulation gratuite jusqu\'à 7 jours avant l\'arrivée. Annulations ultérieures : 50 % du montant total. Contactez-nous pour les dates spéciales.' },
       { question: 'Y a-t-il un séjour minimum ?', answer: 'En haute saison (juillet–août), le minimum est de 3 nuits. Le reste de l\'année, nous acceptons les réservations d\'1 nuit. Renseignez-vous pour des réductions sur les longs séjours.' },
     ],
