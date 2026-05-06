@@ -15,7 +15,7 @@
   <meta http-equiv="Permissions-Policy" content="camera=(), microphone=(), geolocation=(), payment=()" />
   <meta http-equiv="X-Frame-Options" content="DENY" />
   <meta http-equiv="Content-Security-Policy"
-    content="default-src 'self'; script-src 'self' https://cdn.emailjs.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://api.emailjs.com; frame-ancestors 'none'; base-uri 'self'; form-action 'self';" />
+    content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self'; frame-ancestors 'none'; base-uri 'self'; form-action 'self';" />
 
   <!-- ── Primary SEO ── -->
   <title>Soul House Bermeo | Alquiler Vacacional en el Corazón del País Vasco</title>
@@ -167,9 +167,6 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
-
-  <!-- ── EmailJS ── -->
-  <script src="https://cdn.emailjs.com/dist/email.min.js" defer></script>
 
   <!-- ── Favicon ── -->
   <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
@@ -1702,25 +1699,10 @@
      SCRIPTS
 ══════════════════════════════════════ -->
 <script>
-/* ── EmailJS init ──
-   1. Crea cuenta en https://www.emailjs.com (gratis)
-   2. Crea un "Email Service" conectado a gabrielsgc@gmail.com
-   3. Crea un "Email Template" con las variables: {{nombre}}, {{email}},
-      {{telefono}}, {{personas}}, {{fecha_llegada}}, {{fecha_salida}}, {{mensaje}}
-   4. Sustituye los 3 valores de abajo con tus IDs reales               */
-const EMAILJS_PUBLIC_KEY  = 'TU_PUBLIC_KEY_AQUI';
-const EMAILJS_SERVICE_ID  = 'TU_SERVICE_ID_AQUI';
-const EMAILJS_TEMPLATE_ID = 'TU_TEMPLATE_ID_AQUI';
-
 document.addEventListener('DOMContentLoaded', function () {
 
   /* ── Year ── */
   document.getElementById('footer-year').textContent = new Date().getFullYear();
-
-  /* ── EmailJS init ── */
-  if (typeof emailjs !== 'undefined') {
-    emailjs.init(EMAILJS_PUBLIC_KEY);
-  }
 
   /* ── Navbar scroll ── */
   const navbar = document.getElementById('navbar');
@@ -1959,42 +1941,25 @@ document.addEventListener('DOMContentLoaded', function () {
     btn.disabled = true;
     btn.textContent = 'Enviando…';
 
-    /* ── EmailJS send ── */
-    if (typeof emailjs === 'undefined' || EMAILJS_PUBLIC_KEY === 'TU_PUBLIC_KEY_AQUI') {
-      // Dev mode: simulate success
-      setTimeout(function () {
-        showSuccess(btn, statusEl);
-      }, 1200);
-      return;
-    }
-
-    emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, {
-      nombre:        sanitize(document.getElementById('f-name').value.trim()),
-      email:         sanitize(document.getElementById('f-email').value.trim()),
-      telefono:      sanitize(document.getElementById('f-phone').value.trim()) || 'No indicado',
+    const payload = {
+      nombre:        document.getElementById('f-name').value.trim(),
+      email:         document.getElementById('f-email').value.trim(),
+      telefono:      document.getElementById('f-phone').value.trim() || undefined,
       personas:      document.getElementById('f-guests').value,
       fecha_llegada: document.getElementById('f-checkin').value,
       fecha_salida:  document.getElementById('f-checkout').value,
-      mensaje:       sanitize(document.getElementById('f-message').value.trim()) || 'Sin mensaje adicional',
-    }).then(function () {
-      showSuccess(btn, statusEl);
-    }, function (err) {
-      console.error('EmailJS error:', err);
-      statusEl.textContent = '❌ Error al enviar. Por favor, inténtalo de nuevo o escríbenos directamente a gabrielsgc@gmail.com.';
-      statusEl.className = 'form__status form__status--error visible';
-      btn.disabled = false;
-      btn.innerHTML = '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg> Enviar solicitud de reserva';
-    });
-  });
+      mensaje:       document.getElementById('f-message').value.trim() || undefined,
+    };
 
-  function showSuccess(btn, statusEl) {
-    statusEl.innerHTML = '✅ <strong>¡Solicitud recibida!</strong> Te responderemos en menos de 2 horas a tu email. ¡Gracias!';
-    statusEl.className = 'form__status form__status--success visible';
-    btn.innerHTML = '✅ Solicitud enviada';
-    document.getElementById('contact-form').reset();
-    document.getElementById('f-message-count').textContent = '0 / 800 caracteres';
-    statusEl.focus();
-  }
+    fetch('/api/contact', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload),
+    }).then(function (response) {
+      if (!response.ok) throw new Error('Error al enviar');
+      showSuccess(btn, statusEl);
+    }).catch(function (err) {
+      console.error('Contact form error:', err);
 
 }); // end DOMContentLoaded
 </script>
