@@ -1,2 +1,5 @@
 name = "soulhousebermeo"
 pages_build_output_dir = "dist/soul-house-bermeo/browser"
+
+[env.production]
+vars = { CONTACT_EMAIL = "gabrielsgc@gmail.com" }
