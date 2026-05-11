@@ -53,10 +53,21 @@ function validatePayload(data: unknown): ContactPayload | null {
   };
 }
 
+const ALLOWED_ORIGINS = [
+  'https://www.soulhousebermeo.com',
+  'https://soulhousebermeo.com',
+];
+
+function getCorsOrigin(request: Request): string {
+  const origin = request.headers.get('Origin') || '';
+  return ALLOWED_ORIGINS.includes(origin) ? origin : ALLOWED_ORIGINS[0];
+}
+
 export const onRequestPost: PagesFunction<Env> = async (context) => {
+  const corsOrigin = getCorsOrigin(context.request);
   const headers = {
     'Content-Type': 'application/json',
-    'Access-Control-Allow-Origin': 'https://www.soulhousebermeo.com',
+    'Access-Control-Allow-Origin': corsOrigin,
   };
 
   try {
@@ -112,8 +123,8 @@ export const onRequestPost: PagesFunction<Env> = async (context) => {
 
     if (!resendResponse.ok) {
       const errorText = await resendResponse.text();
-      console.error('Resend API error:', errorText);
-      return new Response(JSON.stringify({ error: 'Error al enviar el mensaje' }), {
+      console.error('Resend API error:', resendResponse.status, errorText);
+      return new Response(JSON.stringify({ error: 'Error al enviar el mensaje', detail: errorText }), {
         status: 502,
         headers,
       });
@@ -133,11 +144,13 @@ export const onRequestPost: PagesFunction<Env> = async (context) => {
 };
 
 // Handle CORS preflight
-export const onRequestOptions: PagesFunction = async () => {
+export const onRequestOptions: PagesFunction = async (context) => {
+  const origin = context.request.headers.get('Origin') || '';
+  const corsOrigin = ALLOWED_ORIGINS.includes(origin) ? origin : ALLOWED_ORIGINS[0];
   return new Response(null, {
     status: 204,
     headers: {
-      'Access-Control-Allow-Origin': 'https://www.soulhousebermeo.com',
+      'Access-Control-Allow-Origin': corsOrigin,
       'Access-Control-Allow-Methods': 'POST, OPTIONS',
       'Access-Control-Allow-Headers': 'Content-Type',
       'Access-Control-Max-Age': '86400',
