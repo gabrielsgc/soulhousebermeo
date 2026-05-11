@@ -70,7 +70,7 @@ export const onRequestPost: PagesFunction<Env> = async (context) => {
       });
     }
 
-    const toEmail = context.env.CONTACT_EMAIL || 'info@soulhousebermeo.com';
+    const toEmail = context.env.CONTACT_EMAIL || 'gabrielsgc@gmail.com';
     const apiKey = context.env.RESEND_API_KEY;
 
     if (!apiKey) {
