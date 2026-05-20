@@ -135,7 +135,7 @@ const es: Translations = {
     items: [
       { emoji: 'sunrise', label: 'Puerto Viejo', caption: 'El puerto pesquero de Bermeo, corazón de la villa marinera.', img: 'assets/images/harbour-view.png' },
       { emoji: 'sofa', label: 'Salón Principal', caption: 'Salón acogedor con sofá cama y Smart TV.', img: 'assets/images/living-room.png' },
-      { emoji: 'cooking', label: 'Cocina Equipada', caption: 'Cocina completa con todos los electrodomésticos.', img: 'assets/images/kitchen.jpg' },
+      { emoji: 'cooking', label: 'Cocina Equipada', caption: 'Cocina completa con todos los electrodomésticos.', img: 'assets/images/kitchen.png' },
       { emoji: 'bed', label: 'Habitación Principal', caption: 'Dormitorio principal con cama doble y vistas al mar.', img: 'assets/images/bedroom-main.png' },
       { emoji: 'anchor', label: 'Habitación Marinera', caption: 'Dos camas individuales con decoración náutica.', img: 'assets/images/bedroom-sailor.png' },
       { emoji: 'leaf', label: 'Habitación Urdaibai', caption: 'Tranquilidad y naturaleza en la hab. Urdaibai.' },
@@ -288,7 +288,7 @@ const eu: Translations = {
     items: [
       { emoji: 'sunrise', label: 'Portua', caption: 'Bermeoko arrantzaleportua, itsas herriaren bihotza.', img: 'assets/images/harbour-view.png' },
       { emoji: 'sofa', label: 'Egongela Nagusia', caption: 'Sofa-ohea eta Smart TBa duen egongela atsegingarria.', img: 'assets/images/living-room.png' },
-      { emoji: 'cooking', label: 'Sukalde Tresneria', caption: 'Sukalde osoa tresna guztiekin.', img: 'assets/images/kitchen.jpg' },
+      { emoji: 'cooking', label: 'Sukalde Tresneria', caption: 'Sukalde osoa tresna guztiekin.', img: 'assets/images/kitchen.png' },
       { emoji: 'bed', label: 'Logela Nagusia', caption: 'Ohe bikoitza eta itsasoaren ikuspegiarekin logela nagusia.', img: 'assets/images/bedroom-main.png' },
       { emoji: 'anchor', label: 'Itsasoko Logela', caption: 'Bi ohe banaka itsas apaindurak dituena.', img: 'assets/images/bedroom-sailor.png' },
       { emoji: 'leaf', label: 'Urdaibai Logela', caption: 'Urdaibai logelan lasaitasuna eta natura.' },
@@ -441,7 +441,7 @@ const en: Translations = {
     items: [
       { emoji: 'sunrise', label: 'Old Harbour', caption: 'Bermeo\'s fishing harbour, the heart of this seafaring town.', img: 'assets/images/harbour-view.png' },
       { emoji: 'sofa', label: 'Living Room', caption: 'Cosy living room with sofa bed and Smart TV.', img: 'assets/images/living-room.png' },
-      { emoji: 'cooking', label: 'Equipped Kitchen', caption: 'Full kitchen with all appliances.', img: 'assets/images/kitchen.jpg' },
+      { emoji: 'cooking', label: 'Equipped Kitchen', caption: 'Full kitchen with all appliances.', img: 'assets/images/kitchen.png' },
       { emoji: 'bed', label: 'Master Bedroom', caption: 'Master bedroom with double bed and sea views.', img: 'assets/images/bedroom-main.png' },
       { emoji: 'anchor', label: 'Sailor\'s Room', caption: 'Two single beds with nautical décor.', img: 'assets/images/bedroom-sailor.png' },
       { emoji: 'leaf', label: 'Urdaibai Room', caption: 'Peace and nature in the Urdaibai room.' },
@@ -594,7 +594,7 @@ const fr: Translations = {
     items: [
       { emoji: 'sunrise', label: 'Vieux Port', caption: 'Le port de pêche de Bermeo, cœur du village marin.', img: 'assets/images/harbour-view.png' },
       { emoji: 'sofa', label: 'Salon principal', caption: 'Salon chaleureux avec canapé-lit et Smart TV.', img: 'assets/images/living-room.png' },
-      { emoji: 'cooking', label: 'Cuisine équipée', caption: 'Cuisine complète avec tous les appareils électroménagers.', img: 'assets/images/kitchen.jpg' },
+      { emoji: 'cooking', label: 'Cuisine équipée', caption: 'Cuisine complète avec tous les appareils électroménagers.', img: 'assets/images/kitchen.png' },
       { emoji: 'bed', label: 'Chambre principale', caption: 'Chambre principale avec lit double et vue mer.', img: 'assets/images/bedroom-main.png' },
       { emoji: 'anchor', label: 'Chambre du marin', caption: 'Deux lits simples avec décoration nautique.', img: 'assets/images/bedroom-sailor.png' },
       { emoji: 'leaf', label: 'Chambre Urdaibai', caption: 'Calme et nature dans la chambre Urdaibai.' },
