@@ -17,9 +17,14 @@ import { IconComponent } from '../ui/icon.component';
         <div class="gallery__grid" role="list" [attr.aria-label]="t().gallery.heading">
           @for (item of t().gallery.items; track item.label; let i = $index) {
             <button class="gallery__item" role="listitem"
+              [class.gallery__item--photo]="!!item.img"
               [attr.aria-label]="t().gallery.viewPhoto + item.label"
               (click)="openLightbox(i)" (keydown.enter)="openLightbox(i)">
-              <app-icon [name]="item.emoji" [size]="38" class="gallery__icon" aria-hidden="true" />
+              @if (item.img) {
+                <img [src]="item.img" [alt]="item.label" class="gallery__photo" loading="lazy" />
+              } @else {
+                <app-icon [name]="item.emoji" [size]="38" class="gallery__icon" aria-hidden="true" />
+              }
               <div class="gallery__overlay" aria-hidden="true"><span>{{ item.label }}</span></div>
             </button>
           }
@@ -34,7 +39,11 @@ import { IconComponent } from '../ui/icon.component';
           <div class="lightbox__content" (click)="$event.stopPropagation()">
             <button class="lightbox__close" (click)="closeLightbox()" [attr.aria-label]="t().gallery.close">✕</button>
             <div class="lightbox__media" aria-hidden="true">
-              <app-icon [name]="t().gallery.items[activeIndex()!].emoji" [size]="64" class="lightbox__icon" />
+              @if (t().gallery.items[activeIndex()!].img) {
+                <img [src]="t().gallery.items[activeIndex()!].img" [alt]="t().gallery.items[activeIndex()!].label" class="lightbox__photo" />
+              } @else {
+                <app-icon [name]="t().gallery.items[activeIndex()!].emoji" [size]="64" class="lightbox__icon" />
+              }
             </div>
             <p class="lightbox__caption">{{ t().gallery.items[activeIndex()!].caption }}</p>
             <div class="lightbox__nav">

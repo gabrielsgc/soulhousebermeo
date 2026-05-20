@@ -30,7 +30,7 @@ export interface Translations {
   gallery: {
     tag: string; heading: string; intro: string;
     close: string; prev: string; next: string; viewPhoto: string;
-    items: { emoji: string; label: string; caption: string }[];
+    items: { emoji: string; label: string; caption: string; img?: string }[];
   };
   location: {
     tag: string; heading: string; intro: string;
@@ -133,14 +133,14 @@ const es: Translations = {
     intro: 'Cada rincón cuenta una historia del mar y la tradición vasca.',
     close: 'Cerrar galería', prev: 'Foto anterior', next: 'Foto siguiente', viewPhoto: 'Ver foto: ',
     items: [
-      { emoji: 'sunrise', label: 'Vistas a la Ría', caption: 'Amanecer sobre la ría de Bermeo desde Soul House.' },
-      { emoji: 'sofa', label: 'Salón Principal', caption: 'Salón acogedor con sofá cama y Smart TV.' },
-      { emoji: 'cooking', label: 'Cocina Equipada', caption: 'Cocina completa con todos los electrodomésticos.' },
-      { emoji: 'bed', label: 'Habitación Principal', caption: 'Dormitorio principal con cama doble y vistas al mar.' },
-      { emoji: 'anchor', label: 'Habitación Marinera', caption: 'Dos camas individuales con decoración náutica.' },
+      { emoji: 'sunrise', label: 'Puerto Viejo', caption: 'El puerto pesquero de Bermeo, corazón de la villa marinera.', img: 'assets/images/harbour-view.png' },
+      { emoji: 'sofa', label: 'Salón Principal', caption: 'Salón acogedor con sofá cama y Smart TV.', img: 'assets/images/living-room.png' },
+      { emoji: 'cooking', label: 'Cocina Equipada', caption: 'Cocina completa con todos los electrodomésticos.', img: 'assets/images/kitchen.jpg' },
+      { emoji: 'bed', label: 'Habitación Principal', caption: 'Dormitorio principal con cama doble y vistas al mar.', img: 'assets/images/bedroom-main.png' },
+      { emoji: 'anchor', label: 'Habitación Marinera', caption: 'Dos camas individuales con decoración náutica.', img: 'assets/images/bedroom-sailor.png' },
       { emoji: 'leaf', label: 'Habitación Urdaibai', caption: 'Tranquilidad y naturaleza en la hab. Urdaibai.' },
-      { emoji: 'shower', label: 'Baño', caption: 'Baño moderno con ducha de lluvia.' },
-      { emoji: 'building', label: 'Exterior', caption: 'Fachada de Soul House en el casco histórico de Bermeo.' },
+      { emoji: 'shower', label: 'Baño', caption: 'Baño moderno con ducha de lluvia.', img: 'assets/images/bathroom.png' },
+      { emoji: 'building', label: 'Exterior', caption: 'Fachada de Soul House en el casco histórico de Bermeo.', img: 'assets/images/exterior.png' },
     ],
   },
   location: {
@@ -286,14 +286,14 @@ const eu: Translations = {
     intro: 'Txoko bakoitzak itsasoaren eta euskal tradizioaren istorioa kontatzen du.',
     close: 'Galeria itxi', prev: 'Aurreko argazkia', next: 'Hurrengo argazkia', viewPhoto: 'Argazkia ikusi: ',
     items: [
-      { emoji: 'sunrise', label: 'Itsasadarraren ikuspegia', caption: 'Bermeoko itsasadarraren goiztiria Soul House-tik.' },
-      { emoji: 'sofa', label: 'Egongela Nagusia', caption: 'Sofa-ohea eta Smart TBa duen egongela atsegingarria.' },
-      { emoji: 'cooking', label: 'Sukalde Tresneria', caption: 'Sukalde osoa tresna guztiekin.' },
-      { emoji: 'bed', label: 'Logela Nagusia', caption: 'Ohe bikoitza eta itsasoaren ikuspegiarekin logela nagusia.' },
-      { emoji: 'anchor', label: 'Itsasoko Logela', caption: 'Bi ohe banaka itsas apaindurak dituena.' },
+      { emoji: 'sunrise', label: 'Portua', caption: 'Bermeoko arrantzaleportua, itsas herriaren bihotza.', img: 'assets/images/harbour-view.png' },
+      { emoji: 'sofa', label: 'Egongela Nagusia', caption: 'Sofa-ohea eta Smart TBa duen egongela atsegingarria.', img: 'assets/images/living-room.png' },
+      { emoji: 'cooking', label: 'Sukalde Tresneria', caption: 'Sukalde osoa tresna guztiekin.', img: 'assets/images/kitchen.jpg' },
+      { emoji: 'bed', label: 'Logela Nagusia', caption: 'Ohe bikoitza eta itsasoaren ikuspegiarekin logela nagusia.', img: 'assets/images/bedroom-main.png' },
+      { emoji: 'anchor', label: 'Itsasoko Logela', caption: 'Bi ohe banaka itsas apaindurak dituena.', img: 'assets/images/bedroom-sailor.png' },
       { emoji: 'leaf', label: 'Urdaibai Logela', caption: 'Urdaibai logelan lasaitasuna eta natura.' },
-      { emoji: 'shower', label: 'Bainugela', caption: 'Euri-dutxa duen bainugela modernoa.' },
-      { emoji: 'building', label: 'Kanpoaldea', caption: 'Soul House-ren fatxada Bermeoko koru historikoan.' },
+      { emoji: 'shower', label: 'Bainugela', caption: 'Euri-dutxa duen bainugela modernoa.', img: 'assets/images/bathroom.png' },
+      { emoji: 'building', label: 'Kanpoaldea', caption: 'Soul House-ren fatxada Bermeoko koru historikoan.', img: 'assets/images/exterior.png' },
     ],
   },
   location: {
@@ -439,14 +439,14 @@ const en: Translations = {
     intro: 'Every corner tells a story of the sea and Basque tradition.',
     close: 'Close gallery', prev: 'Previous photo', next: 'Next photo', viewPhoto: 'View photo: ',
     items: [
-      { emoji: 'sunrise', label: 'Estuary Views', caption: 'Sunrise over the Bermeo estuary from Soul House.' },
-      { emoji: 'sofa', label: 'Living Room', caption: 'Cosy living room with sofa bed and Smart TV.' },
-      { emoji: 'cooking', label: 'Equipped Kitchen', caption: 'Full kitchen with all appliances.' },
-      { emoji: 'bed', label: 'Master Bedroom', caption: 'Master bedroom with double bed and sea views.' },
-      { emoji: 'anchor', label: 'Sailor\'s Room', caption: 'Two single beds with nautical décor.' },
+      { emoji: 'sunrise', label: 'Old Harbour', caption: 'Bermeo\'s fishing harbour, the heart of this seafaring town.', img: 'assets/images/harbour-view.png' },
+      { emoji: 'sofa', label: 'Living Room', caption: 'Cosy living room with sofa bed and Smart TV.', img: 'assets/images/living-room.png' },
+      { emoji: 'cooking', label: 'Equipped Kitchen', caption: 'Full kitchen with all appliances.', img: 'assets/images/kitchen.jpg' },
+      { emoji: 'bed', label: 'Master Bedroom', caption: 'Master bedroom with double bed and sea views.', img: 'assets/images/bedroom-main.png' },
+      { emoji: 'anchor', label: 'Sailor\'s Room', caption: 'Two single beds with nautical décor.', img: 'assets/images/bedroom-sailor.png' },
       { emoji: 'leaf', label: 'Urdaibai Room', caption: 'Peace and nature in the Urdaibai room.' },
-      { emoji: 'shower', label: 'Bathroom', caption: 'Modern bathroom with rainfall shower.' },
-      { emoji: 'building', label: 'Exterior', caption: 'Soul House façade in the historic centre of Bermeo.' },
+      { emoji: 'shower', label: 'Bathroom', caption: 'Modern bathroom with rainfall shower.', img: 'assets/images/bathroom.png' },
+      { emoji: 'building', label: 'Exterior', caption: 'Soul House façade in the historic centre of Bermeo.', img: 'assets/images/exterior.png' },
     ],
   },
   location: {
@@ -592,14 +592,14 @@ const fr: Translations = {
     intro: 'Chaque recoin raconte une histoire de la mer et de la tradition basque.',
     close: 'Fermer la galerie', prev: 'Photo précédente', next: 'Photo suivante', viewPhoto: 'Voir la photo : ',
     items: [
-      { emoji: 'sunrise', label: 'Vue sur l\'estuaire', caption: 'Lever du soleil sur l\'estuaire de Bermeo depuis Soul House.' },
-      { emoji: 'sofa', label: 'Salon principal', caption: 'Salon chaleureux avec canapé-lit et Smart TV.' },
-      { emoji: 'cooking', label: 'Cuisine équipée', caption: 'Cuisine complète avec tous les appareils électroménagers.' },
-      { emoji: 'bed', label: 'Chambre principale', caption: 'Chambre principale avec lit double et vue mer.' },
-      { emoji: 'anchor', label: 'Chambre du marin', caption: 'Deux lits simples avec décoration nautique.' },
+      { emoji: 'sunrise', label: 'Vieux Port', caption: 'Le port de pêche de Bermeo, cœur du village marin.', img: 'assets/images/harbour-view.png' },
+      { emoji: 'sofa', label: 'Salon principal', caption: 'Salon chaleureux avec canapé-lit et Smart TV.', img: 'assets/images/living-room.png' },
+      { emoji: 'cooking', label: 'Cuisine équipée', caption: 'Cuisine complète avec tous les appareils électroménagers.', img: 'assets/images/kitchen.jpg' },
+      { emoji: 'bed', label: 'Chambre principale', caption: 'Chambre principale avec lit double et vue mer.', img: 'assets/images/bedroom-main.png' },
+      { emoji: 'anchor', label: 'Chambre du marin', caption: 'Deux lits simples avec décoration nautique.', img: 'assets/images/bedroom-sailor.png' },
       { emoji: 'leaf', label: 'Chambre Urdaibai', caption: 'Calme et nature dans la chambre Urdaibai.' },
-      { emoji: 'shower', label: 'Salle de bain', caption: 'Salle de bain moderne avec douche à effet pluie.' },
-      { emoji: 'building', label: 'Extérieur', caption: 'Façade de Soul House dans le centre historique de Bermeo.' },
+      { emoji: 'shower', label: 'Salle de bain', caption: 'Salle de bain moderne avec douche à effet pluie.', img: 'assets/images/bathroom.png' },
+      { emoji: 'building', label: 'Extérieur', caption: 'Façade de Soul House dans le centre historique de Bermeo.', img: 'assets/images/exterior.png' },
     ],
   },
   location: {
