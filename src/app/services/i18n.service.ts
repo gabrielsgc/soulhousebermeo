@@ -139,6 +139,7 @@ const es: Translations = {
       { emoji: 'anchor', label: 'Habitación Marinera', caption: 'Dos camas individuales con decoración náutica.', img: 'assets/images/bedroom-sailor.png' },
       { emoji: 'shower', label: 'Baño', caption: 'Baño moderno con ducha de lluvia.', img: 'assets/images/bathroom.png' },
       { emoji: 'building', label: 'Exterior', caption: 'Fachada de Soul House en el casco histórico de Bermeo.', img: 'assets/images/exterior.png' },
+      { emoji: 'sun-beach', label: 'San Juan de Gaztelugatxe', caption: 'El ermitaño sobre el mar. A solo 20 minutos de Soul House.', img: 'assets/images/san-juan-gaztelugatxe.png' },
     ],
   },
   location: {
@@ -290,6 +291,7 @@ const eu: Translations = {
       { emoji: 'anchor', label: 'Itsasoko Logela', caption: 'Bi ohe banaka itsas apaindurak dituena.', img: 'assets/images/bedroom-sailor.png' },
       { emoji: 'shower', label: 'Bainugela', caption: 'Euri-dutxa duen bainugela modernoa.', img: 'assets/images/bathroom.png' },
       { emoji: 'building', label: 'Kanpoaldea', caption: 'Soul House-ren fatxada Bermeoko koru historikoan.', img: 'assets/images/exterior.png' },
+      { emoji: 'sun-beach', label: 'San Juan de Gaztelugatxe', caption: 'Itsasoaren gaineko ermita. Soul House-tik 20 minutura.', img: 'assets/images/san-juan-gaztelugatxe.png' },
     ],
   },
   location: {
@@ -441,6 +443,7 @@ const en: Translations = {
       { emoji: 'anchor', label: 'Sailor\'s Room', caption: 'Two single beds with nautical décor.', img: 'assets/images/bedroom-sailor.png' },
       { emoji: 'shower', label: 'Bathroom', caption: 'Modern bathroom with rainfall shower.', img: 'assets/images/bathroom.png' },
       { emoji: 'building', label: 'Exterior', caption: 'Soul House façade in the historic centre of Bermeo.', img: 'assets/images/exterior.png' },
+      { emoji: 'sun-beach', label: 'San Juan de Gaztelugatxe', caption: 'The hermitage above the sea. Just 20 minutes from Soul House.', img: 'assets/images/san-juan-gaztelugatxe.png' },
     ],
   },
   location: {
@@ -592,6 +595,7 @@ const fr: Translations = {
       { emoji: 'anchor', label: 'Chambre du marin', caption: 'Deux lits simples avec décoration nautique.', img: 'assets/images/bedroom-sailor.png' },
       { emoji: 'shower', label: 'Salle de bain', caption: 'Salle de bain moderne avec douche à effet pluie.', img: 'assets/images/bathroom.png' },
       { emoji: 'building', label: 'Extérieur', caption: 'Façade de Soul House dans le centre historique de Bermeo.', img: 'assets/images/exterior.png' },
+      { emoji: 'sun-beach', label: 'San Juan de Gaztelugatxe', caption: 'L\'ermitage au-dessus de la mer. À 20 minutes de Soul House.', img: 'assets/images/san-juan-gaztelugatxe.png' },
     ],
   },
   location: {
