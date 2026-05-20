@@ -1,0 +1,105 @@
+<section class="gallery" id="galeria" aria-labelledby="gallery-heading">
+  <div class="container">
+    <header class="section-header">
+      <span class="section-tag">{{ t().gallery.tag }}</span>
+      <h2 id="gallery-heading">{{ t().gallery.heading }}</h2>
+      <p>{{ t().gallery.intro }}</p>
+    </header>
+  </div>
+
+  <div class="slider" role="region" [attr.aria-label]="t().gallery.heading">
+
+    <!-- Main stage -->
+    <div class="slider__stage"
+      (touchstart)="onTouchStart($event)"
+      (touchend)="onTouchEnd($event)"
+      (keydown.arrowleft)="prevSlide()"
+      (keydown.arrowright)="nextSlide()"
+      tabindex="0">
+
+      <div class="slider__track" [style.transform]="'translateX(-' + sliderIndex() * 100 + '%)'">
+        @for (item of t().gallery.items; track item.label; let i = $index) {
+          <div class="slider__slide">
+            @if (item.img) {
+              <img [src]="item.img" [alt]="item.label" [title]="item.label" class="slider__img" loading="lazy" />
+            } @else {
+              <div class="slider__placeholder">
+                <app-icon [name]="item.emoji" [size]="56" aria-hidden="true" />
+              </div>
+            }
+          </div>
+        }
+      </div>
+
+      <!-- Caption overlay -->
+      <div class="slider__info" aria-live="polite">
+        <span class="slider__label">{{ t().gallery.items[sliderIndex()].label }}</span>
+        <p class="slider__caption">{{ t().gallery.items[sliderIndex()].caption }}</p>
+      </div>
+
+      <!-- Counter -->
+      <span class="slider__counter" aria-hidden="true">
+        {{ sliderIndex() + 1 }}<em>/</em>{{ t().gallery.items.length }}
+      </span>
+
+      <!-- Expand to lightbox -->
+      <button class="slider__expand"
+        (click)="openLightbox(sliderIndex())"
+        [attr.aria-label]="t().gallery.viewPhoto + t().gallery.items[sliderIndex()].label">
+        ⤡
+      </button>
+
+      <!-- Arrows -->
+      <button class="slider__prev" (click)="prevSlide()" [attr.aria-label]="t().gallery.prev">‹</button>
+      <button class="slider__next" (click)="nextSlide()" [attr.aria-label]="t().gallery.next">›</button>
+    </div>
+
+    <!-- Thumbnails strip -->
+    <div class="slider__thumbs" role="list">
+      @for (item of t().gallery.items; track item.label; let i = $index) {
+        <button class="slider__thumb" role="listitem"
+          [class.slider__thumb--active]="i === sliderIndex()"
+          [attr.aria-label]="item.label"
+          [attr.aria-current]="i === sliderIndex() ? 'true' : null"
+          (click)="goTo(i)">
+          @if (item.img) {
+            <img [src]="item.img" [alt]="item.label" loading="lazy" />
+          } @else {
+            <app-icon [name]="item.emoji" [size]="18" aria-hidden="true" />
+          }
+        </button>
+      }
+    </div>
+  </div>
+
+  <!-- Lightbox -->
+  @if (activeIndex() !== null) {
+    <div class="lightbox" role="dialog" aria-modal="true"
+      [attr.aria-label]="'Foto: ' + t().gallery.items[activeIndex()!].label"
+      (click)="closeLightbox()"
+      (keydown.escape)="closeLightbox()"
+      (keydown.arrowleft)="prevPhoto()"
+      (keydown.arrowright)="nextPhoto()"
+      tabindex="0">
+      <div class="lightbox__content" (click)="$event.stopPropagation()">
+        <button class="lightbox__close" (click)="closeLightbox()" [attr.aria-label]="t().gallery.close">✕</button>
+        <div class="lightbox__media" aria-hidden="true">
+          @if (t().gallery.items[activeIndex()!].img) {
+            <img
+              [src]="t().gallery.items[activeIndex()!].img"
+              [alt]="t().gallery.items[activeIndex()!].label"
+              class="lightbox__photo" />
+          } @else {
+            <app-icon [name]="t().gallery.items[activeIndex()!].emoji" [size]="64" class="lightbox__icon" />
+          }
+        </div>
+        <p class="lightbox__caption">{{ t().gallery.items[activeIndex()!].caption }}</p>
+        <div class="lightbox__nav">
+          <button class="lightbox__prev" (click)="prevPhoto()" [attr.aria-label]="t().gallery.prev">‹</button>
+          <span aria-live="polite">{{ activeIndex()! + 1 }} / {{ t().gallery.items.length }}</span>
+          <button class="lightbox__next" (click)="nextPhoto()" [attr.aria-label]="t().gallery.next">›</button>
+        </div>
+      </div>
+    </div>
+  }
+</section>
