@@ -1,19 +1,24 @@
 ﻿import { Component, HostListener, inject, signal } from '@angular/core';
 import { I18nService } from '../../services/i18n.service';
 import { LangSwitcherComponent } from './lang-switcher.component';
-import { IconComponent } from '../ui/icon.component';
 
 @Component({
   selector: 'app-navbar',
   standalone: true,
-  imports: [LangSwitcherComponent, IconComponent],
+  imports: [LangSwitcherComponent],
   template: `
     <header id="site-header" role="banner">
       <nav class="navbar" [class.scrolled]="isScrolled()" [attr.aria-label]="t().nav.ariaNav">
         <div class="container navbar__inner">
 
           <a class="navbar__brand" href="#inicio" [attr.aria-label]="t().nav.ariaBrand">
-            <app-icon name="anchor" [size]="26" class="navbar__brand-icon" />
+            <img
+              src="assets/images/logo-soulhousebermeo.jpg"
+              alt="Soul House Bermeo"
+              class="navbar__brand-logo"
+              width="40"
+              height="40"
+            />
             <span class="navbar__brand-text">
               Soul House
               <small>{{ t().nav.brand }}</small>
