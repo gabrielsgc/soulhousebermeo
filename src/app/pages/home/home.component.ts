@@ -9,6 +9,7 @@ import { LocationComponent } from '../../components/location/location.component'
 import { FaqComponent } from '../../components/faq/faq.component';
 import { ContactComponent } from '../../components/contact/contact.component';
 import { FooterComponent } from '../../components/footer/footer.component';
+import { CookieConsentComponent } from '../../components/cookie-consent/cookie-consent.component';
 
 @Component({
   selector: 'app-home',
@@ -24,6 +25,7 @@ import { FooterComponent } from '../../components/footer/footer.component';
     FaqComponent,
     ContactComponent,
     FooterComponent,
+    CookieConsentComponent,
   ],
   template: `
     <app-navbar />
@@ -38,6 +40,7 @@ import { FooterComponent } from '../../components/footer/footer.component';
       <app-contact />
     </main>
     <app-footer />
+    <app-cookie-consent />
   `,
 })
 export class HomeComponent {}

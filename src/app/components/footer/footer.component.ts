@@ -1,6 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { I18nService } from '../../services/i18n.service';
 import { IconComponent } from '../ui/icon.component';
+import { CookieConsentService } from '../../services/cookie-consent.service';
 
 @Component({
   selector: 'app-footer',
@@ -48,6 +49,11 @@ import { IconComponent } from '../ui/icon.component';
                 Bizkaia Turismo ↗
               </a>
             </li>
+            <li>
+              <button class="footer__cookies-btn" (click)="cs.resetConsent()">
+                {{ t().cookieBanner.manageLink }}
+              </button>
+            </li>
           </ul>
         </div>
       </div>
@@ -63,6 +69,7 @@ import { IconComponent } from '../ui/icon.component';
   `,
 })
 export class FooterComponent {
-  protected readonly t = inject(I18nService).t;
+  protected readonly t  = inject(I18nService).t;
+  protected readonly cs = inject(CookieConsentService);
   year = new Date().getFullYear();
 }

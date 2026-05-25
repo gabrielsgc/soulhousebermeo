@@ -1,0 +1,79 @@
+@if (cs.showBanner()) {
+  @if (showPanel()) {
+    <div class="cc-backdrop" (click)="closePanel()" aria-hidden="true"></div>
+  }
+
+  <div class="cc-banner"
+       role="dialog"
+       aria-modal="true"
+       [attr.aria-label]="t().cookieBanner.title"
+       [class.cc-banner--expanded]="showPanel()">
+
+    <!-- ── Compact bar ── -->
+    <div class="cc-bar">
+      <div class="cc-bar__text">
+        <strong class="cc-bar__title">{{ t().cookieBanner.title }}</strong>
+        <p class="cc-bar__msg">{{ t().cookieBanner.message }}</p>
+      </div>
+      <div class="cc-bar__actions">
+        <button class="cc-btn cc-btn--ghost"
+                (click)="openPanel()"
+                [attr.aria-expanded]="showPanel()"
+                [attr.aria-controls]="'cc-panel'">
+          {{ t().cookieBanner.manage }}
+        </button>
+        <button class="cc-btn cc-btn--secondary" (click)="acceptNecessary()">
+          {{ t().cookieBanner.necessaryOnly }}
+        </button>
+        <button class="cc-btn cc-btn--primary" (click)="acceptAll()">
+          {{ t().cookieBanner.acceptAll }}
+        </button>
+      </div>
+    </div>
+
+    <!-- ── Preferences panel ── -->
+    @if (showPanel()) {
+      <div class="cc-panel" id="cc-panel" role="region" [attr.aria-label]="t().cookieBanner.panelTitle">
+        <div class="cc-panel__header">
+          <h2 class="cc-panel__title">{{ t().cookieBanner.panelTitle }}</h2>
+          <button class="cc-panel__close"
+                  (click)="closePanel()"
+                  [attr.aria-label]="t().cookieBanner.panelClose">×</button>
+        </div>
+
+        <div class="cc-panel__body">
+          <!-- Necessary cookies (always on) -->
+          <div class="cc-cat">
+            <div class="cc-cat__info">
+              <span class="cc-cat__name">{{ t().cookieBanner.necessaryCat }}</span>
+              <p class="cc-cat__desc">{{ t().cookieBanner.necessaryDesc }}</p>
+            </div>
+            <span class="cc-cat__badge">{{ t().cookieBanner.alwaysActive }}</span>
+          </div>
+
+          <!-- Preference cookies (Google Fonts) -->
+          <div class="cc-cat">
+            <div class="cc-cat__info">
+              <span class="cc-cat__name">{{ t().cookieBanner.prefCat }}</span>
+              <p class="cc-cat__desc">{{ t().cookieBanner.prefDesc }}</p>
+            </div>
+            <button class="cc-toggle"
+                    role="switch"
+                    [attr.aria-checked]="prefToggle()"
+                    [class.cc-toggle--on]="prefToggle()"
+                    [attr.aria-label]="t().cookieBanner.prefCat"
+                    (click)="prefToggle.set(!prefToggle())">
+              <span class="cc-toggle__thumb" aria-hidden="true"></span>
+            </button>
+          </div>
+        </div>
+
+        <div class="cc-panel__footer">
+          <button class="cc-btn cc-btn--primary" (click)="savePreferences()">
+            {{ t().cookieBanner.save }}
+          </button>
+        </div>
+      </div>
+    }
+  </div>
+}

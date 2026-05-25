@@ -67,6 +67,14 @@ export interface Translations {
     navLinks: { href: string; label: string }[];
     legal: string[];
   };
+  cookieBanner: {
+    title: string; message: string;
+    acceptAll: string; necessaryOnly: string; manage: string;
+    panelTitle: string; panelClose: string; save: string;
+    necessaryCat: string; necessaryDesc: string; alwaysActive: string;
+    prefCat: string; prefDesc: string;
+    manageLink: string;
+  };
 }
 
 // ── Español ──────────────────────────────────────────────────────
@@ -219,6 +227,22 @@ const es: Translations = {
       { href: '#contacto', label: 'Contacto' },
     ],
     legal: ['VT nº EBI02583 (Gobierno Vasco)', 'Check-in: 16:00 · Check-out: 11:00', 'Capacidad máxima: 6 personas'],
+  },
+  cookieBanner: {
+    title: 'Cookies en Soul House',
+    message: 'Usamos cookies técnicas (imprescindibles) y Google Fonts (preferencias de diseño). Las cookies técnicas no se pueden desactivar.',
+    acceptAll: 'Aceptar todo',
+    necessaryOnly: 'Solo necesarias',
+    manage: 'Gestionar',
+    panelTitle: 'Gestión de cookies',
+    panelClose: 'Cerrar panel de cookies',
+    save: 'Guardar preferencias',
+    necessaryCat: 'Cookies técnicas',
+    necessaryDesc: 'Necesarias para el funcionamiento básico: idioma preferido y datos de sesión del formulario de contacto. No se pueden desactivar.',
+    alwaysActive: 'Siempre activas',
+    prefCat: 'Cookies de preferencias',
+    prefDesc: 'Google Fonts carga tipografías desde servidores de Google y puede transmitir tu dirección IP a Google LLC (EE. UU.).',
+    manageLink: 'Gestionar cookies',
   },
 };
 
@@ -373,6 +397,22 @@ const eu: Translations = {
     ],
     legal: ['ET zk. XXXXXX (Eusko Jaurlaritza)', 'Check-in: 16:00 · Check-out: 11:00', 'Gehienezko edukiera: 6 pertsona'],
   },
+  cookieBanner: {
+    title: 'Cookieak Soul House-n',
+    message: 'Cookie teknikoak (ezinbestekoak) eta Google Fonts (diseinu-hobespenak) erabiltzen ditugu. Cookie teknikoak ezin dira desgaitu.',
+    acceptAll: 'Dena onartu',
+    necessaryOnly: 'Beharrezkoak soilik',
+    manage: 'Kudeatu',
+    panelTitle: 'Cookie kudeaketa',
+    panelClose: 'Cookie panela itxi',
+    save: 'Hobespenak gorde',
+    necessaryCat: 'Cookie teknikoak',
+    necessaryDesc: 'Oinarrizko funtzionamendurako beharrezkoak: hizkuntza hobestua eta kontaktu-formularioaren saio-datuak. Ezin dira desgaitu.',
+    alwaysActive: 'Beti aktibo',
+    prefCat: 'Hobespenen cookieak',
+    prefDesc: 'Google Fonts-ek tipografiak Google zerbitzarietatik kargatzen ditu eta zure IP helbidea Google LLC (AEB) enpresari transmititu dezake.',
+    manageLink: 'Cookieak kudeatu',
+  },
 };
 
 // ── English ──────────────────────────────────────────────────────
@@ -526,6 +566,22 @@ const en: Translations = {
     ],
     legal: ['VT no. XXXXXX (Basque Government)', 'Check-in: 16:00 · Check-out: 11:00', 'Max. capacity: 6 guests'],
   },
+  cookieBanner: {
+    title: 'Cookies at Soul House',
+    message: 'We use technical cookies (essential) and Google Fonts (design preferences). Technical cookies cannot be disabled.',
+    acceptAll: 'Accept all',
+    necessaryOnly: 'Necessary only',
+    manage: 'Manage',
+    panelTitle: 'Cookie preferences',
+    panelClose: 'Close cookie panel',
+    save: 'Save preferences',
+    necessaryCat: 'Technical cookies',
+    necessaryDesc: 'Essential for basic functionality: language preference and contact form session data. Cannot be disabled.',
+    alwaysActive: 'Always active',
+    prefCat: 'Preference cookies',
+    prefDesc: 'Google Fonts loads typefaces from Google\'s servers and may transmit your IP address to Google LLC (USA).',
+    manageLink: 'Manage cookies',
+  },
 };
 
 // ── Français ──────────────────────────────────────────────────────
@@ -678,6 +734,22 @@ const fr: Translations = {
       { href: '#contacto', label: 'Contact' },
     ],
     legal: ['VT n° XXXXXX (Gouvernement basque)', 'Check-in : 16h00 · Check-out : 11h00', 'Capacité max. : 6 personnes'],
+  },
+  cookieBanner: {
+    title: 'Cookies sur Soul House',
+    message: 'Nous utilisons des cookies techniques (essentiels) et Google Fonts (préférences de design). Les cookies techniques ne peuvent pas être désactivés.',
+    acceptAll: 'Tout accepter',
+    necessaryOnly: 'Nécessaires uniquement',
+    manage: 'Gérer',
+    panelTitle: 'Gestion des cookies',
+    panelClose: 'Fermer le panneau de cookies',
+    save: 'Enregistrer les préférences',
+    necessaryCat: 'Cookies techniques',
+    necessaryDesc: 'Nécessaires au fonctionnement de base : préférence de langue et données de session du formulaire de contact. Ils ne peuvent pas être désactivés.',
+    alwaysActive: 'Toujours actifs',
+    prefCat: 'Cookies de préférences',
+    prefDesc: 'Google Fonts charge des polices depuis les serveurs de Google et peut transmettre votre adresse IP à Google LLC (États-Unis).',
+    manageLink: 'Gérer les cookies',
   },
 };
 
