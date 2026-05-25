@@ -13,7 +13,7 @@ import { LangSwitcherComponent } from './lang-switcher.component';
 
           <a class="navbar__brand" href="#inicio" [attr.aria-label]="t().nav.ariaBrand">
             <img
-              src="assets/images/logo-soulhousebermeo.jpg"
+              src="assets/images/logo-soulhousebermeo.png"
               alt="Soul House Bermeo"
               class="navbar__brand-logo"
               width="40"
