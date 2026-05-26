@@ -120,8 +120,9 @@ h1,h2,h3 { font-family: var(--font-display); line-height: 1.15; letter-spacing: 
 .navbar__brand-logo {
   width: 44px; height: 44px;
   border-radius: 50%;
-  object-fit: contain;
+  object-fit: cover;
   flex-shrink: 0;
+  background: var(--navy-dark);
   transition: transform var(--transition);
 }
 .navbar__brand:hover .navbar__brand-logo {
