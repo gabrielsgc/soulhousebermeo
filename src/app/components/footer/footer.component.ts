@@ -11,6 +11,13 @@ import { CookieConsentService } from '../../services/cookie-consent.service';
     <footer class="footer" role="contentinfo">
       <div class="container footer__grid">
         <div class="footer__brand">
+          <img
+            src="imgs/logo-soulhousebermeo-VT.webp"
+            alt="Soul House Bermeo"
+            class="footer__brand-logo"
+            width="56"
+            height="56"
+          />
           <p class="footer__logo">Soul House</p>
           <p class="footer__tagline">{{ t().footer.tagline }}</p>
           <p class="footer__desc">{{ t().footer.desc }}</p>
