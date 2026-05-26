@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 80" fill="none">
+  <!-- Circular background -->
+  <circle cx="40" cy="40" r="40" fill="#0f1317"/>
+  <!-- Outer ring accent -->
+  <circle cx="40" cy="40" r="37" stroke="#8dafc5" stroke-width="1.2" fill="none" opacity="0.4"/>
+  <!-- Stylized house with wave base -->
+  <g transform="translate(20, 22)">
+    <!-- Roof -->
+    <path d="M20 4L6 16h28L20 4z" stroke="#8dafc5" stroke-width="1.8" stroke-linejoin="round" fill="none"/>
+    <!-- House body -->
+    <rect x="10" y="16" width="20" height="18" stroke="#8dafc5" stroke-width="1.8" fill="none" rx="0.5"/>
+    <!-- Door -->
+    <rect x="17" y="24" width="6" height="10" stroke="#8dafc5" stroke-width="1.4" fill="none" rx="0.5"/>
+    <!-- Window left -->
+    <rect x="12.5" y="19" width="5" height="5" stroke="#8dafc5" stroke-width="1.2" fill="none" rx="0.3"/>
+    <!-- Window right -->
+    <rect x="22.5" y="19" width="5" height="5" stroke="#8dafc5" stroke-width="1.2" fill="none" rx="0.3"/>
+  </g>
+  <!-- Wave underneath -->
+  <path d="M16 58 C22 54, 28 62, 34 58 C40 54, 46 62, 52 58 C58 54, 64 62, 66 58" stroke="#8dafc5" stroke-width="1.6" stroke-linecap="round" fill="none" opacity="0.7"/>
+  <path d="M14 63 C20 59, 26 67, 32 63 C38 59, 44 67, 50 63 C56 59, 62 67, 68 63" stroke="#8dafc5" stroke-width="1.2" stroke-linecap="round" fill="none" opacity="0.4"/>
+</svg>

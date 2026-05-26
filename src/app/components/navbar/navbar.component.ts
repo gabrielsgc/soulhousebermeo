@@ -12,13 +12,21 @@ import { LangSwitcherComponent } from './lang-switcher.component';
         <div class="container navbar__inner">
 
           <a class="navbar__brand" href="#inicio" [attr.aria-label]="t().nav.ariaBrand">
-            <img
-              src="assets/images/logo-soulhousebermeo.png"
-              alt="Soul House Bermeo"
-              class="navbar__brand-logo"
-              width="40"
-              height="40"
-            />
+            <span class="navbar__brand-logo" aria-hidden="true">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 80" fill="none">
+                <circle cx="40" cy="40" r="40" fill="currentColor" class="logo-bg"/>
+                <circle cx="40" cy="40" r="37" stroke="currentColor" stroke-width="1.2" fill="none" class="logo-ring"/>
+                <g transform="translate(20, 22)">
+                  <path d="M20 4L6 16h28L20 4z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" fill="none" class="logo-stroke"/>
+                  <rect x="10" y="16" width="20" height="18" stroke="currentColor" stroke-width="1.8" fill="none" rx="0.5" class="logo-stroke"/>
+                  <rect x="17" y="24" width="6" height="10" stroke="currentColor" stroke-width="1.4" fill="none" rx="0.5" class="logo-stroke"/>
+                  <rect x="12.5" y="19" width="5" height="5" stroke="currentColor" stroke-width="1.2" fill="none" rx="0.3" class="logo-stroke"/>
+                  <rect x="22.5" y="19" width="5" height="5" stroke="currentColor" stroke-width="1.2" fill="none" rx="0.3" class="logo-stroke"/>
+                </g>
+                <path d="M16 58 C22 54, 28 62, 34 58 C40 54, 46 62, 52 58 C58 54, 64 62, 66 58" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" fill="none" class="logo-wave"/>
+                <path d="M14 63 C20 59, 26 67, 32 63 C38 59, 44 67, 50 63 C56 59, 62 67, 68 63" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" fill="none" class="logo-wave-2"/>
+              </svg>
+            </span>
             <span class="navbar__brand-text">
               Soul House
               <small>{{ t().nav.brand }}</small>

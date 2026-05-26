@@ -120,13 +120,36 @@ h1,h2,h3 { font-family: var(--font-display); line-height: 1.15; letter-spacing: 
 .navbar__brand-logo {
   width: 44px; height: 44px;
   border-radius: 50%;
-  object-fit: cover;
   flex-shrink: 0;
-  background: var(--navy-dark);
+  display: flex; align-items: center; justify-content: center;
   transition: transform var(--transition);
 }
+.navbar__brand-logo svg {
+  width: 100%; height: 100%;
+}
+.navbar__brand-logo .logo-bg {
+  color: var(--navy-dark);
+}
+.navbar__brand-logo .logo-ring {
+  color: var(--teal);
+  opacity: 0.35;
+}
+.navbar__brand-logo .logo-stroke {
+  color: var(--teal);
+}
+.navbar__brand-logo .logo-wave {
+  color: var(--teal);
+  opacity: 0.75;
+}
+.navbar__brand-logo .logo-wave-2 {
+  color: var(--teal);
+  opacity: 0.4;
+}
 .navbar__brand:hover .navbar__brand-logo {
-  transform: scale(1.06);
+  transform: scale(1.08);
+}
+.navbar.scrolled .navbar__brand-logo .logo-bg {
+  color: rgba(7, 10, 13, .97);
 }
 .navbar__brand-icon { color: var(--teal); flex-shrink: 0; }
 .navbar__brand-text {
