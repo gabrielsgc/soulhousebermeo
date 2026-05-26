@@ -118,17 +118,14 @@ h1,h2,h3 { font-family: var(--font-display); line-height: 1.15; letter-spacing: 
   color: var(--white); text-decoration: none;
 }
 .navbar__brand-logo {
-  width: 40px; height: 40px;
-  border-radius: 8px;
-  object-fit: cover;
-  object-position: center;
+  width: 44px; height: 44px;
+  border-radius: 50%;
+  object-fit: contain;
   flex-shrink: 0;
-  box-shadow: 0 0 0 1.5px rgba(255,255,255,.12), 0 2px 8px rgba(0,0,0,.5);
-  transition: box-shadow var(--transition), transform var(--transition);
+  transition: transform var(--transition);
 }
 .navbar__brand:hover .navbar__brand-logo {
-  box-shadow: 0 0 0 2px var(--teal), 0 4px 16px rgba(0,0,0,.5);
-  transform: scale(1.04);
+  transform: scale(1.06);
 }
 .navbar__brand-icon { color: var(--teal); flex-shrink: 0; }
 .navbar__brand-text {
