@@ -33,9 +33,9 @@ import { CookieConsentService } from '../../services/cookie-consent.service';
         <div class="footer__contact">
           <h3>{{ t().footer.contactHeading }}</h3>
           <address>
-            <a href="mailto:gabrielsgc@gmail.com" aria-label="gabrielsgc@gmail.com">
+            <a href="mailto:info@soulhousebermeo.com" aria-label="info@soulhousebermeo.com">
               <app-icon name="mail" [size]="13" style="vertical-align:middle;margin-right:.35rem" />
-              gabrielsgc&#64;gmail.com
+              info&#64;soulhousebermeo.com
             </a>
           </address>
           <p>
