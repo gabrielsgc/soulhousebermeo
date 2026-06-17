@@ -26,7 +26,7 @@ export class AnalyticsService {
   constructor() {
     effect(() => {
       if (!isPlatformBrowser(this.platformId)) return;
-      if (!this.measurementId) return;
+      if (!this.measurementId && !this.gtmContainerId) return;
 
       const allowAnalytics = !!this.consent.consent()?.preferences;
       if (allowAnalytics) {
