@@ -30,6 +30,11 @@ export class AnalyticsService {
       if (!this.measurementId && !this.gtmContainerId) return;
 
       if (this.measurementId && !this.gtmContainerId) {
+        this.isLoaded = !!this.doc.getElementById(this.scriptId);
+        this.isGaConfigured = typeof this.getWindow().gtag === 'function';
+      }
+
+      if (this.measurementId && !this.gtmContainerId) {
         this.bootstrapGaWithDeniedConsent();
       }
 
@@ -120,12 +125,17 @@ export class AnalyticsService {
 
     const win = this.getWindow();
     if (!this.isLoaded) {
-      const script = this.doc.createElement('script');
-      script.id = this.scriptId;
-      script.async = true;
-      script.src = `https://www.googletagmanager.com/gtag/js?id=${this.measurementId}`;
-      this.doc.head.appendChild(script);
-      this.isLoaded = true;
+      const existingScript = this.doc.getElementById(this.scriptId);
+      if (existingScript) {
+        this.isLoaded = true;
+      } else {
+        const script = this.doc.createElement('script');
+        script.id = this.scriptId;
+        script.async = true;
+        script.src = `https://www.googletagmanager.com/gtag/js?id=${this.measurementId}`;
+        this.doc.head.appendChild(script);
+        this.isLoaded = true;
+      }
     }
 
     win.gtag?.('consent', 'default', {
