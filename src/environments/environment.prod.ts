@@ -1,6 +1,6 @@
 export const environment = {
   production: true,
   contactApiUrl: '/api/contact',
-  googleAnalyticsMeasurementId: '',
-  gtmContainerId: 'GTM-2VMJ',
+  googleAnalyticsMeasurementId: 'G-NJ4667ZPSN',
+  gtmContainerId: '',
 };
