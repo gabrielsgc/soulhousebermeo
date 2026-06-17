@@ -94,7 +94,7 @@
         <div class="lightbox__media" aria-hidden="true">
           @if (t().gallery.items[activeIndex()!].img) {
             <img
-              [ngSrc]="t().gallery.items[activeIndex()!].img"
+              [ngSrc]="t().gallery.items[activeIndex()!].img!"
               [alt]="t().gallery.items[activeIndex()!].label"
               [title]="t().gallery.items[activeIndex()!].label"
               class="lightbox__photo"

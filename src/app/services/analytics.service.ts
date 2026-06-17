@@ -37,8 +37,12 @@ export class AnalyticsService {
     });
   }
 
+  private getWindow(): Window {
+    return globalThis as unknown as Window;
+  }
+
   private ensureGtagStub(): void {
-    const win = globalThis as Window;
+    const win = this.getWindow();
     win.dataLayer = win.dataLayer || [];
     if (!win.gtag) {
       win.gtag = (...args: unknown[]) => {
@@ -55,7 +59,7 @@ export class AnalyticsService {
 
     this.ensureGtagStub();
 
-    const win = globalThis as Window;
+    const win = this.getWindow();
     if (!this.isLoaded) {
       const script = this.doc.createElement('script');
       script.id = this.scriptId;
@@ -77,7 +81,7 @@ export class AnalyticsService {
       return;
     }
 
-    const win = globalThis as Window;
+    const win = this.getWindow();
     win.gtag?.('consent', 'update', { analytics_storage: 'denied' });
 
     const script = this.doc.getElementById(this.scriptId);
@@ -88,7 +92,7 @@ export class AnalyticsService {
   }
 
   private enableTagManager(): void {
-    const win = globalThis as Window;
+    const win = this.getWindow();
     win.dataLayer = win.dataLayer || [];
 
     if (!this.isGtmLoaded) {
@@ -109,7 +113,7 @@ export class AnalyticsService {
   }
 
   private disableTagManager(): void {
-    const win = globalThis as Window;
+    const win = this.getWindow();
     win.dataLayer = win.dataLayer || [];
     win.dataLayer.push({
       event: 'consent_update',
