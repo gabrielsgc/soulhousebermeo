@@ -1,11 +1,12 @@
 ﻿import { Component, HostListener, inject, signal } from '@angular/core';
+import { NgOptimizedImage } from '@angular/common';
 import { I18nService } from '../../services/i18n.service';
 import { LangSwitcherComponent } from './lang-switcher.component';
 
 @Component({
   selector: 'app-navbar',
   standalone: true,
-  imports: [LangSwitcherComponent],
+  imports: [LangSwitcherComponent, NgOptimizedImage],
   template: `
     <header id="site-header" role="banner">
       <nav class="navbar" [class.scrolled]="isScrolled()" [attr.aria-label]="t().nav.ariaNav">
@@ -13,7 +14,7 @@ import { LangSwitcherComponent } from './lang-switcher.component';
 
           <a class="navbar__brand" href="#inicio" [attr.aria-label]="t().nav.ariaBrand">
             <img
-              src="imgs/logo-soulhousebermeo-VT.webp"
+              ngSrc="imgs/logo-soulhousebermeo-VT.webp"
               alt="Soul House Bermeo"
               class="navbar__brand-logo"
               width="46"

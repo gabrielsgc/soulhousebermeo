@@ -1,11 +1,12 @@
 ﻿import { Component, inject, signal } from '@angular/core';
+import { NgOptimizedImage } from '@angular/common';
 import { I18nService } from '../../services/i18n.service';
 import { IconComponent } from '../ui/icon.component';
 
 @Component({
   selector: 'app-gallery',
   standalone: true,
-  imports: [IconComponent],
+  imports: [IconComponent, NgOptimizedImage],
   templateUrl: './gallery.component.html',
 })
 export class GalleryComponent {

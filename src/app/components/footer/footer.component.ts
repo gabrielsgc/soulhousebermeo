@@ -1,4 +1,5 @@
 import { Component, inject } from '@angular/core';
+import { NgOptimizedImage } from '@angular/common';
 import { I18nService } from '../../services/i18n.service';
 import { IconComponent } from '../ui/icon.component';
 import { CookieConsentService } from '../../services/cookie-consent.service';
@@ -6,13 +7,13 @@ import { CookieConsentService } from '../../services/cookie-consent.service';
 @Component({
   selector: 'app-footer',
   standalone: true,
-  imports: [IconComponent],
+  imports: [IconComponent, NgOptimizedImage],
   template: `
     <footer class="footer" role="contentinfo">
       <div class="container footer__grid">
         <div class="footer__brand">
           <img
-            src="imgs/logo-soulhousebermeo-VT.webp"
+            ngSrc="imgs/logo-soulhousebermeo-VT.webp"
             alt="Soul House Bermeo"
             class="footer__brand-logo"
             width="56"

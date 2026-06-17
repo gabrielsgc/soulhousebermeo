@@ -1,15 +1,24 @@
 ﻿import { Component, inject } from '@angular/core';
+import { NgOptimizedImage } from '@angular/common';
 import { I18nService } from '../../services/i18n.service';
 import { IconComponent } from '../ui/icon.component';
 
 @Component({
   selector: 'app-hero',
   standalone: true,
-  imports: [IconComponent],
+  imports: [IconComponent, NgOptimizedImage],
   template: `
     <section class="hero" id="inicio" aria-labelledby="hero-heading">
       <div class="hero__photo-wrap" aria-hidden="true">
-        <img class="hero__photo" src="assets/images/hero-facade.png" alt="" role="presentation"/>
+        <img
+          class="hero__photo"
+          ngSrc="assets/images/hero-facade.png"
+          width="1920"
+          height="1280"
+          alt=""
+          role="presentation"
+          priority
+        />
         <div class="hero__photo-veil"></div>
       </div>
       <div class="hero__coords" aria-hidden="true">

@@ -21,7 +21,15 @@
         @for (item of t().gallery.items; track item.label; let i = $index) {
           <div class="slider__slide">
             @if (item.img) {
-              <img [src]="item.img" [alt]="item.label" [title]="item.label" class="slider__img" loading="lazy" />
+              <img
+                [ngSrc]="item.img"
+                [alt]="item.label"
+                [title]="item.label"
+                class="slider__img"
+                width="1600"
+                height="1067"
+                loading="lazy"
+              />
             } @else {
               <div class="slider__placeholder">
                 <app-icon [name]="item.emoji" [size]="56" aria-hidden="true" />
@@ -63,7 +71,7 @@
           [attr.aria-current]="i === sliderIndex() ? 'true' : null"
           (click)="goTo(i)">
           @if (item.img) {
-            <img [src]="item.img" [alt]="item.label" loading="lazy" />
+            <img [ngSrc]="item.img" [alt]="item.label" [title]="item.label" width="180" height="120" loading="lazy" />
           } @else {
             <app-icon [name]="item.emoji" [size]="18" aria-hidden="true" />
           }
@@ -86,9 +94,13 @@
         <div class="lightbox__media" aria-hidden="true">
           @if (t().gallery.items[activeIndex()!].img) {
             <img
-              [src]="t().gallery.items[activeIndex()!].img"
+              [ngSrc]="t().gallery.items[activeIndex()!].img"
               [alt]="t().gallery.items[activeIndex()!].label"
-              class="lightbox__photo" />
+              [title]="t().gallery.items[activeIndex()!].label"
+              class="lightbox__photo"
+              width="1600"
+              height="1067"
+              loading="lazy" />
           } @else {
             <app-icon [name]="t().gallery.items[activeIndex()!].emoji" [size]="64" class="lightbox__icon" />
           }
