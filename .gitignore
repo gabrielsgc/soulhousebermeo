@@ -40,3 +40,6 @@ Thumbs.db
 
 # Environment — NEVER commit real keys
 src/environments/environment*.local.ts
+.env
+.env.*
+!.env.example
