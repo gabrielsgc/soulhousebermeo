@@ -42,9 +42,7 @@ import { CookieConsentComponent } from '../../components/cookie-consent/cookie-c
       @defer (on viewport; prefetch on idle) {
         <app-faq />
       } @placeholder { <div style="min-height:300px"></div> }
-      @defer (on viewport; prefetch on idle) {
-        <app-contact />
-      } @placeholder { <div style="min-height:500px"></div> }
+      <app-contact />
     </main>
     @defer (on viewport; prefetch on idle) {
       <app-footer />
