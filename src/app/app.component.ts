@@ -1,6 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { SeoService } from './services/seo.service';
+import { AnalyticsService } from './services/analytics.service';
 
 @Component({
   selector: 'app-root',
@@ -10,4 +11,5 @@ import { SeoService } from './services/seo.service';
 })
 export class AppComponent {
   private readonly _seo = inject(SeoService);
+  private readonly _analytics = inject(AnalyticsService);
 }
