@@ -22,11 +22,16 @@ export class AnalyticsService {
   private readonly gtmScriptId = 'gtm-script';
   private isLoaded = false;
   private isGtmLoaded = false;
+  private isGaConfigured = false;
 
   constructor() {
     effect(() => {
       if (!isPlatformBrowser(this.platformId)) return;
       if (!this.measurementId && !this.gtmContainerId) return;
+
+      if (this.measurementId && !this.gtmContainerId) {
+        this.bootstrapGaWithDeniedConsent();
+      }
 
       const allowAnalytics = !!this.consent.consent()?.preferences;
       if (allowAnalytics) {
@@ -57,20 +62,9 @@ export class AnalyticsService {
       return;
     }
 
-    this.ensureGtagStub();
+    this.bootstrapGaWithDeniedConsent();
 
     const win = this.getWindow();
-    if (!this.isLoaded) {
-      const script = this.doc.createElement('script');
-      script.id = this.scriptId;
-      script.async = true;
-      script.src = `https://www.googletagmanager.com/gtag/js?id=${this.measurementId}`;
-      this.doc.head.appendChild(script);
-
-      win.gtag?.('js', new Date());
-      win.gtag?.('config', this.measurementId, { anonymize_ip: true });
-      this.isLoaded = true;
-    }
 
     win.gtag?.('consent', 'update', { analytics_storage: 'granted' });
   }
@@ -83,12 +77,6 @@ export class AnalyticsService {
 
     const win = this.getWindow();
     win.gtag?.('consent', 'update', { analytics_storage: 'denied' });
-
-    const script = this.doc.getElementById(this.scriptId);
-    if (script) {
-      script.remove();
-      this.isLoaded = false;
-    }
   }
 
   private enableTagManager(): void {
@@ -124,6 +112,33 @@ export class AnalyticsService {
     if (script) {
       script.remove();
       this.isGtmLoaded = false;
+    }
+  }
+
+  private bootstrapGaWithDeniedConsent(): void {
+    this.ensureGtagStub();
+
+    const win = this.getWindow();
+    if (!this.isLoaded) {
+      const script = this.doc.createElement('script');
+      script.id = this.scriptId;
+      script.async = true;
+      script.src = `https://www.googletagmanager.com/gtag/js?id=${this.measurementId}`;
+      this.doc.head.appendChild(script);
+      this.isLoaded = true;
+    }
+
+    win.gtag?.('consent', 'default', {
+      analytics_storage: 'denied',
+      ad_storage: 'denied',
+      ad_user_data: 'denied',
+      ad_personalization: 'denied',
+    });
+
+    if (!this.isGaConfigured) {
+      win.gtag?.('js', new Date());
+      win.gtag?.('config', this.measurementId, { anonymize_ip: true });
+      this.isGaConfigured = true;
     }
   }
 }
