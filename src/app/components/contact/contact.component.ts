@@ -1,4 +1,4 @@
-﻿import { Component, OnInit, inject, signal } from '@angular/core';
+﻿import { Component, OnInit, inject, signal, computed } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {
   ReactiveFormsModule, FormBuilder, FormGroup,
@@ -6,6 +6,7 @@ import {
 } from '@angular/forms';
 import { EmailService } from '../../services/email.service';
 import { I18nService } from '../../services/i18n.service';
+import { AvailabilityService } from '../../services/availability.service';
 import { IconComponent } from '../ui/icon.component';
 
 export type FormStatus = 'idle' | 'loading' | 'success' | 'error';
@@ -24,7 +25,14 @@ export class ContactComponent implements OnInit {
 
   protected readonly i18n = inject(I18nService);
   protected readonly t = this.i18n.t;
+  protected readonly availability = inject(AvailabilityService);
   todayISO = new Date().toISOString().split('T')[0];
+
+  readonly rangeBlocked = computed(() => {
+    const checkin  = this.form?.get('fecha_llegada')?.value ?? '';
+    const checkout = this.form?.get('fecha_salida')?.value ?? '';
+    return this.availability.isRangeBlocked(checkin, checkout);
+  });
 
   constructor(private fb: FormBuilder, private emailService: EmailService) {}
 

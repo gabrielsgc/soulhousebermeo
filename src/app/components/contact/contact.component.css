@@ -1,4 +1,12 @@
 /* Contact styles — scoped to component */
+.form__availability-warning {
+  display: flex; align-items: flex-start; gap: .5rem;
+  padding: .75rem 1rem; border-radius: var(--radius-sm, 6px);
+  background: #fff3cd; border: 1px solid #ffc107;
+  color: #664d03; font-size: .875rem; line-height: 1.4;
+  margin-bottom: .5rem;
+}
+.form__availability-warning a { color: #664d03; font-weight: 600; }
 .form__success {
   display: flex; flex-direction: column; align-items: center;
   text-align: center; gap: 1rem; padding: 2.5rem 1rem;

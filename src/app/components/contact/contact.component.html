@@ -182,6 +182,13 @@
                 </div>
               </div>
 
+              @if (rangeBlocked()) {
+                <div class="form__availability-warning" role="alert" aria-live="polite">
+                  <app-icon name="calendar" [size]="16" aria-hidden="true" />
+                  <span>Esas fechas ya están reservadas en Booking. Elige otras o <a href="https://www.booking.com/hotel/es/soul-house.es.html" target="_blank" rel="noopener noreferrer">consulta disponibilidad en Booking.com</a>.</span>
+                </div>
+              }
+
               <!-- Mensaje -->
               <div class="form__group" [class.has-error]="isInvalid('mensaje')">
                 <label class="form__label" for="f-mensaje">

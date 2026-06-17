@@ -67,6 +67,7 @@ export interface Translations {
     navLinks: { href: string; label: string }[];
     legal: string[];
   };
+  seo: { title: string; description: string };
   cookieBanner: {
     title: string; message: string;
     acceptAll: string; necessaryOnly: string; manage: string;
@@ -244,6 +245,10 @@ const es: Translations = {
     prefDesc: 'Google Fonts carga tipografías desde servidores de Google y puede transmitir tu dirección IP a Google LLC (EE. UU.).',
     manageLink: 'Gestionar cookies',
   },
+  seo: {
+    title: 'Soul House Bermeo | Alojamiento en el Puerto Pesquero del País Vasco',
+    description: 'Vivienda turística de uso exclusivo en el corazón del puerto de Bermeo (Bizkaia). 3 habitaciones, 6 plazas, vistas al Cantábrico. Reserva directa sin comisiones ni intermediarios.',
+  },
 };
 
 // ── Euskera ──────────────────────────────────────────────────────
@@ -412,6 +417,10 @@ const eu: Translations = {
     prefCat: 'Hobespenen cookieak',
     prefDesc: 'Google Fonts-ek tipografiak Google zerbitzarietatik kargatzen ditu eta zure IP helbidea Google LLC (AEB) enpresari transmititu dezake.',
     manageLink: 'Cookieak kudeatu',
+  },
+  seo: {
+    title: 'Soul House Bermeo | Alojamendua Bermeoko Portu Arrantzalean',
+    description: 'Erabilera esklusiboko turismo-etxebizitza Bermeoko portuaren bihotzean (Bizkaia). 3 logela, 6 leku, Kantauriko ikuspegia. Erreserba zuzena komisiorik gabe.',
   },
 };
 
@@ -582,6 +591,10 @@ const en: Translations = {
     prefDesc: 'Google Fonts loads typefaces from Google\'s servers and may transmit your IP address to Google LLC (USA).',
     manageLink: 'Manage cookies',
   },
+  seo: {
+    title: 'Soul House Bermeo | Holiday Home in the Basque Country Fishing Port',
+    description: 'Exclusive-use holiday rental in the heart of Bermeo harbour (Bizkaia). 3 bedrooms, 6 guests, views over the Bay of Biscay. Direct booking with no fees or middlemen.',
+  },
 };
 
 // ── Français ──────────────────────────────────────────────────────
@@ -750,6 +763,10 @@ const fr: Translations = {
     prefCat: 'Cookies de préférences',
     prefDesc: 'Google Fonts charge des polices depuis les serveurs de Google et peut transmettre votre adresse IP à Google LLC (États-Unis).',
     manageLink: 'Gérer les cookies',
+  },
+  seo: {
+    title: 'Soul House Bermeo | Maison de Vacances dans le Port de Pêche du Pays Basque',
+    description: 'Location vacances exclusive au cœur du port de pêche de Bermeo (Bizkaia). 3 chambres, 6 personnes, vue sur la mer Cantabrique. Réservation directe sans commission ni intermédiaire.',
   },
 };
 

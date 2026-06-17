@@ -37,6 +37,16 @@ function validatePayload(data: unknown): ContactPayload | null {
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   if (!emailRegex.test(d.email as string)) return null;
 
+  // Field length limits
+  const limits: Record<string, number> = {
+    nombre: 100, email: 254, telefono: 20, personas: 20,
+    fecha_llegada: 10, fecha_salida: 10, mensaje: 800,
+  };
+  for (const [field, max] of Object.entries(limits)) {
+    const val = d[field];
+    if (typeof val === 'string' && val.length > max) return null;
+  }
+
   // Check for XSS in all string fields
   for (const [, val] of Object.entries(d)) {
     if (typeof val === 'string' && hasScript(val)) return null;
@@ -69,6 +79,24 @@ export const onRequestPost: PagesFunction<Env> = async (context) => {
     'Content-Type': 'application/json',
     'Access-Control-Allow-Origin': corsOrigin,
   };
+
+  // Enforce JSON content-type
+  const contentType = context.request.headers.get('Content-Type') || '';
+  if (!contentType.includes('application/json')) {
+    return new Response(JSON.stringify({ error: 'Content-Type debe ser application/json' }), {
+      status: 415,
+      headers,
+    });
+  }
+
+  // Body size limit (16 KB)
+  const contentLength = Number(context.request.headers.get('Content-Length') ?? '0');
+  if (contentLength > 16_384) {
+    return new Response(JSON.stringify({ error: 'Petición demasiado grande' }), {
+      status: 413,
+      headers,
+    });
+  }
 
   try {
     const body = await context.request.json();

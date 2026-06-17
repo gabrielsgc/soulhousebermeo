@@ -3,3 +3,6 @@ pages_build_output_dir = "dist/soul-house-bermeo/browser"
 
 [env.production]
 vars = { CONTACT_EMAIL = "gabrielsgc@gmail.com" }
+# BOOKING_ICAL_URL: set as a secret in Cloudflare Pages dashboard
+# (Settings → Environment variables → Add secret)
+# Value: https://admin.booking.com/hotel/hoteladmin/ical.html?hotel_id=...&lang=...

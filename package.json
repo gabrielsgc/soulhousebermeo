@@ -7,7 +7,8 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build --configuration production",
-    "test": "ng test"
+    "test": "ng test",
+    "serve:ssr:soul-house-bermeo": "node dist/soul-house-bermeo/server/server.mjs"
   },
   "dependencies": {
     "@angular/animations": "^17.0.0",
@@ -17,8 +18,11 @@
     "@angular/forms": "^17.0.0",
     "@angular/platform-browser": "^17.0.0",
     "@angular/platform-browser-dynamic": "^17.0.0",
+    "@angular/platform-server": "^17.0.0",
     "@angular/router": "^17.0.0",
+    "@angular/ssr": "^17.3.17",
     "@emailjs/browser": "^3.12.0",
+    "express": "^4.18.2",
     "rxjs": "~7.8.0",
     "tslib": "^2.6.0",
     "zone.js": "~0.14.0"
@@ -27,6 +31,7 @@
     "@angular-devkit/build-angular": "^17.0.0",
     "@angular/cli": "^17.0.0",
     "@angular/compiler-cli": "^17.0.0",
+    "@types/express": "^4.17.17",
     "@types/jasmine": "~5.1.0",
     "@types/node": "^18.18.0",
     "jasmine-core": "~5.1.0",
