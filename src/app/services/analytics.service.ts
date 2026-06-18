@@ -23,6 +23,7 @@ export class AnalyticsService {
   private isLoaded = false;
   private isGtmLoaded = false;
   private isGaConfigured = false;
+  private hasVitalsTracking = false;
 
   constructor() {
     effect(() => {
@@ -72,6 +73,7 @@ export class AnalyticsService {
     const win = this.getWindow();
 
     win.gtag?.('consent', 'update', { analytics_storage: 'granted' });
+    this.setupWebVitalsTracking();
   }
 
   private disableAnalytics(): void {
@@ -150,5 +152,96 @@ export class AnalyticsService {
       win.gtag?.('config', this.measurementId, { anonymize_ip: true });
       this.isGaConfigured = true;
     }
+  }
+
+  private setupWebVitalsTracking(): void {
+    if (this.hasVitalsTracking || !('PerformanceObserver' in globalThis)) return;
+    this.hasVitalsTracking = true;
+
+    this.observeLcp();
+    this.observeCls();
+    this.observeInp();
+  }
+
+  private reportVital(metricName: 'LCP' | 'CLS' | 'INP', value: number): void {
+    const win = this.getWindow();
+    if (!Number.isFinite(value) || value <= 0) return;
+
+    const roundedValue = metricName === 'CLS' ? Math.round(value * 1000) : Math.round(value);
+    win.gtag?.('event', 'web_vital', {
+      metric_name: metricName,
+      metric_value: roundedValue,
+      metric_raw_value: value,
+      non_interaction: true,
+    });
+  }
+
+  private observeLcp(): void {
+    let lcp = 0;
+
+    const observer = new PerformanceObserver((list) => {
+      const entries = list.getEntries();
+      const last = entries.at(-1);
+      if (last) {
+        lcp = last.startTime;
+      }
+    });
+
+    observer.observe({ type: 'largest-contentful-paint', buffered: true });
+
+    const finalize = () => {
+      this.reportVital('LCP', lcp);
+      observer.disconnect();
+    };
+
+    this.doc.addEventListener('visibilitychange', () => {
+      if (this.doc.visibilityState === 'hidden') {
+        finalize();
+      }
+    }, { once: true });
+  }
+
+  private observeCls(): void {
+    let cls = 0;
+
+    const observer = new PerformanceObserver((list) => {
+      for (const entry of list.getEntries()) {
+        const shift = entry as PerformanceEntry & { value?: number; hadRecentInput?: boolean };
+        if (!shift.hadRecentInput && typeof shift.value === 'number') {
+          cls += shift.value;
+        }
+      }
+    });
+
+    observer.observe({ type: 'layout-shift', buffered: true });
+
+    this.doc.addEventListener('visibilitychange', () => {
+      if (this.doc.visibilityState === 'hidden') {
+        this.reportVital('CLS', cls);
+        observer.disconnect();
+      }
+    }, { once: true });
+  }
+
+  private observeInp(): void {
+    let maxInp = 0;
+
+    const observer = new PerformanceObserver((list) => {
+      for (const entry of list.getEntries()) {
+        const interaction = entry as PerformanceEntry & { duration?: number };
+        if (typeof interaction.duration === 'number') {
+          maxInp = Math.max(maxInp, interaction.duration);
+        }
+      }
+    });
+
+    observer.observe({ type: 'event', buffered: true } as PerformanceObserverInit);
+
+    this.doc.addEventListener('visibilitychange', () => {
+      if (this.doc.visibilityState === 'hidden') {
+        this.reportVital('INP', maxInp);
+        observer.disconnect();
+      }
+    }, { once: true });
   }
 }
