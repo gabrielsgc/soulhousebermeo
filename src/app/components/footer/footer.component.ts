@@ -1,5 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { NgOptimizedImage } from '@angular/common';
+import { RouterLink } from '@angular/router';
 import { I18nService } from '../../services/i18n.service';
 import { IconComponent } from '../ui/icon.component';
 import { CookieConsentService } from '../../services/cookie-consent.service';
@@ -7,7 +8,7 @@ import { CookieConsentService } from '../../services/cookie-consent.service';
 @Component({
   selector: 'app-footer',
   standalone: true,
-  imports: [IconComponent, NgOptimizedImage],
+  imports: [IconComponent, NgOptimizedImage, RouterLink],
   template: `
     <footer class="footer" role="contentinfo">
       <div class="container footer__grid">
@@ -26,8 +27,8 @@ import { CookieConsentService } from '../../services/cookie-consent.service';
         <nav class="footer__nav" [attr.aria-label]="t().footer.exploreHeading">
           <h3>{{ t().footer.exploreHeading }}</h3>
           <ul>
-            @for (link of t().footer.navLinks; track link.href) {
-              <li><a [href]="link.href">{{ link.label }}</a></li>
+            @for (route of exploreRoutes; track route; let i = $index) {
+              <li><a [routerLink]="route">{{ t().footer.navLinks[i] ? t().footer.navLinks[i].label : route }}</a></li>
             }
           </ul>
         </nav>
@@ -40,7 +41,7 @@ import { CookieConsentService } from '../../services/cookie-consent.service';
             </a>
           </address>
           <p>
-            <a href="#contacto" class="btn btn--teal btn--sm" style="margin-top:1rem;display:inline-block;">
+            <a [routerLink]="'/reservar'" class="btn btn--teal btn--sm" style="margin-top:1rem;display:inline-block;">
               {{ t().footer.bookNow }}
             </a>
           </p>
@@ -79,5 +80,6 @@ import { CookieConsentService } from '../../services/cookie-consent.service';
 export class FooterComponent {
   protected readonly t  = inject(I18nService).t;
   protected readonly cs = inject(CookieConsentService);
+  protected readonly exploreRoutes = ['/', '/la-casa', '/galeria', '/servicios', '/ubicacion', '/faq', '/reservar'];
   year = new Date().getFullYear();
 }

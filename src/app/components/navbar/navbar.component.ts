@@ -1,18 +1,19 @@
 ﻿import { Component, HostListener, inject, signal } from '@angular/core';
 import { NgOptimizedImage } from '@angular/common';
+import { RouterLink } from '@angular/router';
 import { I18nService } from '../../services/i18n.service';
 import { LangSwitcherComponent } from './lang-switcher.component';
 
 @Component({
   selector: 'app-navbar',
   standalone: true,
-  imports: [LangSwitcherComponent, NgOptimizedImage],
+  imports: [LangSwitcherComponent, NgOptimizedImage, RouterLink],
   template: `
     <header id="site-header" role="banner">
       <nav class="navbar" [class.scrolled]="isScrolled()" [attr.aria-label]="t().nav.ariaNav">
         <div class="container navbar__inner">
 
-          <a class="navbar__brand" href="#inicio" [attr.aria-label]="t().nav.ariaBrand">
+          <a class="navbar__brand" [routerLink]="'/'" [attr.aria-label]="t().nav.ariaBrand" (click)="closeMenu()">
             <img
               ngSrc="imgs/logo-soulhousebermeo-VT.webp"
               alt="Soul House Bermeo"
@@ -39,14 +40,14 @@ import { LangSwitcherComponent } from './lang-switcher.component';
           </button>
 
           <ul class="navbar__nav" id="nav-menu" [class.open]="isMenuOpen()" role="list">
-            <li><a class="navbar__link" href="#alojamiento" (click)="closeMenu()">{{ t().nav.home }}</a></li>
-            <li><a class="navbar__link" href="#galeria" (click)="closeMenu()">{{ t().nav.gallery }}</a></li>
-            <li><a class="navbar__link" href="#servicios" (click)="closeMenu()">{{ t().nav.services }}</a></li>
-            <li><a class="navbar__link" href="#ubicacion" (click)="closeMenu()">{{ t().nav.location }}</a></li>
-            <li><a class="navbar__link" href="#faq" (click)="closeMenu()">{{ t().nav.faq }}</a></li>
+            <li><a class="navbar__link" [routerLink]="'/la-casa'" (click)="closeMenu()">{{ t().nav.home }}</a></li>
+            <li><a class="navbar__link" [routerLink]="'/galeria'" (click)="closeMenu()">{{ t().nav.gallery }}</a></li>
+            <li><a class="navbar__link" [routerLink]="'/servicios'" (click)="closeMenu()">{{ t().nav.services }}</a></li>
+            <li><a class="navbar__link" [routerLink]="'/ubicacion'" (click)="closeMenu()">{{ t().nav.location }}</a></li>
+            <li><a class="navbar__link" [routerLink]="'/faq'" (click)="closeMenu()">{{ t().nav.faq }}</a></li>
             <li>
               <a class="navbar__link navbar__cta btn btn--ghost"
-                 href="#contacto" (click)="closeMenu()"
+                 [routerLink]="'/reservar'" (click)="closeMenu()"
                  style="min-height:40px;padding:.4rem 1.1rem;">
                 {{ t().nav.book }}
               </a>

@@ -1,12 +1,13 @@
 ﻿import { Component, inject } from '@angular/core';
 import { NgOptimizedImage } from '@angular/common';
+import { RouterLink } from '@angular/router';
 import { I18nService } from '../../services/i18n.service';
 import { IconComponent } from '../ui/icon.component';
 
 @Component({
   selector: 'app-hero',
   standalone: true,
-  imports: [IconComponent, NgOptimizedImage],
+  imports: [IconComponent, NgOptimizedImage, RouterLink],
   template: `
     <section class="hero" id="inicio" aria-labelledby="hero-heading">
       <div class="hero__photo-wrap" aria-hidden="true">
@@ -40,8 +41,8 @@ import { IconComponent } from '../ui/icon.component';
           <p class="hero__tagline">{{ t().hero.tagline }}</p>
           <div class="hero__rule" aria-hidden="true"></div>
           <div class="hero__actions">
-            <a class="btn btn--teal btn--lg" href="#contacto">{{ t().hero.cta1 }}</a>
-            <a class="btn btn--outline-light btn--lg" href="#galeria">{{ t().hero.cta2 }}</a>
+            <a class="btn btn--teal btn--lg" [routerLink]="'/reservar'">{{ t().hero.cta1 }}</a>
+            <a class="btn btn--outline-light btn--lg" [routerLink]="'/la-casa'">{{ t().hero.cta2 }}</a>
           </div>
         </div>
         <div class="hero__side-tag" aria-hidden="true">
