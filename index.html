@@ -1964,5 +1964,99 @@ document.addEventListener('DOMContentLoaded', function () {
 }); // end DOMContentLoaded
 </script>
 
+<style>
+  .sh-cookie-banner {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 9999;
+    background: #070a0d;
+    color: #ffffff;
+    border-top: 1px solid rgba(141, 175, 197, 0.28);
+    box-shadow: 0 -6px 24px rgba(0, 0, 0, 0.35);
+    padding: 1rem;
+  }
+
+  .sh-cookie-banner__inner {
+    max-width: 1120px;
+    margin: 0 auto;
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
+
+  .sh-cookie-banner__text {
+    font-size: 0.92rem;
+    line-height: 1.45;
+    color: rgba(255, 255, 255, 0.88);
+    max-width: 760px;
+  }
+
+  .sh-cookie-banner__actions {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+  }
+
+  .sh-cookie-btn {
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    background: transparent;
+    color: #ffffff;
+    font-size: 0.78rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 0.52rem 0.95rem;
+    cursor: pointer;
+  }
+
+  .sh-cookie-btn--primary {
+    background: #8dafc5;
+    color: #070a0d;
+    border-color: #8dafc5;
+    font-weight: 600;
+  }
+</style>
+
+<script>
+  (function () {
+    var STORAGE_KEY = 'soulhouse_cookies';
+    var existing = null;
+    try { existing = localStorage.getItem(STORAGE_KEY); } catch (e) { existing = null; }
+    if (existing) return;
+
+    var banner = document.createElement('div');
+    banner.className = 'sh-cookie-banner';
+    banner.setAttribute('role', 'dialog');
+    banner.setAttribute('aria-label', 'Politica de cookies');
+    banner.innerHTML =
+      '<div class="sh-cookie-banner__inner">' +
+      '<p class="sh-cookie-banner__text">Usamos cookies tecnicas para el funcionamiento del sitio y cookies de analitica para mejorar la experiencia. Puedes aceptar todas o solo las necesarias.</p>' +
+      '<div class="sh-cookie-banner__actions">' +
+      '<button type="button" class="sh-cookie-btn" data-cookie="necessary">Solo necesarias</button>' +
+      '<button type="button" class="sh-cookie-btn sh-cookie-btn--primary" data-cookie="all">Aceptar todo</button>' +
+      '</div>' +
+      '</div>';
+
+    function save(preferences) {
+      var payload = { necessary: true, preferences: preferences, timestamp: Date.now() };
+      try { localStorage.setItem(STORAGE_KEY, JSON.stringify(payload)); } catch (e) {}
+      banner.remove();
+    }
+
+    banner.addEventListener('click', function (event) {
+      var target = event.target;
+      if (!target || !target.getAttribute) return;
+      var action = target.getAttribute('data-cookie');
+      if (action === 'all') save(true);
+      if (action === 'necessary') save(false);
+    });
+
+    document.body.appendChild(banner);
+  })();
+</script>
+
 </body>
 </html>
