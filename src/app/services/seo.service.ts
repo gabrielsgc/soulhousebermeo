@@ -34,7 +34,9 @@ export class SeoService {
     const data = (current.snapshot.data ?? {}) as SeoRouteData;
     const title = current.snapshot.title ?? this.titleSvc.getTitle();
     const description = data.description ?? '';
-    const canonicalUrl = `${this.siteUrl}${this.router.url.split('?')[0]}`;
+    const path = this.router.url.split('?')[0].split('#')[0] || '/';
+    const canonicalPath = path === '/' ? '/' : `${path.replace(/\/+$/, '')}/`;
+    const canonicalUrl = `${this.siteUrl}${canonicalPath}`;
 
     if (title) {
       this.titleSvc.setTitle(title);
