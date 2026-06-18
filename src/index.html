@@ -8,6 +8,8 @@
   <meta name="keywords" content="alquiler vacacional Bermeo, vivienda turística Bizkaia, casa vacacional puerto Bermeo, alojamiento exclusivo País Vasco, Soul House Bermeo, reserva directa Bermeo" />
   <link rel="canonical" href="https://www.soulhousebermeo.com/" />
   <link rel="sitemap" type="application/xml" href="/sitemap.xml" />
+  <link rel="icon" type="image/webp" href="/imgs/logo-soulhousebermeo-VT.webp" />
+  <link rel="apple-touch-icon" href="/imgs/logo-soulhousebermeo-VT.webp" />
 
   <!-- GEO -->
   <meta name="geo.region" content="ES-BI" />
@@ -51,11 +53,24 @@
     "@context": "https://schema.org",
     "@graph": [
       {
+        "@type": "Organization",
+        "@id": "https://www.soulhousebermeo.com/#organization",
+        "name": "Soul House Bermeo",
+        "url": "https://www.soulhousebermeo.com/",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://www.soulhousebermeo.com/imgs/logo-soulhousebermeo-VT.webp"
+        },
+        "image": "https://www.soulhousebermeo.com/imgs/logo-soulhousebermeo-VT.webp"
+      },
+      {
         "@type": "LodgingBusiness",
         "@id": "https://www.soulhousebermeo.com/#property",
         "name": "Soul House Bermeo",
         "description": "Vivienda Turística de uso exclusivo en el Puerto de Bermeo (Bizkaia). 3 habitaciones, 6 plazas, vistas a la ría del Cantábrico.",
         "url": "https://www.soulhousebermeo.com/",
+        "logo": "https://www.soulhousebermeo.com/imgs/logo-soulhousebermeo-VT.webp",
+        "image": "https://www.soulhousebermeo.com/assets/images/og-image.jpg",
         "telephone": "+34-665-743-132",
         "email": "info@soulhousebermeo.com",
         "address": {
@@ -83,7 +98,8 @@
         "priceRange": "€€",
         "currenciesAccepted": "EUR",
         "paymentAccepted": "Transferencia bancaria, Bizum",
-        "touristType": ["Family", "Couple", "Group"]
+        "touristType": ["Family", "Couple", "Group"],
+        "provider": { "@id": "https://www.soulhousebermeo.com/#organization" }
       },
       {
         "@type": "WebSite",

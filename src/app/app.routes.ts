@@ -1,6 +1,8 @@
 import { Routes } from '@angular/router';
 
 const baseUrl = 'https://www.soulhousebermeo.com';
+const logoUrl = `${baseUrl}/imgs/logo-soulhousebermeo-VT.webp`;
+const coverImageUrl = `${baseUrl}/assets/images/og-image.jpg`;
 
 const lodgingBusinessJsonLd = {
   '@context': 'https://schema.org',
@@ -9,6 +11,8 @@ const lodgingBusinessJsonLd = {
   description:
     'Vivienda turística con 3 habitaciones y 6 plazas en el Puerto de Bermeo, País Vasco',
   url: baseUrl,
+  logo: logoUrl,
+  image: coverImageUrl,
   address: {
     '@type': 'PostalAddress',
     addressLocality: 'Bermeo',
@@ -39,6 +43,8 @@ const reservarJsonLd = {
     '@type': 'LodgingBusiness',
     name: 'Soul House Bermeo',
     url: baseUrl,
+    logo: logoUrl,
+    image: coverImageUrl,
     email: 'info@soulhousebermeo.com',
     telephone: '+34-665-743-132',
   },
