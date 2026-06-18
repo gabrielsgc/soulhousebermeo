@@ -28,6 +28,27 @@ const lodgingBusinessJsonLd = {
   },
 };
 
+const reservarJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'ContactPage',
+  name: 'Reservar en Soul House Bermeo',
+  url: `${baseUrl}/reservar/`,
+  description:
+    'Solicitud de disponibilidad y reserva directa para Soul House Bermeo, vivienda turística en Bizkaia.',
+  mainEntity: {
+    '@type': 'LodgingBusiness',
+    name: 'Soul House Bermeo',
+    url: baseUrl,
+    email: 'info@soulhousebermeo.com',
+    telephone: '+34-665-743-132',
+  },
+  potentialAction: {
+    '@type': 'ReserveAction',
+    target: `${baseUrl}/reservar/`,
+    name: 'Solicitar reserva',
+  },
+};
+
 export const routes: Routes = [
   {
     path: '',
@@ -97,6 +118,7 @@ export const routes: Routes = [
     data: {
       description:
         'Solicita disponibilidad y reserva directa en Soul House Bermeo sin comisiones, con respuesta rápida del alojamiento.',
+      jsonLd: reservarJsonLd,
     },
   },
   { path: '**', redirectTo: '' },

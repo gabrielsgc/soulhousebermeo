@@ -48,6 +48,8 @@ export class SeoService {
       this.meta.updateTag({ property: 'og:description', content: description });
     }
 
+    this.meta.updateTag({ name: 'robots', content: 'index,follow,max-image-preview:large' });
+
     this.meta.updateTag({ property: 'og:url', content: canonicalUrl });
     this.upsertCanonicalLink(canonicalUrl);
     this.upsertJsonLd(data.jsonLd);
