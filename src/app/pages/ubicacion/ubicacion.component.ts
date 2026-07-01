@@ -1,20 +1,19 @@
-import { Component } from '@angular/core';
-import { NavbarComponent } from '../../components/navbar/navbar.component';
+import { Component, inject } from '@angular/core';
+import { LayoutComponent } from '../../components/layout/layout.component';
 import { LocationComponent } from '../../components/location/location.component';
-import { FooterComponent } from '../../components/footer/footer.component';
-import { CookieConsentComponent } from '../../components/cookie-consent/cookie-consent.component';
+import { I18nService } from '../../services/i18n.service';
 
 @Component({
   selector: 'app-ubicacion-page',
   standalone: true,
-  imports: [NavbarComponent, LocationComponent, FooterComponent, CookieConsentComponent],
+  imports: [LayoutComponent, LocationComponent],
   template: `
-    <app-navbar />
-    <main id="main-content">
+    <app-layout>
+      <h1 class="sr-only">{{ t().pageTitles.ubicacion }}</h1>
       <app-location />
-    </main>
-    <app-footer />
-    <app-cookie-consent />
+    </app-layout>
   `,
 })
-export class UbicacionComponent {}
+export class UbicacionComponent {
+  protected readonly t = inject(I18nService).t;
+}

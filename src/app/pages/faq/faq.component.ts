@@ -1,20 +1,19 @@
-import { Component } from '@angular/core';
-import { NavbarComponent } from '../../components/navbar/navbar.component';
+import { Component, inject } from '@angular/core';
+import { LayoutComponent } from '../../components/layout/layout.component';
 import { FaqComponent } from '../../components/faq/faq.component';
-import { FooterComponent } from '../../components/footer/footer.component';
-import { CookieConsentComponent } from '../../components/cookie-consent/cookie-consent.component';
+import { I18nService } from '../../services/i18n.service';
 
 @Component({
   selector: 'app-faq-page',
   standalone: true,
-  imports: [NavbarComponent, FaqComponent, FooterComponent, CookieConsentComponent],
+  imports: [LayoutComponent, FaqComponent],
   template: `
-    <app-navbar />
-    <main id="main-content">
+    <app-layout>
+      <h1 class="sr-only">{{ t().pageTitles.faq }}</h1>
       <app-faq />
-    </main>
-    <app-footer />
-    <app-cookie-consent />
+    </app-layout>
   `,
 })
-export class FaqPageComponent {}
+export class FaqPageComponent {
+  protected readonly t = inject(I18nService).t;
+}

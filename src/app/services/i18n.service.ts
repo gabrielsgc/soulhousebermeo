@@ -68,6 +68,10 @@ export interface Translations {
     legal: string[];
   };
   seo: { title: string; description: string };
+  pageTitles: {
+    laCasa: string; galeria: string; servicios: string;
+    ubicacion: string; faq: string; reservar: string;
+  };
   cookieBanner: {
     title: string; message: string;
     acceptAll: string; necessaryOnly: string; manage: string;
@@ -81,6 +85,14 @@ export interface Translations {
 // ── Español ──────────────────────────────────────────────────────
 const es: Translations = {
   lang: 'es',
+  pageTitles: {
+    laCasa: 'La casa completa de Soul House Bermeo',
+    galeria: 'Galería de Soul House Bermeo',
+    servicios: 'Servicios y equipamiento de Soul House Bermeo',
+    ubicacion: 'Ubicación de Soul House Bermeo en Bermeo',
+    faq: 'Preguntas frecuentes de Soul House Bermeo',
+    reservar: 'Reserva tu estancia en Soul House Bermeo',
+  },
   nav: {
     home: 'La Casa', gallery: 'Galería', services: 'Servicios',
     location: 'Ubicación', faq: 'FAQ', book: 'Reservar',
@@ -254,6 +266,14 @@ const es: Translations = {
 // ── Euskera ──────────────────────────────────────────────────────
 const eu: Translations = {
   lang: 'eu',
+  pageTitles: {
+    laCasa: 'Soul House Bermeo etxe osoa',
+    galeria: 'Soul House Bermeoren galeria',
+    servicios: 'Soul House Bermeoren zerbitzuak eta ekipamendua',
+    ubicacion: 'Soul House Bermeoren kokapena Bermeon',
+    faq: 'Soul House Bermeoren galdera ohikoak',
+    reservar: 'Erreserbatu zure egonaldia Soul House Bermeon',
+  },
   nav: {
     home: 'Etxea', gallery: 'Galeria', services: 'Zerbitzuak',
     location: 'Kokapena', faq: 'FAQ', book: 'Erreserbatu',
@@ -427,6 +447,14 @@ const eu: Translations = {
 // ── English ──────────────────────────────────────────────────────
 const en: Translations = {
   lang: 'en',
+  pageTitles: {
+    laCasa: 'The complete Soul House Bermeo home',
+    galeria: 'Soul House Bermeo gallery',
+    servicios: 'Soul House Bermeo services and amenities',
+    ubicacion: 'Soul House Bermeo location in Bermeo',
+    faq: 'Soul House Bermeo frequently asked questions',
+    reservar: 'Book your stay at Soul House Bermeo',
+  },
   nav: {
     home: 'The House', gallery: 'Gallery', services: 'Amenities',
     location: 'Location', faq: 'FAQ', book: 'Book Now',
@@ -600,6 +628,14 @@ const en: Translations = {
 // ── Français ──────────────────────────────────────────────────────
 const fr: Translations = {
   lang: 'fr',
+  pageTitles: {
+    laCasa: 'La maison complète Soul House Bermeo',
+    galeria: 'Galerie de Soul House Bermeo',
+    servicios: 'Services et équipements de Soul House Bermeo',
+    ubicacion: 'Emplacement de Soul House Bermeo à Bermeo',
+    faq: 'Questions fréquentes de Soul House Bermeo',
+    reservar: 'Réservez votre séjour à Soul House Bermeo',
+  },
   nav: {
     home: 'La Maison', gallery: 'Galerie', services: 'Services',
     location: 'Localisation', faq: 'FAQ', book: 'Réserver',

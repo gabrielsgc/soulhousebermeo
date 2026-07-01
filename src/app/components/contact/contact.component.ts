@@ -1,4 +1,5 @@
-﻿import { Component, OnInit, inject, signal, computed } from '@angular/core';
+﻿import { Component, OnInit, inject, signal, computed, DestroyRef } from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { CommonModule } from '@angular/common';
 import {
   ReactiveFormsModule, FormBuilder, FormGroup,
@@ -26,6 +27,7 @@ export class ContactComponent implements OnInit {
   protected readonly i18n = inject(I18nService);
   protected readonly t = this.i18n.t;
   protected readonly availability = inject(AvailabilityService);
+  private readonly destroyRef = inject(DestroyRef);
   todayISO = new Date().toISOString().split('T')[0];
 
   readonly rangeBlocked = computed(() => {
@@ -52,9 +54,11 @@ export class ContactComponent implements OnInit {
       },
       { validators: this.checkoutAfterCheckinValidator }
     );
-    this.form.get('fecha_llegada')?.valueChanges.subscribe(() => {
-      this.form.get('fecha_salida')?.updateValueAndValidity();
-    });
+    this.form.get('fecha_llegada')?.valueChanges
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe(() => {
+        this.form.get('fecha_salida')?.updateValueAndValidity();
+      });
   }
 
   private noScriptValidator(ctrl: AbstractControl): ValidationErrors | null {
@@ -115,10 +119,9 @@ export class ContactComponent implements OnInit {
       });
       this.status.set('success');
       this.form.reset();
-    } catch (err) {
+    } catch {
       this.status.set('error');
       this.errorMessage = this.t().contact.errorMsg;
-      console.error(err);
     }
   }
 

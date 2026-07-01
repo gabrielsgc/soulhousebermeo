@@ -1,229 +1,150 @@
 # Soul House Bermeo — Sitio Web Oficial
 
-Vivienda Turística en el puerto de Bermeo (Bizkaia, País Vasco).  
-3 habitaciones · 6 plazas · Reserva directa a `gabrielsgc@gmail.com`.
+Vivienda Turística en el puerto de Bermeo (Bizkaia, País Vasco).
+3 habitaciones · 6 plazas · Reserva directa sin comisiones.
+
+Web en producción: **https://www.soulhousebermeo.com**
 
 ---
 
-## Archivos del proyecto
+## Stack
 
-| Archivo | Para qué sirve |
-|---|---|
-| `index.html` (raíz) | **Página lista para abrir ahora mismo** sin necesidad de Node.js. Ábrela con doble clic en el navegador. |
-| `src/` | Proyecto Angular 17 para producción (requiere Node.js). |
+- **Angular 17** (standalone components) con **SSR** (Angular Universal + Express) y prerender de rutas.
+- **CSS puro** mobile-first (sin librerías de UI).
+- **i18n** propio en 4 idiomas: español · euskera · inglés · francés.
+- **Backend serverless**: Cloudflare Pages Functions (`functions/api/`).
+  - `POST /api/contact` — envía el email de la reserva usando **Resend**.
+  - `GET /api/availability` — lee el iCal de Booking.com y devuelve las fechas bloqueadas (cacheado en el edge 1 h).
+- **Deploy**: Cloudflare Pages (ver `wrangler.toml`).
 
----
-
-## Uso inmediato (sin Node.js)
-
-1. Abre `C:/proyectos/soul-house-bermeo/index.html` en cualquier navegador.
-2. Configura EmailJS siguiendo los pasos de abajo.
-3. Sube el archivo a cualquier hosting estático (Netlify, GitHub Pages, Vercel…).
+> El formulario de contacto **ya no usa EmailJS**: el email se manda desde el servidor (Resend), así la clave nunca viaja al navegador.
 
 ---
 
-## Configuración de EmailJS (imprescindible para el formulario)
+## Requisitos
 
-El formulario de contacto usa [EmailJS](https://www.emailjs.com/) — envía emails directamente desde el navegador, sin servidor.
-
-### Paso 1 — Crear cuenta
-
-Ve a [https://www.emailjs.com/](https://www.emailjs.com/) y regístrate con `gabrielsgc@gmail.com`.
-
-### Paso 2 — Crear un servicio de email
-
-1. En el panel de EmailJS → **Email Services** → **Add New Service**
-2. Selecciona **Gmail**
-3. Conecta tu cuenta `gabrielsgc@gmail.com`
-4. Dale el nombre `soul_house_service`
-5. Copia el **Service ID** (ejemplo: `service_abc1234`)
-
-### Paso 3 — Crear una plantilla de email
-
-1. **Email Templates** → **Create New Template**
-2. Usa este asunto: `Nueva consulta Soul House — {{nombre}}`
-3. Cuerpo del mensaje:
-
-```
-Nombre: {{nombre}}
-Email: {{email}}
-Teléfono: {{telefono}}
-Personas: {{personas}}
-Llegada: {{fecha_llegada}}
-Salida: {{fecha_salida}}
-
-Mensaje:
-{{mensaje}}
-```
-
-4. En **To email**: `gabrielsgc@gmail.com`
-5. Guarda y copia el **Template ID** (ejemplo: `template_xyz9876`)
-
-### Paso 4 — Obtener la Public Key
-
-En el panel → **Account** → **General** → copia tu **Public Key** (ejemplo: `AbCdEfGhIjKlMnOp`)
-
-### Paso 5 — Pegar las claves
-
-#### En `index.html` (standalone)
-
-Busca las líneas:
-```javascript
-const EMAILJS_PUBLIC_KEY  = 'TU_PUBLIC_KEY';
-const EMAILJS_SERVICE_ID  = 'TU_SERVICE_ID';
-const EMAILJS_TEMPLATE_ID = 'TU_TEMPLATE_ID';
-```
-Reemplaza con tus valores reales.
-
-#### En el proyecto Angular
-
-Edita `src/environments/environment.ts`:
-```typescript
-export const environment = {
-  production: false,
-  emailjs: {
-    publicKey:  'AbCdEfGhIjKlMnOp',   // ← tu Public Key
-    serviceId:  'service_abc1234',      // ← tu Service ID
-    templateId: 'template_xyz9876',     // ← tu Template ID
-  },
-};
-```
-Haz lo mismo en `src/environments/environment.prod.ts`.
+- **Node.js 20+** ([nodejs.org](https://nodejs.org/)).
+- Cuenta de [Cloudflare Pages](https://pages.cloudflare.com/) para el deploy y los secrets.
+- Cuenta de [Resend](https://resend.com/) con el dominio `soulhousebermeo.com` verificado (para el envío de emails).
 
 ---
 
-## Instalar y ejecutar el proyecto Angular
-
-> Requiere **Node.js 20+**. Descarga desde [https://nodejs.org/](https://nodejs.org/).
+## Instalar y ejecutar
 
 ```bash
-cd C:/proyectos/soul-house-bermeo
-
-# Instalar dependencias
 npm install
 
-# Servidor de desarrollo (abre http://localhost:4200)
-npx ng serve --open
+# Servidor de desarrollo → http://localhost:4200
+npm start
 
-# Compilar para producción
-npx ng build --configuration production
-# Resultado en dist/soul-house-bermeo/browser/
+# Compilar para producción → dist/soul-house-bermeo/ (browser/ + server/)
+npm run build
+
+# Tests (headless):
+npx ng test --watch=false --browsers=ChromeHeadless
 ```
+
+> **Red corporativa con inspección SSL.** Si `npm install` falla con
+> `UNABLE_TO_GET_ISSUER_CERT_LOCALLY`, exporta el almacén de certificados raíz de
+> Windows a un `.pem` y apunta Node a él:
+> `npm config set cafile C:\ruta\corp-ca-bundle.pem` y
+> variable de entorno `NODE_EXTRA_CA_CERTS=C:\ruta\corp-ca-bundle.pem`.
+> No uses `strict-ssl false`.
 
 ---
 
-## Publicar online (gratis)
+## Configuración (variables de entorno)
 
-### Opción A — Netlify (recomendado, `index.html` standalone)
+### Frontend — `src/environments/*.ts` (no secretos)
 
-1. Ve a [https://app.netlify.com/drop](https://app.netlify.com/drop)
-2. Arrastra la carpeta `C:/proyectos/soul-house-bermeo/` (o solo `index.html`)
-3. Netlify te da una URL pública inmediatamente
-4. Puedes conectar tu dominio propio
+| Variable | Descripción |
+|---|---|
+| `contactApiUrl` | Endpoint del formulario. Valor: `/api/contact`. |
+| `googleAnalyticsMeasurementId` | ID de GA4 (solo en `environment.prod.ts`). |
 
-### Opción B — GitHub Pages + Angular
+### Backend — secrets en el panel de Cloudflare Pages
 
-```bash
-npm install -g angular-cli-ghpages
-npx ng build --configuration production --base-href /soul-house-bermeo/
-npx ngh --dir=dist/soul-house-bermeo/browser
-```
+Se configuran en **Settings → Environment variables** y **nunca** se suben al repo. Para desarrollo local, copia `.env.example` a `.env`.
 
-### Opción C — Vercel
+| Secret | Usado por | Descripción |
+|---|---|---|
+| `RESEND_API_KEY` | `functions/api/contact.ts` | API key de Resend para enviar emails. |
+| `CONTACT_EMAIL` | `functions/api/contact.ts` | Destinatario de las consultas (por defecto el email del propietario). |
+| `BOOKING_ICAL_URL` | `functions/api/availability.ts` | URL de exportación iCal del calendario de Booking.com. |
 
-```bash
-npm i -g vercel
-vercel
-```
+---
+
+## Campos del formulario de contacto
+
+El formulario envía a `/api/contact` un JSON con estos campos (validados también en el servidor):
+
+| Campo | Descripción | Obligatorio |
+|---|---|---|
+| `nombre` | Nombre del visitante | ✅ |
+| `email` | Email de contacto | ✅ |
+| `telefono` | Teléfono | — |
+| `personas` | Número de personas | ✅ |
+| `fecha_llegada` | Fecha de llegada (YYYY-MM-DD) | ✅ |
+| `fecha_salida` | Fecha de salida (YYYY-MM-DD) | ✅ |
+| `mensaje` | Mensaje libre | — |
+
+---
+
+## Publicar (Cloudflare Pages)
+
+1. Conecta el repositorio de GitHub en el panel de Cloudflare Pages.
+2. Build command: `npm run build`. Output directory: `dist/soul-house-bermeo/browser`.
+3. Las funciones de `functions/api/` se despliegan automáticamente junto a la web.
+4. Añade los secrets (`RESEND_API_KEY`, `CONTACT_EMAIL`, `BOOKING_ICAL_URL`) en Settings → Environment variables.
+
+> Alternativas estáticas (Netlify/Vercel): publica `dist/soul-house-bermeo/browser/`. Nota: `/api/*` depende de Cloudflare Pages Functions; en otros hostings habría que portar esas funciones.
 
 ---
 
 ## Estructura de carpetas
 
 ```
-soul-house-bermeo/
-├── index.html                          ← Standalone HTML5 (listo para usar)
-├── package.json
-├── angular.json
-├── tsconfig.json
+soulhousebermeo/
+├── functions/api/           ← Cloudflare Pages Functions (backend)
+│   ├── contact.ts           ← POST /api/contact  (Resend)
+│   └── availability.ts      ← GET  /api/availability (iCal Booking)
+├── public/                  ← assets estáticos servidos en la raíz
+├── server.ts                ← servidor Express para SSR
+├── wrangler.toml            ← config de Cloudflare Pages
 ├── src/
-│   ├── index.html                      ← Entry Angular (SEO/GEO meta tags)
-│   ├── main.ts
-│   ├── styles.css                      ← Design system global
-│   ├── environments/
-│   │   ├── environment.ts              ← ⚠ Pon tus claves EmailJS aquí
-│   │   └── environment.prod.ts
+│   ├── main.ts · main.server.ts
+│   ├── styles.css           ← design system global
+│   ├── environments/        ← contactApiUrl + GA id (sin secretos)
 │   └── app/
-│       ├── app.component.ts
-│       ├── app.config.ts
-│       ├── app.routes.ts
-│       ├── services/
-│       │   └── email.service.ts
-│       ├── pages/home/
-│       │   └── home.component.ts
-│       └── components/
-│           ├── navbar/
-│           ├── hero/
-│           ├── highlights/
-│           ├── rooms/
-│           ├── gallery/
-│           ├── amenities/
-│           ├── location/
-│           ├── faq/
-│           ├── contact/
-│           └── footer/
+│       ├── app.routes.ts    ← rutas (lazy + prerender)
+│       ├── services/        ← email · availability · i18n · seo · analytics · cookie-consent
+│       ├── pages/           ← home · la-casa · galeria · servicios · ubicacion · faq · reservar
+│       └── components/      ← navbar · hero · highlights · rooms · gallery · amenities · location · faq · contact · footer · cookie-consent · ui
 └── README.md
 ```
 
 ---
 
-## Variables de plantilla EmailJS
+## SEO & GEO
 
-| Variable | Descripción |
-|---|---|
-| `{{nombre}}` | Nombre del visitante |
-| `{{email}}` | Email de contacto |
-| `{{telefono}}` | Teléfono (opcional) |
-| `{{personas}}` | Número de personas |
-| `{{fecha_llegada}}` | Fecha de llegada |
-| `{{fecha_salida}}` | Fecha de salida |
-| `{{mensaje}}` | Mensaje libre |
+- Meta tags primarios + Open Graph + Twitter Card por ruta (`SeoService`).
+- Canonical y hreflang (es / eu / en / fr).
+- GEO tags (geo.region ES-BI, coordenadas lat 43.4196, lng -2.7231).
+- Schema.org JSON-LD: `LodgingBusiness`, `ContactPage` / `ReserveAction`, etc.
 
----
+## Accesibilidad (WCAG 2.2)
 
-## SEO & GEO implementado
-
-- ✅ Meta tags primarios (title, description, keywords)
-- ✅ Open Graph (Facebook, LinkedIn)
-- ✅ Twitter Card
-- ✅ Canonical URL
-- ✅ Hreflang (es / eu / en / x-default)
-- ✅ GEO tags (geo.region ES-BI, geo.position, ICBM)
-- ✅ Schema.org JSON-LD: `LodgingBusiness`, `WebSite`, `BreadcrumbList`, `FAQPage`
-- ✅ Coordenadas: lat 43.4196, lng -2.7231 (Bermeo, Bizkaia)
-
-## Accesibilidad WCAG 2.2
-
-- ✅ Skip link (Ir al contenido principal)
-- ✅ `focus-visible` con 3px outline en todos los interactivos
-- ✅ `aria-expanded` / `aria-controls` en FAQ y menú móvil
-- ✅ `aria-invalid` + `aria-describedby` en todos los campos del formulario
-- ✅ `role="alert"` en mensajes de error y éxito
-- ✅ Mínimo 44×44px en todos los elementos interactivos
-- ✅ Honeypot anti-spam (invisible para lectores de pantalla)
-- ✅ `prefers-reduced-motion` respetado
+- Skip link, `focus-visible`, objetivos táctiles ≥ 44×44 px.
+- `aria-expanded` / `aria-controls` en FAQ y menú móvil.
+- `aria-invalid` + `aria-describedby` y `role="alert"` en el formulario.
+- Selector de idioma con patrón listbox (APG). `prefers-reduced-motion` respetado.
 
 ## Seguridad
 
-- ✅ CSP meta header
-- ✅ `X-Content-Type-Options: nosniff`
-- ✅ `Referrer-Policy: strict-origin-when-cross-origin`
-- ✅ `Permissions-Policy: geolocation=(), camera=(), microphone=()`
-- ✅ `X-Frame-Options: DENY`  
-- ✅ `rel="noopener noreferrer"` en todos los enlaces externos
-- ✅ Validación XSS en formulario (`hasScript()` + `sanitize()`)
-- ✅ Honeypot anti-bot
+- Validación y sanitización en cliente **y** servidor (`hasScript()` / `sanitize()`).
+- CORS restringido a los dominios del sitio; límites de tamaño y `Content-Type` en `/api/contact`.
+- Honeypot anti-bot. Secretos solo en Cloudflare, nunca en el repo.
 
 ---
 
-*Proyecto generado con Angular 17 Standalone Components + EmailJS. Diseño responsive mobile-first.*
+*Angular 17 SSR · Cloudflare Pages Functions · Resend · diseño responsive mobile-first.*

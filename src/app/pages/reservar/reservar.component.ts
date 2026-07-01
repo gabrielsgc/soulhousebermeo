@@ -1,20 +1,19 @@
-import { Component } from '@angular/core';
-import { NavbarComponent } from '../../components/navbar/navbar.component';
+import { Component, inject } from '@angular/core';
+import { LayoutComponent } from '../../components/layout/layout.component';
 import { ContactComponent } from '../../components/contact/contact.component';
-import { FooterComponent } from '../../components/footer/footer.component';
-import { CookieConsentComponent } from '../../components/cookie-consent/cookie-consent.component';
+import { I18nService } from '../../services/i18n.service';
 
 @Component({
   selector: 'app-reservar-page',
   standalone: true,
-  imports: [NavbarComponent, ContactComponent, FooterComponent, CookieConsentComponent],
+  imports: [LayoutComponent, ContactComponent],
   template: `
-    <app-navbar />
-    <main id="main-content">
+    <app-layout>
+      <h1 class="sr-only">{{ t().pageTitles.reservar }}</h1>
       <app-contact />
-    </main>
-    <app-footer />
-    <app-cookie-consent />
+    </app-layout>
   `,
 })
-export class ReservarComponent {}
+export class ReservarComponent {
+  protected readonly t = inject(I18nService).t;
+}

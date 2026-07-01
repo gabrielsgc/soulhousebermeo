@@ -1,20 +1,19 @@
-import { Component } from '@angular/core';
-import { NavbarComponent } from '../../components/navbar/navbar.component';
+import { Component, inject } from '@angular/core';
+import { LayoutComponent } from '../../components/layout/layout.component';
 import { GalleryComponent } from '../../components/gallery/gallery.component';
-import { FooterComponent } from '../../components/footer/footer.component';
-import { CookieConsentComponent } from '../../components/cookie-consent/cookie-consent.component';
+import { I18nService } from '../../services/i18n.service';
 
 @Component({
   selector: 'app-galeria-page',
   standalone: true,
-  imports: [NavbarComponent, GalleryComponent, FooterComponent, CookieConsentComponent],
+  imports: [LayoutComponent, GalleryComponent],
   template: `
-    <app-navbar />
-    <main id="main-content">
+    <app-layout>
+      <h1 class="sr-only">{{ t().pageTitles.galeria }}</h1>
       <app-gallery />
-    </main>
-    <app-footer />
-    <app-cookie-consent />
+    </app-layout>
   `,
 })
-export class GaleriaComponent {}
+export class GaleriaComponent {
+  protected readonly t = inject(I18nService).t;
+}

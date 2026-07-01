@@ -1,20 +1,19 @@
-import { Component } from '@angular/core';
-import { NavbarComponent } from '../../components/navbar/navbar.component';
+import { Component, inject } from '@angular/core';
+import { LayoutComponent } from '../../components/layout/layout.component';
 import { AmenitiesComponent } from '../../components/amenities/amenities.component';
-import { FooterComponent } from '../../components/footer/footer.component';
-import { CookieConsentComponent } from '../../components/cookie-consent/cookie-consent.component';
+import { I18nService } from '../../services/i18n.service';
 
 @Component({
   selector: 'app-servicios-page',
   standalone: true,
-  imports: [NavbarComponent, AmenitiesComponent, FooterComponent, CookieConsentComponent],
+  imports: [LayoutComponent, AmenitiesComponent],
   template: `
-    <app-navbar />
-    <main id="main-content">
+    <app-layout>
+      <h1 class="sr-only">{{ t().pageTitles.servicios }}</h1>
       <app-amenities />
-    </main>
-    <app-footer />
-    <app-cookie-consent />
+    </app-layout>
   `,
 })
-export class ServiciosComponent {}
+export class ServiciosComponent {
+  protected readonly t = inject(I18nService).t;
+}

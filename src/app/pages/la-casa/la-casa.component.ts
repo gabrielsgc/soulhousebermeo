@@ -1,28 +1,21 @@
-import { Component } from '@angular/core';
-import { NavbarComponent } from '../../components/navbar/navbar.component';
+import { Component, inject } from '@angular/core';
+import { LayoutComponent } from '../../components/layout/layout.component';
 import { HighlightsComponent } from '../../components/highlights/highlights.component';
 import { RoomsComponent } from '../../components/rooms/rooms.component';
-import { FooterComponent } from '../../components/footer/footer.component';
-import { CookieConsentComponent } from '../../components/cookie-consent/cookie-consent.component';
+import { I18nService } from '../../services/i18n.service';
 
 @Component({
   selector: 'app-la-casa',
   standalone: true,
-  imports: [
-    NavbarComponent,
-    HighlightsComponent,
-    RoomsComponent,
-    FooterComponent,
-    CookieConsentComponent,
-  ],
+  imports: [LayoutComponent, HighlightsComponent, RoomsComponent],
   template: `
-    <app-navbar />
-    <main id="main-content">
+    <app-layout>
+      <h1 class="sr-only">{{ t().pageTitles.laCasa }}</h1>
       <app-highlights />
       <app-rooms />
-    </main>
-    <app-footer />
-    <app-cookie-consent />
+    </app-layout>
   `,
 })
-export class LaCasaComponent {}
+export class LaCasaComponent {
+  protected readonly t = inject(I18nService).t;
+}
