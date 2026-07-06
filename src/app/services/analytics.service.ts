@@ -1,5 +1,7 @@
 import { DOCUMENT, isPlatformBrowser } from '@angular/common';
 import { Injectable, PLATFORM_ID, effect, inject } from '@angular/core';
+import { NavigationEnd, Router } from '@angular/router';
+import { filter } from 'rxjs/operators';
 import { environment } from '../../environments/environment';
 import { CookieConsentService } from './cookie-consent.service';
 
@@ -15,6 +17,7 @@ export class AnalyticsService {
   private readonly doc = inject(DOCUMENT);
   private readonly platformId = inject(PLATFORM_ID);
   private readonly consent = inject(CookieConsentService);
+  private readonly router = inject(Router);
 
   private readonly measurementId = environment.googleAnalyticsMeasurementId;
   private readonly gtmContainerId = environment.gtmContainerId;
@@ -26,6 +29,15 @@ export class AnalyticsService {
   private hasVitalsTracking = false;
 
   constructor() {
+    if (isPlatformBrowser(this.platformId)) {
+      this.router.events.pipe(filter((event): event is NavigationEnd => event instanceof NavigationEnd)).subscribe(() => {
+        const allowAnalytics = !!this.consent.consent()?.preferences;
+        if (allowAnalytics && this.measurementId && !this.gtmContainerId) {
+          this.trackPageView();
+        }
+      });
+    }
+
     effect(() => {
       if (!isPlatformBrowser(this.platformId)) return;
       if (!this.measurementId && !this.gtmContainerId) return;
@@ -73,6 +85,7 @@ export class AnalyticsService {
     const win = this.getWindow();
 
     win.gtag?.('consent', 'update', { analytics_storage: 'granted' });
+    this.trackPageView();
     this.setupWebVitalsTracking();
   }
 
@@ -152,6 +165,14 @@ export class AnalyticsService {
       win.gtag?.('config', this.measurementId, { anonymize_ip: true });
       this.isGaConfigured = true;
     }
+  }
+
+  private trackPageView(): void {
+    if (!isPlatformBrowser(this.platformId) || !this.measurementId || this.gtmContainerId) return;
+
+    const win = this.getWindow();
+    const path = this.doc.location?.pathname + this.doc.location?.search || '/';
+    win.gtag?.('event', 'page_view', { page_path: path });
   }
 
   private setupWebVitalsTracking(): void {
