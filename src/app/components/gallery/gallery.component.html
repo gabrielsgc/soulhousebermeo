@@ -22,7 +22,7 @@
           <div class="slider__slide">
             @if (item.img) {
               <img
-                [ngSrc]="item.img"
+                [ngSrc]="imageUrl(item.img)"
                 [alt]="item.label"
                 [title]="item.label"
                 class="slider__img"
@@ -71,7 +71,7 @@
           [attr.aria-current]="i === sliderIndex() ? 'true' : null"
           (click)="goTo(i)">
           @if (item.img) {
-            <img [ngSrc]="item.img" [alt]="item.label" [title]="item.label" width="180" height="120" loading="lazy" />
+            <img [ngSrc]="imageUrl(item.img)" [alt]="item.label" [title]="item.label" width="180" height="120" loading="lazy" />
           } @else {
             <app-icon [name]="item.emoji" [size]="18" aria-hidden="true" />
           }
@@ -94,7 +94,7 @@
         <div class="lightbox__media" aria-hidden="true">
           @if (t().gallery.items[activeIndex()!].img) {
             <img
-              [ngSrc]="t().gallery.items[activeIndex()!].img!"
+              [ngSrc]="imageUrl(t().gallery.items[activeIndex()!].img!)"
               [alt]="t().gallery.items[activeIndex()!].label"
               [title]="t().gallery.items[activeIndex()!].label"
               class="lightbox__photo"

@@ -59,10 +59,10 @@ export const routes: Routes = [
   {
     path: '',
     loadComponent: () => import('./pages/home/home.component').then((m) => m.HomeComponent),
-    title: 'Soul House Bermeo | Vivienda turística en el Puerto de Bermeo',
+    title: 'Alojamiento en Bermeo | Apartamento turístico junto al puerto',
     data: {
       description:
-        'Vivienda turística en Bermeo, Bizkaia. 3 habitaciones, 6 plazas y reserva directa sin comisiones en Soul House Bermeo.',
+        'Apartamento turístico en Bermeo para 6 personas, junto al puerto y cerca de Urdaibai y San Juan de Gaztelugatxe. Reserva directa sin comisiones en Soul House Bermeo.',
       jsonLd: lodgingBusinessJsonLd,
     },
   },
@@ -70,10 +70,10 @@ export const routes: Routes = [
     path: 'la-casa',
     loadComponent: () =>
       import('./pages/la-casa/la-casa.component').then((m) => m.LaCasaComponent),
-    title: 'Casa completa en Bermeo con vistas al Cantábrico | Soul House',
+    title: 'Apartamento para 6 personas en Bermeo | Soul House',
     data: {
       description:
-        'Descubre la casa completa de Soul House Bermeo: 3 habitaciones, 6 plazas y vistas al Cantábrico para una escapada única en Bizkaia.',
+        'Descubre este apartamento para 6 personas en Bermeo: 3 habitaciones, vistas al Cantábrico y todo lo necesario para una escapada familiar en Bizkaia.',
       jsonLd: lodgingBusinessJsonLd,
     },
   },
@@ -101,10 +101,10 @@ export const routes: Routes = [
     path: 'ubicacion',
     loadComponent: () =>
       import('./pages/ubicacion/ubicacion.component').then((m) => m.UbicacionComponent),
-    title: 'Dónde estamos | Bermeo, cerca de Gaztelugatxe y Mundaka',
+    title: 'Alojamiento cerca de Gaztelugatxe y Urdaibai | Bermeo',
     data: {
       description:
-        'Ubicación de Soul House Bermeo en Bizkaia, cerca de Gaztelugatxe, Mundaka y Bilbao, con mapa y distancias clave.',
+        'Descubre dónde alojarse para visitar Urdaibai y San Juan de Gaztelugatxe: Soul House está en el puerto de Bermeo, cerca de Mundaka y Bilbao.',
     },
   },
   {

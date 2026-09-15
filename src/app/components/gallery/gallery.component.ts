@@ -10,6 +10,7 @@ import { IconComponent } from '../ui/icon.component';
   templateUrl: './gallery.component.html',
 })
 export class GalleryComponent {
+  private readonly siteUrl = 'https://www.soulhousebermeo.com/';
   protected readonly t = inject(I18nService).t;
   sliderIndex = signal<number>(0);
   activeIndex = signal<number | null>(null);
@@ -38,5 +39,9 @@ export class GalleryComponent {
   nextPhoto(): void {
     const c = this.activeIndex();
     if (c !== null) this.activeIndex.set((c + 1) % this.t().gallery.items.length);
+  }
+
+  imageUrl(path: string): string {
+    return path.startsWith('http') ? path : new URL(path, this.siteUrl).href;
   }
 }

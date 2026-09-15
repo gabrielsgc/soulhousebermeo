@@ -104,8 +104,8 @@ const es: Translations = {
     ariaClose: 'Cerrar menú',
   },
   hero: {
-    eyebrow: 'Vivienda turística — Puerto de Bermeo',
-    tagline: 'Una casa con alma en Bermeo, el puerto pesquero más pintoresco del País Vasco. Tres habitaciones, seis plazas, vistas a la ría del Cantábrico.',
+    eyebrow: 'Apartamento turístico — Puerto de Bermeo',
+    tagline: 'Un alojamiento en Bermeo con alma, junto al puerto pesquero y cerca de Urdaibai. Tres habitaciones, seis plazas y el punto de partida ideal para visitar San Juan de Gaztelugatxe.',
     cta1: 'Consultar disponibilidad',
     cta2: 'Ver la casa',
     sideTag: 'Reserva directa · sin comisiones · uso exclusivo',
@@ -127,8 +127,8 @@ const es: Translations = {
     ],
   },
   rooms: {
-    tag: 'Alojamiento', heading: '3 habitaciones · 6 plazas',
-    intro: 'Cada estancia ha sido pensada para que te sientas como en casa, con el mar siempre cerca.',
+    tag: 'Alojamiento en Bermeo', heading: 'Apartamento para 6 personas',
+    intro: 'Una vivienda turística junto al puerto de Bermeo, pensada para familias y grupos que buscan dónde dormir en Bermeo con el mar siempre cerca.',
     items: [
       { emoji: 'bed', title: 'Habitación Principal', desc: 'Amplia habitación con cama de matrimonio, armario empotrado y vistas a la montaña al despertar.', features: ['Cama doble 150×200', 'Vistas al mar', 'Armario empotrado', 'Luz natural'] },
       { emoji: 'anchor', title: 'Habitación Marinera', desc: 'Decorada con elementos náuticos auténticos. Dos camas individuales, perfecta para niños o amigos viajeros.', features: ['2 camas individuales', 'Decoración marinera', 'Armario doble', 'Escritorio'] },
@@ -166,8 +166,8 @@ const es: Translations = {
     ],
   },
   location: {
-    tag: 'Ubicación', heading: 'En el corazón de Bermeo',
-    intro: 'Bermeo (Bizkaia, 48370) — a 35 min de Bilbao por la BI-635, frente al mar Cantábrico.',
+    tag: 'Ubicación', heading: 'Alojamiento junto al puerto de Bermeo',
+    intro: 'Bermeo (Bizkaia, 48370) — una ubicación ideal para alojarse y visitar Urdaibai, San Juan de Gaztelugatxe y la costa vasca.',
     nearbyHeading: '¿Qué hay cerca?', mapLabel: 'Mapa de ubicación de Soul House en Bermeo',
     poisAriaLabel: 'Puntos de interés cercanos',
     pois: [
@@ -195,7 +195,7 @@ const es: Translations = {
   },
   contact: {
     eyebrow: 'Contacto', heading: 'Reserva tu estancia',
-    intro: '¿Quieres pasar unos días en el País Vasco? Contáctanos directamente y te responderemos en menos de 2 horas. Sin comisiones, sin intermediarios.',
+    intro: '¿Buscas alojamiento cerca de Gaztelugatxe o un apartamento para visitar Urdaibai? Contáctanos directamente y te responderemos en menos de 2 horas. Sin comisiones, sin intermediarios.',
     emailLabel: 'Email', phoneLabel: 'Teléfono / WhatsApp',
     addressLabel: 'Dirección', addressValue: 'Bermeo, Bizkaia, 48370 · País Vasco',
     hoursLabel: 'Atención', hoursValue: 'Lunes – Domingo, 09:00 – 21:00',
@@ -259,8 +259,8 @@ const es: Translations = {
     manageLink: 'Gestionar cookies',
   },
   seo: {
-    title: 'Soul House Bermeo | Alojamiento en el Puerto Pesquero del País Vasco',
-    description: 'Vivienda turística de uso exclusivo en el corazón del puerto de Bermeo (Bizkaia). 3 habitaciones, 6 plazas, vistas al Cantábrico. Reserva directa sin comisiones ni intermediarios.',
+    title: 'Alojamiento en Bermeo | Soul House junto al puerto',
+    description: 'Apartamento turístico y vivienda turística junto al puerto de Bermeo, para 6 personas. Ideal para visitar Urdaibai y San Juan de Gaztelugatxe. Reserva directa sin comisiones.',
   },
 };
 

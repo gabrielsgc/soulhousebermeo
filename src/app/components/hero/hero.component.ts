@@ -13,7 +13,7 @@ import { IconComponent } from '../ui/icon.component';
       <div class="hero__photo-wrap" aria-hidden="true">
         <img
           class="hero__photo"
-          ngSrc="assets/images/hero-facade.png"
+          ngSrc="https://www.soulhousebermeo.com/assets/images/hero-facade.png"
           width="1920"
           height="1280"
           alt=""

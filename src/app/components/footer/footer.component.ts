@@ -14,7 +14,7 @@ import { CookieConsentService } from '../../services/cookie-consent.service';
       <div class="container footer__grid">
         <div class="footer__brand">
           <img
-            ngSrc="imgs/logo-soulhousebermeo-VT.webp"
+            ngSrc="https://www.soulhousebermeo.com/imgs/logo-soulhousebermeo-VT.webp"
             alt="Soul House Bermeo"
             class="footer__brand-logo"
             width="56"

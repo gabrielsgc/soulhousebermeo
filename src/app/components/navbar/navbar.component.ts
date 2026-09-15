@@ -15,7 +15,7 @@ import { LangSwitcherComponent } from './lang-switcher.component';
 
           <a class="navbar__brand" [routerLink]="'/'" [attr.aria-label]="t().nav.ariaBrand" (click)="closeMenu()">
             <img
-              ngSrc="imgs/logo-soulhousebermeo-VT.webp"
+              ngSrc="https://www.soulhousebermeo.com/imgs/logo-soulhousebermeo-VT.webp"
               alt="Soul House Bermeo"
               class="navbar__brand-logo"
               width="46"
