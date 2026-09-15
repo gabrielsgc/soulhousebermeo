@@ -1,0 +1,72 @@
+.guide-page {
+  min-height: 70vh;
+  padding: 8rem 0 5rem;
+  background: var(--surface-soft, #f5f2ec);
+}
+
+.guide {
+  max-width: 860px;
+}
+
+.guide__back {
+  display: inline-block;
+  margin-bottom: 2rem;
+  color: var(--teal, #176f68);
+  font-size: .9rem;
+}
+
+.guide__header {
+  max-width: 720px;
+  margin-bottom: 3rem;
+}
+
+.section-tag {
+  color: var(--teal, #176f68);
+  font-size: .75rem;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+}
+
+.guide h1 {
+  margin: .75rem 0 1.25rem;
+  color: var(--ink, #173238);
+  font-family: var(--font-display, Georgia, serif);
+  font-size: clamp(2.2rem, 6vw, 4.2rem);
+  line-height: 1.08;
+}
+
+.guide__intro,
+.guide__section p,
+.guide__cta p {
+  color: var(--ink-soft, #4e5b5d);
+  font-size: 1.08rem;
+  line-height: 1.8;
+}
+
+.guide__sections {
+  display: grid;
+  gap: 2rem;
+}
+
+.guide__section {
+  padding: 1.5rem 0;
+  border-top: 1px solid var(--border, #d9d3c8);
+}
+
+.guide__section h2,
+.guide__cta h2 {
+  margin-bottom: .65rem;
+  color: var(--ink, #173238);
+  font-family: var(--font-display, Georgia, serif);
+  font-size: 1.65rem;
+}
+
+.guide__cta {
+  margin-top: 2.5rem;
+  padding: 2rem;
+  background: var(--ink, #173238);
+  color: #fff;
+}
+
+.guide__cta h2 { color: #fff; }
+.guide__cta p { margin-bottom: 1.25rem; color: rgba(255, 255, 255, .82); }

@@ -1,7 +1,7 @@
 ﻿import { Injectable, signal, computed, PLATFORM_ID, inject } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
 
-export type Lang = 'es' | 'eu' | 'en' | 'fr';
+export type Lang = 'es' | 'eu' | 'en' | 'fr' | 'de';
 
 export interface Translations {
   lang: Lang;
@@ -807,7 +807,138 @@ const fr: Translations = {
   },
 };
 
-const DICT: Record<Lang, Translations> = { es, eu, en, fr };
+// ── Deutsch ─────────────────────────────────────────────────────
+const de: Translations = {
+  lang: 'de',
+  pageTitles: {
+    laCasa: 'Das komplette Haus Soul House Bermeo',
+    galeria: 'Galerie von Soul House Bermeo',
+    servicios: 'Services und Ausstattung von Soul House Bermeo',
+    ubicacion: 'Lage von Soul House Bermeo in Bermeo',
+    faq: 'Häufige Fragen zu Soul House Bermeo',
+    reservar: 'Aufenthalt im Soul House Bermeo buchen',
+  },
+  nav: {
+    home: 'Das Haus', gallery: 'Galerie', services: 'Services',
+    location: 'Lage', faq: 'FAQ', book: 'Buchen',
+    brand: 'Bermeo · Baskenland',
+    ariaNav: 'Hauptnavigation',
+    ariaBrand: 'Soul House Bermeo — Startseite',
+    ariaOpen: 'Navigation öffnen',
+    ariaClose: 'Navigation schließen',
+  },
+  hero: {
+    eyebrow: 'Ferienwohnung — Hafen von Bermeo',
+    tagline: 'Ein Haus mit Seele in Bermeo, dem malerischen Fischerhafen des Baskenlandes. Drei Schlafzimmer, sechs Schlafplätze und der ideale Ausgangspunkt für Urdaibai und San Juan de Gaztelugatxe.',
+    cta1: 'Verfügbarkeit prüfen', cta2: 'Das Haus ansehen',
+    sideTag: 'Direkt buchen · ohne Provision · exklusive Nutzung',
+    features: [
+      { icon: 'house', label: '3 Schlafzimmer' }, { icon: 'users', label: '6 Schlafplätze' },
+      { icon: 'wave', label: 'Blick auf die Flussmündung' }, { icon: 'wifi', label: 'Glasfaser-WLAN' },
+      { icon: 'car', label: 'Parkplatz verfügbar' }, { icon: 'check-circle', label: 'Direktbuchung' },
+    ],
+  },
+  highlights: {
+    tag: 'Warum Bermeo', heading: 'Besondere Erlebnisse vor der Haustür',
+    intro: 'Bermeo ist mehr als ein Reiseziel: Es ist das Herz des maritimen Baskenlandes.',
+    items: [
+      { icon: 'anchor', title: 'Fischerhafen', desc: 'Der malerischste Hafen am Kantabrischen Meer mit frischem Tintenfisch, traditionellen Booten und authentischer Atmosphäre.' },
+      { icon: 'feather', title: 'Biosphärenreservat Urdaibai', desc: 'Feuchtgebiete, Eichenwälder und Zugvögel machen jeden Spaziergang zu einem besonderen Naturerlebnis.' },
+      { icon: 'utensils', title: 'Baskische Küche', desc: 'Marmitako, Txangurro und frischer Fisch: Nur 200 Meter vom Soul House warten hervorragende Pintxos und Restaurants.' },
+      { icon: 'sun-beach', title: 'Strände und Surfen', desc: 'Laga, Laida und Mundaka liegen ganz in der Nähe und bieten geschützte Landschaften und hervorragende Wellen.' },
+    ],
+  },
+  rooms: {
+    tag: 'Unterkunft', heading: '3 Schlafzimmer · 6 Schlafplätze',
+    intro: 'Jeder Raum wurde so gestaltet, dass Sie sich wie zu Hause fühlen und das Meer immer in der Nähe ist.',
+    items: [
+      { emoji: 'bed', title: 'Hauptschlafzimmer', desc: 'Geräumiges Zimmer mit Doppelbett, Einbauschrank und Bergblick.', features: ['Doppelbett 150×200', 'Meerblick', 'Einbauschrank', 'Tageslicht'] },
+      { emoji: 'anchor', title: 'Matrosenzimmer', desc: 'Mit authentischen maritimen Elementen dekoriert. Ideal für Kinder oder Freunde.', features: ['2 Einzelbetten', 'Maritime Dekoration', 'Doppelschrank', 'Schreibtisch'] },
+      { emoji: 'leaf', title: 'Urdaibai-Zimmer', desc: 'Das ruhigste Zimmer des Hauses mit natürlichen Grüntönen zum Entspannen.', features: ['Doppelbett 135×190', 'Natürliche Atmosphäre', 'Regale und Nachttische', 'Bettwäsche inklusive'] },
+      { emoji: 'cooking', title: 'Wohnküche', desc: 'Voll ausgestattete Küche und Wohnzimmer mit Schlafsofa für zwei Personen.', features: ['Komplett ausgestattete Küche', 'Schlafsofa für 2', 'Smart-TV', 'Glasfaser-WLAN'] },
+    ],
+  },
+  amenities: {
+    tag: 'Services', heading: 'Alles, was Sie brauchen',
+    intro: 'Das Soul House ist vom ersten Moment an für einen entspannten Aufenthalt ausgestattet.',
+    items: [
+      { icon: 'wifi', label: 'Glasfaser-WLAN' }, { icon: 'tv', label: 'Smart-TV' },
+      { icon: 'cooking', label: 'Komplette Küche' }, { icon: 'laundry', label: 'Waschmaschine' },
+      { icon: 'snowflake', label: 'Kühl- und Gefrierschrank' }, { icon: 'coffee', label: 'Kaffeemaschine und Toaster' },
+      { icon: 'shower', label: 'Regendusche' }, { icon: 'linen', label: 'Bettwäsche inklusive' },
+      { icon: '🧸', label: 'Handtücher inklusive' }, { icon: 'house', label: 'Heizung' },
+      { icon: 'key', label: 'Autonomer Check-in' }, { icon: 'car', label: 'Parkplatz' },
+      { icon: 'wheelchair', label: 'Erster Stock' }, { icon: 'paw', label: 'Haustiere (auf Anfrage)' },
+      { icon: 'broom', label: 'Reinigungsservice' }, { icon: 'parcel', label: 'Gepäckaufbewahrung' },
+    ],
+  },
+  gallery: {
+    tag: 'Galerie', heading: 'Entdecken Sie das Soul House',
+    intro: 'Jede Ecke erzählt eine Geschichte vom Meer und der baskischen Tradition.',
+    close: 'Galerie schließen', prev: 'Vorheriges Foto', next: 'Nächstes Foto', viewPhoto: 'Foto ansehen: ',
+    items: [
+      { emoji: 'sunrise', label: 'Alter Hafen', caption: 'Der Fischerhafen von Bermeo, das Herz der Seefahrerstadt.', img: 'assets/images/harbour-view.png' },
+      { emoji: 'sofa', label: 'Wohnzimmer', caption: 'Gemütliches Wohnzimmer mit Schlafsofa und Smart-TV.', img: 'assets/images/living-room.png' },
+      { emoji: 'cooking', label: 'Ausgestattete Küche', caption: 'Komplette Küche mit allen wichtigen Geräten.', img: 'assets/images/kitchen.png' },
+      { emoji: 'anchor', label: 'Matrosenzimmer', caption: 'Zwei Einzelbetten mit maritimer Dekoration.', img: 'assets/images/bedroom-sailor.png' },
+      { emoji: 'bed', label: 'Hauptschlafzimmer', caption: 'Doppelbett mit Bergblick.', img: 'assets/images/bedroom-main.png' },
+      { emoji: 'shower', label: 'Bad', caption: 'Modernes Bad mit Regendusche.', img: 'assets/images/bathroom.png' },
+      { emoji: 'building', label: 'Außenansicht', caption: 'Die Fassade des Soul House in der Altstadt von Bermeo.', img: 'assets/images/hero-facade.png' },
+      { emoji: 'sun-beach', label: 'San Juan de Gaztelugatxe', caption: 'Die Kapelle über dem Meer, nur 20 Minuten vom Soul House entfernt.', img: 'assets/images/san-juan-gaztelugatxe.png' },
+    ],
+  },
+  location: {
+    tag: 'Lage', heading: 'Im Herzen von Bermeo',
+    intro: 'Bermeo (Bizkaia, 48370) — 35 Minuten von Bilbao entfernt, am Kantabrischen Meer und nahe Urdaibai.',
+    nearbyHeading: 'Was liegt in der Nähe?', mapLabel: 'Karte der Lage des Soul House in Bermeo',
+    poisAriaLabel: 'Sehenswürdigkeiten in der Nähe',
+    pois: [
+      { icon: 'anchor', name: 'Fischerhafen von Bermeo', dist: '200 m zu Fuß' },
+      { icon: 'sun-beach', name: 'Strand Laga (Urdaibai)', dist: '12 km — 15 Min.' },
+      { icon: 'wave', name: 'Mundaka (Surfen)', dist: '6 km — 8 Min.' },
+      { icon: 'feather', name: 'Biosphärenreservat Urdaibai', dist: '10 km — 12 Min.' },
+      { icon: 'city', name: 'Bilbao (Guggenheim)', dist: '35 km — 35 Min.' },
+      { icon: 'train', name: 'EuskoTren-Bahnhof Bermeo', dist: '100 m zu Fuß' },
+      { icon: 'cart', name: 'Supermarkt Eroski', dist: '300 m zu Fuß' },
+      { icon: 'utensils', name: 'Restaurant Txoko Mari', dist: '150 m zu Fuß' },
+    ],
+  },
+  faq: {
+    tag: 'FAQ', heading: 'Häufige Fragen', intro: 'Haben Sie Fragen? Hier finden Sie die häufigsten Antworten.',
+    items: [
+      { question: 'Wann sind Check-in und Check-out?', answer: 'Der Check-in ist ab 16:00 Uhr möglich, der Check-out bis 11:00 Uhr. Für andere Zeiten kontaktieren Sie uns bitte im Voraus.' },
+      { question: 'Sind Haustiere erlaubt?', answer: 'Kleine Haustiere sind auf vorherige Anfrage willkommen. Bitte geben Sie dies im Kontaktformular an.' },
+      { question: 'Kann ich mit öffentlichen Verkehrsmitteln anreisen?', answer: 'Ja. Der EuskoTren-Bahnhof von Bermeo liegt 100 Meter entfernt. Von Bilbao fahren direkte Züge.' },
+      { question: 'Was ist im Preis enthalten?', answer: 'Bettwäsche, Handtücher, Glasfaser-WLAN, warmes Wasser und Heizung. Ein Parkplatz ist auf Anfrage verfügbar.' },
+      { question: 'Wie ist die Stornierungsregelung?', answer: 'Bis sieben Tage vor der Anreise ist die Stornierung kostenlos. Danach werden 50 % des Gesamtbetrags berechnet.' },
+      { question: 'Gibt es einen Mindestaufenthalt?', answer: 'Im Juli und August beträgt der Mindestaufenthalt drei Nächte. Zu anderen Zeiten sind auch einzelne Nächte möglich.' },
+    ],
+  },
+  contact: {
+    eyebrow: 'Kontakt', heading: 'Aufenthalt buchen',
+    intro: 'Möchten Sie einige Tage im Baskenland verbringen? Kontaktieren Sie uns direkt und wir antworten innerhalb von zwei Stunden. Ohne Provisionen und Vermittler.',
+    emailLabel: 'E-Mail', phoneLabel: 'Telefon / WhatsApp', addressLabel: 'Adresse', addressValue: 'Bermeo, Bizkaia, 48370 · Baskenland',
+    hoursLabel: 'Erreichbarkeit', hoursValue: 'Montag – Sonntag, 09:00 – 21:00', followUs: 'Folgen Sie uns', formLegend: 'Verfügbarkeit anfragen',
+    labelName: 'Vollständiger Name', labelEmail: 'E-Mail-Adresse', labelPhone: 'Telefon (optional)', labelGuests: 'Anzahl der Personen', labelCheckin: 'Anreisedatum', labelCheckout: 'Abreisedatum',
+    labelMessage: 'Nachricht (optional)', labelPrivacy: 'Ich habe die Datenschutzerklärung gelesen und akzeptiere sie', privacyText: 'Ihre Daten werden nur zur Beantwortung Ihrer Anfrage verwendet.',
+    submitBtn: 'Anfrage senden', submitting: 'Wird gesendet…', successTitle: 'Anfrage erhalten!', successText: 'Wir antworten innerhalb von zwei Stunden per E-Mail. Bis bald in Bermeo!', sendAnother: 'Weitere Anfrage senden',
+    errorMsg: 'Beim Senden ist ein Fehler aufgetreten. Schreiben Sie uns bitte direkt an info@soulhousebermeo.com',
+    guestOptions: ['1 Person', '2 Personen', '3 Personen', '4 Personen', '5 Personen', '6 Personen (maximal)'], guestPlaceholder: 'Wie viele Personen?', msgPlaceholder: 'Besonderer Wunsch? Feiern Sie etwas? Brauchen Sie ein Babybett?', charCount: '{n} / 800 Zeichen', formAriaLabel: 'Buchungsformular von Soul House Bermeo',
+    errors: { required: 'Dieses Feld ist erforderlich.', requiredTrue: 'Sie müssen die Datenschutzerklärung akzeptieren.', email: 'Geben Sie eine gültige E-Mail-Adresse ein.', minLength: 'Mindestens {n} Zeichen.', maxLength: 'Höchstens {n} Zeichen.', pattern: 'Ungültiges Format.', pastDate: 'Das Datum darf nicht in der Vergangenheit liegen.', checkoutBeforeCheckin: 'Die Abreise muss nach der Anreise liegen.', noScript: 'Das Feld enthält nicht erlaubte Inhalte.', invalid: 'Ungültiges Feld.' },
+  },
+  footer: {
+    tagline: 'Bermeo · Bizkaia · Baskenland', desc: 'Exklusive Ferienunterkunft im Herzen des Hafens von Bermeo. 3 Schlafzimmer · 6 Schlafplätze. Direktbuchung ohne Provisionen.',
+    exploreHeading: 'Entdecken', contactHeading: 'Kontakt', legalHeading: 'Rechtliche Hinweise', bookNow: 'Buchung anfragen',
+    navLinks: [{ href: '#inicio', label: 'Startseite' }, { href: '#habitaciones', label: 'Schlafzimmer' }, { href: '#galeria', label: 'Galerie' }, { href: '#comodidades', label: 'Ausstattung' }, { href: '#ubicacion', label: 'Lage' }, { href: '#preguntas', label: 'FAQ' }, { href: '#contacto', label: 'Kontakt' }],
+    legal: ['VT Nr. EBI02583 (Baskische Regierung)', 'Check-in: 16:00 · Check-out: 11:00', 'Maximale Kapazität: 6 Personen'],
+  },
+  cookieBanner: {
+    title: 'Cookies bei Soul House', message: 'Wir verwenden technische Cookies und Google Fonts für die Darstellung. Technische Cookies können nicht deaktiviert werden.', acceptAll: 'Alle akzeptieren', necessaryOnly: 'Nur notwendige', manage: 'Verwalten', panelTitle: 'Cookie-Einstellungen', panelClose: 'Cookie-Panel schließen', save: 'Einstellungen speichern', necessaryCat: 'Technische Cookies', necessaryDesc: 'Für die grundlegende Funktion erforderlich: Spracheinstellung und Formulardaten.', alwaysActive: 'Immer aktiv', prefCat: 'Präferenz-Cookies', prefDesc: 'Google Fonts lädt Schriftarten von Google-Servern.', manageLink: 'Cookies verwalten',
+  },
+  seo: { title: 'Ausstattung in Bermeo | Soul House am Hafen', description: 'Ferienwohnung für bis zu 6 Personen am Hafen von Bermeo. Ideal für Urdaibai und San Juan de Gaztelugatxe. Direkt buchen, ohne Provision.' },
+};
+
+const DICT: Record<Lang, Translations> = { es, eu, en, fr, de };
 
 @Injectable({ providedIn: 'root' })
 export class I18nService {

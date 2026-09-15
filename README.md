@@ -128,7 +128,7 @@ soulhousebermeo/
 ## SEO & GEO
 
 - Meta tags primarios + Open Graph + Twitter Card por ruta (`SeoService`).
-- Canonical y hreflang (es / eu / en / fr).
+- Canonical y hreflang (es / eu / en / fr / de).
 - GEO tags (geo.region ES-BI, coordenadas lat 43.4196, lng -2.7231).
 - Schema.org JSON-LD: `LodgingBusiness`, `ContactPage` / `ReserveAction`, etc.
 

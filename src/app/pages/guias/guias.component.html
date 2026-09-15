@@ -1,0 +1,28 @@
+<app-navbar />
+<main class="guide-page" id="main-content">
+  <article class="guide container">
+    <a class="guide__back" [routerLink]="'/'">{{ t().nav.home }}</a>
+    <header class="guide__header">
+      <span class="section-tag">Soul House Bermeo</span>
+      <h1>{{ guide().title }}</h1>
+      <p class="guide__intro">{{ guide().intro }}</p>
+    </header>
+
+    <div class="guide__sections">
+      @for (section of guide().sections; track section.heading) {
+        <section class="guide__section">
+          <h2>{{ section.heading }}</h2>
+          <p>{{ section.text }}</p>
+        </section>
+      }
+    </div>
+
+    <aside class="guide__cta">
+      <h2>{{ t().contact.heading }}</h2>
+      <p>{{ t().contact.intro }}</p>
+      <a class="btn btn--teal btn--lg" [routerLink]="'/reservar'">{{ t().contact.submitBtn }}</a>
+    </aside>
+  </article>
+</main>
+<app-footer />
+<app-cookie-consent />

@@ -15,6 +15,7 @@ const LANGS: LangOption[] = [
   { code: 'eu', label: 'Euskera',  short: 'EU' },
   { code: 'en', label: 'English',  short: 'EN' },
   { code: 'fr', label: 'Français', short: 'FR' },
+  { code: 'de', label: 'Deutsch',  short: 'DE' },
 ];
 
 @Component({

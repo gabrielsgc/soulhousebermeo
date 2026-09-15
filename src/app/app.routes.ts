@@ -127,5 +127,35 @@ export const routes: Routes = [
       jsonLd: reservarJsonLd,
     },
   },
+  {
+    path: 'guias/bermeo',
+    loadComponent: () => import('./pages/guias/guias.component').then((m) => m.GuiasComponent),
+    title: 'Qué ver en Bermeo en 2 días | Guía local',
+    data: {
+      guide: 'bermeo',
+      description:
+        'Guía para descubrir Bermeo en dos días: puerto pesquero, casco histórico, isla de Ízaro y gastronomía vasca.',
+    },
+  },
+  {
+    path: 'guias/gaztelugatxe',
+    loadComponent: () => import('./pages/guias/guias.component').then((m) => m.GuiasComponent),
+    title: 'Cómo visitar San Juan de Gaztelugatxe desde Bermeo',
+    data: {
+      guide: 'gaztelugatxe',
+      description:
+        'Consejos para visitar San Juan de Gaztelugatxe desde Bermeo y disfrutar de la costa vasca con Soul House como base.',
+    },
+  },
+  {
+    path: 'guias/urdaibai',
+    loadComponent: () => import('./pages/guias/guias.component').then((m) => m.GuiasComponent),
+    title: 'Dónde alojarse para visitar Urdaibai | Guía local',
+    data: {
+      guide: 'urdaibai',
+      description:
+        'Descubre dónde alojarte para visitar Urdaibai: naturaleza, playas, pueblos marineros y gastronomía desde Bermeo.',
+    },
+  },
   { path: '**', redirectTo: '' },
 ];
