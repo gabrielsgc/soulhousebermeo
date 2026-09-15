@@ -1,4 +1,5 @@
-﻿import { Injectable, signal, computed } from '@angular/core';
+﻿import { Injectable, signal, computed, PLATFORM_ID, inject } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 
 export type Lang = 'es' | 'eu' | 'en' | 'fr';
 
@@ -810,11 +811,14 @@ const DICT: Record<Lang, Translations> = { es, eu, en, fr };
 
 @Injectable({ providedIn: 'root' })
 export class I18nService {
+  private readonly platformId = inject(PLATFORM_ID);
   readonly currentLang = signal<Lang>('es');
   readonly t = computed(() => DICT[this.currentLang()]);
 
   setLang(lang: Lang): void {
     this.currentLang.set(lang);
-    document.documentElement.lang = lang;
+    if (isPlatformBrowser(this.platformId)) {
+      document.documentElement.lang = lang;
+    }
   }
 }

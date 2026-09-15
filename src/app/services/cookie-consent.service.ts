@@ -1,4 +1,5 @@
-import { Injectable, signal } from '@angular/core';
+import { Injectable, signal, PLATFORM_ID, inject } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 
 export interface CookieConsent {
   necessary: true;
@@ -10,10 +11,14 @@ const STORAGE_KEY = 'soulhouse_cookies';
 
 @Injectable({ providedIn: 'root' })
 export class CookieConsentService {
+  private readonly platformId = inject(PLATFORM_ID);
   readonly showBanner = signal<boolean>(this._load() === null);
   readonly consent    = signal<CookieConsent | null>(this._load());
 
   private _load(): CookieConsent | null {
+    if (!isPlatformBrowser(this.platformId)) {
+      return null;
+    }
     try {
       const raw = localStorage.getItem(STORAGE_KEY);
       return raw ? (JSON.parse(raw) as CookieConsent) : null;
@@ -23,6 +28,9 @@ export class CookieConsentService {
   }
 
   private _save(c: CookieConsent): void {
+    if (!isPlatformBrowser(this.platformId)) {
+      return;
+    }
     try { localStorage.setItem(STORAGE_KEY, JSON.stringify(c)); } catch { /* quota exceeded */ }
     this.consent.set(c);
     this.showBanner.set(false);
@@ -41,6 +49,9 @@ export class CookieConsentService {
   }
 
   resetConsent(): void {
+    if (!isPlatformBrowser(this.platformId)) {
+      return;
+    }
     try { localStorage.removeItem(STORAGE_KEY); } catch { /* ignore */ }
     this.consent.set(null);
     this.showBanner.set(true);

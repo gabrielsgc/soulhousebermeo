@@ -1,5 +1,5 @@
-﻿import { Component, HostListener, inject, signal } from '@angular/core';
-import { NgOptimizedImage } from '@angular/common';
+﻿import { Component, HostListener, inject, signal, PLATFORM_ID } from '@angular/core';
+import { NgOptimizedImage, isPlatformBrowser } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { I18nService } from '../../services/i18n.service';
 import { LangSwitcherComponent } from './lang-switcher.component';
@@ -64,6 +64,7 @@ import { LangSwitcherComponent } from './lang-switcher.component';
   styleUrls: ['./navbar.component.css'],
 })
 export class NavbarComponent {
+  private readonly platformId = inject(PLATFORM_ID);
   protected readonly i18n = inject(I18nService);
   protected readonly t = this.i18n.t;
 
@@ -71,7 +72,11 @@ export class NavbarComponent {
   isMenuOpen = signal(false);
 
   @HostListener('window:scroll')
-  onScroll(): void { this.isScrolled.set(window.scrollY > 60); }
+  onScroll(): void {
+    if (isPlatformBrowser(this.platformId)) {
+      this.isScrolled.set(window.scrollY > 60);
+    }
+  }
 
   toggleMenu(): void { this.isMenuOpen.update((v) => !v); }
   closeMenu(): void  { this.isMenuOpen.set(false); }
