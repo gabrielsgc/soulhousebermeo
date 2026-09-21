@@ -12,10 +12,45 @@
       @for (section of guide().sections; track section.heading) {
         <section class="guide__section">
           <h2>{{ section.heading }}</h2>
-          <p>{{ section.text }}</p>
+          @if (section.paragraphs) {
+            @for (paragraph of section.paragraphs; track paragraph) {
+              <p [innerHTML]="renderText(paragraph)"></p>
+            }
+          } @else {
+            <p [innerHTML]="renderText(section.text)"></p>
+          }
+          @if (section.items) {
+            <ul>
+              @for (item of section.items; track item) {
+                <li>{{ item }}</li>
+              }
+            </ul>
+          }
         </section>
       }
     </div>
+
+    @if (guide().relatedLinks) {
+      <nav class="guide__related" aria-label="Related guides">
+        <h2>{{ t().nav.home === 'La Casa' ? 'Sigue descubriendo' : 'Keep discovering' }}</h2>
+        <div class="guide__related-links">
+          @for (link of guide().relatedLinks; track link.href) {
+            <a [routerLink]="link.href">{{ link.label }}</a>
+          }
+        </div>
+      </nav>
+    }
+
+    @if (guide().mapUrl) {
+      <section class="guide__map" aria-labelledby="guide-map-title">
+        <h2 id="guide-map-title">{{ guideMapTitle() }}</h2>
+        <iframe
+          [src]="guideMapUrl()"
+          title="Map of Bermeo and surroundings"
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"></iframe>
+      </section>
+    }
 
     <aside class="guide__cta">
       <h2>{{ t().contact.heading }}</h2>

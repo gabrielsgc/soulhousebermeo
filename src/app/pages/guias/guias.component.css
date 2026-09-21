@@ -43,6 +43,15 @@
   line-height: 1.8;
 }
 
+.guide__section ul {
+  margin: 1rem 0 0;
+  padding-left: 1.25rem;
+  color: var(--ink-soft, #4e5b5d);
+  line-height: 1.8;
+}
+
+.guide__section li + li { margin-top: .35rem; }
+
 .guide__sections {
   display: grid;
   gap: 2rem;
@@ -70,3 +79,36 @@
 
 .guide__cta h2 { color: #fff; }
 .guide__cta p { margin-bottom: 1.25rem; color: rgba(255, 255, 255, .82); }
+
+.guide__related,
+.guide__map {
+  margin-top: 3rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--border, #d9d3c8);
+}
+
+.guide__related h2,
+.guide__map h2 {
+  margin-bottom: 1rem;
+  color: var(--ink, #173238);
+  font-family: var(--font-display, Georgia, serif);
+  font-size: 1.65rem;
+}
+
+.guide__related-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .75rem 1.25rem;
+}
+
+.guide__related-links a {
+  color: var(--teal, #176f68);
+  font-weight: 600;
+}
+
+.guide__map iframe {
+  display: block;
+  width: 100%;
+  min-height: 360px;
+  border: 0;
+}

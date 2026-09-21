@@ -127,6 +127,117 @@ export const routes: Routes = [
       jsonLd: reservarJsonLd,
     },
   },
+  { path: 'guia', redirectTo: 'guia/que-ver-en-bermeo', pathMatch: 'full' },
+  {
+    path: 'guia/que-ver-en-bermeo',
+    loadComponent: () => import('./pages/guias/guias.component').then((m) => m.GuiasComponent),
+    title: 'Qué ver en Bermeo | Guía completa para visitar la joya de Urdaibai',
+    data: {
+      guide: 'que-ver-en-bermeo',
+      description:
+        'Descubre qué ver en Bermeo: puerto pesquero, casco histórico, Urdaibai, Isla de Izaro y San Juan de Gaztelugatxe. Guía completa para organizar tu escapada.',
+    },
+  },
+  {
+    path: 'guia/bermeo-en-dos-dias',
+    loadComponent: () => import('./pages/guias/guias.component').then((m) => m.GuiasComponent),
+    title: 'Bermeo en dos días | Ruta y guía local',
+    data: {
+      guide: 'bermeo-en-dos-dias',
+      description:
+        'Planifica qué hacer en Bermeo en dos días: puerto, casco histórico, gastronomía, San Juan de Gaztelugatxe y costa de Bizkaia.',
+    },
+  },
+  {
+    path: 'guia/donde-alojarse-en-bermeo',
+    loadComponent: () => import('./pages/guias/guias.component').then((m) => m.GuiasComponent),
+    title: 'Dónde alojarse en Bermeo | Soul House',
+    data: {
+      guide: 'donde-alojarse-en-bermeo',
+      description:
+        'Descubre dónde alojarse en Bermeo para disfrutar del puerto, Urdaibai, Mundaka, las playas de Bizkaia y San Juan de Gaztelugatxe.',
+    },
+  },
+  {
+    path: 'guia/playas-cerca-de-bermeo',
+    loadComponent: () => import('./pages/guias/guias.component').then((m) => m.GuiasComponent),
+    title: 'Playas cerca de Bermeo | Laga, Laida y Urdaibai',
+    data: {
+      guide: 'playas-cerca-de-bermeo',
+      description:
+        'Conoce las mejores playas cerca de Bermeo, como Laga y Laida, y organiza una escapada por la costa de Urdaibai.',
+    },
+  },
+  {
+    path: 'guia/visitar-gaztelugatxe-desde-bermeo',
+    loadComponent: () => import('./pages/guias/guias.component').then((m) => m.GuiasComponent),
+    title: 'Visitar Gaztelugatxe desde Bermeo | Guía práctica',
+    data: {
+      guide: 'visitar-gaztelugatxe-desde-bermeo',
+      description:
+        'Guía para visitar San Juan de Gaztelugatxe desde Bermeo: acceso, planificación, transporte y otros planes en la costa vasca.',
+    },
+  },
+  {
+    path: 'guia/donde-dormir-cerca-de-gaztelugatxe',
+    loadComponent: () => import('./pages/guias/guias.component').then((m) => m.GuiasComponent),
+    title: 'Dónde dormir cerca de Gaztelugatxe | Soul House',
+    data: {
+      guide: 'donde-dormir-cerca-de-gaztelugatxe',
+      description:
+        'Descubre dónde dormir cerca de Gaztelugatxe y por qué Bermeo es una base cómoda para visitar el islote y Urdaibai.',
+    },
+  },
+  {
+    path: 'guia/gaztelugatxe-y-bermeo-en-un-fin-de-semana',
+    loadComponent: () => import('./pages/guias/guias.component').then((m) => m.GuiasComponent),
+    title: 'Gaztelugatxe y Bermeo en un fin de semana | Ruta',
+    data: {
+      guide: 'gaztelugatxe-y-bermeo-en-un-fin-de-semana',
+      description:
+        'Organiza un fin de semana en Bermeo y Gaztelugatxe con una ruta por el puerto, el casco histórico y la costa vasca.',
+    },
+  },
+  {
+    path: 'guia/que-ver-en-urdaibai',
+    loadComponent: () => import('./pages/guias/guias.component').then((m) => m.GuiasComponent),
+    title: 'Qué ver en Urdaibai | Guía de lugares imprescindibles',
+    data: {
+      guide: 'que-ver-en-urdaibai',
+      description:
+        'Descubre qué ver en Urdaibai: Mundaka, Gernika, las playas de Laga y Laida, el cabo Ogoño y los pueblos de la reserva.',
+    },
+  },
+  {
+    path: 'guia/ruta-por-urdaibai',
+    loadComponent: () => import('./pages/guias/guias.component').then((m) => m.GuiasComponent),
+    title: 'Ruta por Urdaibai | Itinerario desde Bermeo',
+    data: {
+      guide: 'ruta-por-urdaibai',
+      description:
+        'Organiza una ruta por Urdaibai desde Bermeo con paradas en Mundaka, Laga, Laida, Gernika y los paisajes de la reserva.',
+    },
+  },
+  {
+    path: 'guia/donde-alojarse-en-urdaibai',
+    loadComponent: () => import('./pages/guias/guias.component').then((m) => m.GuiasComponent),
+    title: 'Dónde alojarse en Urdaibai | Soul House Bermeo',
+    data: {
+      guide: 'donde-alojarse-en-urdaibai',
+      description:
+        'Descubre dónde alojarse en Urdaibai y por qué Bermeo es una base cómoda para conocer playas, pueblos y naturaleza.',
+    },
+  },
+  {
+    path: 'guia/urdaibai-con-ninos',
+    loadComponent: () => import('./pages/guias/guias.component').then((m) => m.GuiasComponent),
+    title: 'Urdaibai con niños | Planes en familia',
+    data: {
+      guide: 'urdaibai-con-ninos',
+      description:
+        'Ideas para visitar Urdaibai con niños: playas, paseos por Bermeo y Mundaka, pueblos marineros y excursiones familiares.',
+    },
+  },
   {
     path: 'guias/bermeo',
     loadComponent: () => import('./pages/guias/guias.component').then((m) => m.GuiasComponent),
