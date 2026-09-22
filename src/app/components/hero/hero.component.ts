@@ -1,5 +1,4 @@
 ﻿import { Component, inject } from '@angular/core';
-import { NgOptimizedImage } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { I18nService } from '../../services/i18n.service';
 import { IconComponent } from '../ui/icon.component';
@@ -7,13 +6,13 @@ import { IconComponent } from '../ui/icon.component';
 @Component({
   selector: 'app-hero',
   standalone: true,
-  imports: [IconComponent, NgOptimizedImage, RouterLink],
+  imports: [IconComponent, RouterLink],
   template: `
     <section class="hero" id="inicio" aria-labelledby="hero-heading">
       <div class="hero__photo-wrap" aria-hidden="true">
         <img
           class="hero__photo"
-          ngSrc="https://www.soulhousebermeo.com/assets/images/hero-facade.png"
+          src="https://www.soulhousebermeo.com/assets/images/hero-facade.png"
           width="1920"
           height="1280"
           alt=""

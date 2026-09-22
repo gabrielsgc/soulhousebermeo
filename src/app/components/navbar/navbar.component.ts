@@ -1,5 +1,5 @@
-﻿import { Component, HostListener, inject, signal, PLATFORM_ID } from '@angular/core';
-import { NgOptimizedImage, isPlatformBrowser } from '@angular/common';
+﻿import { AfterViewInit, Component, inject, OnDestroy, signal, PLATFORM_ID } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { I18nService } from '../../services/i18n.service';
 import { LangSwitcherComponent } from './lang-switcher.component';
@@ -7,7 +7,7 @@ import { LangSwitcherComponent } from './lang-switcher.component';
 @Component({
   selector: 'app-navbar',
   standalone: true,
-  imports: [LangSwitcherComponent, NgOptimizedImage, RouterLink],
+  imports: [LangSwitcherComponent, RouterLink],
   template: `
     <header id="site-header" role="banner">
       <nav class="navbar" [class.scrolled]="isScrolled()" [attr.aria-label]="t().nav.ariaNav">
@@ -15,7 +15,7 @@ import { LangSwitcherComponent } from './lang-switcher.component';
 
           <a class="navbar__brand" [routerLink]="'/'" [attr.aria-label]="t().nav.ariaBrand" (click)="closeMenu()">
             <img
-              ngSrc="https://www.soulhousebermeo.com/imgs/logo-soulhousebermeo-VT.webp"
+              src="https://www.soulhousebermeo.com/imgs/logo-soulhousebermeo-VT.webp"
               alt="Soul House Bermeo"
               class="navbar__brand-logo"
               width="46"
@@ -47,8 +47,7 @@ import { LangSwitcherComponent } from './lang-switcher.component';
             <li><a class="navbar__link" [routerLink]="'/faq'" (click)="closeMenu()">{{ t().nav.faq }}</a></li>
             <li>
               <a class="navbar__link navbar__cta btn btn--ghost"
-                 [routerLink]="'/reservar'" (click)="closeMenu()"
-                 style="min-height:40px;padding:.4rem 1.1rem;">
+                 [routerLink]="'/reservar'" (click)="closeMenu()">
                 {{ t().nav.book }}
               </a>
             </li>
@@ -63,7 +62,7 @@ import { LangSwitcherComponent } from './lang-switcher.component';
   `,
   styleUrls: ['./navbar.component.css'],
 })
-export class NavbarComponent {
+export class NavbarComponent implements AfterViewInit, OnDestroy {
   private readonly platformId = inject(PLATFORM_ID);
   protected readonly i18n = inject(I18nService);
   protected readonly t = this.i18n.t;
@@ -71,12 +70,24 @@ export class NavbarComponent {
   isScrolled = signal(false);
   isMenuOpen = signal(false);
 
-  @HostListener('window:scroll')
-  onScroll(): void {
+  ngAfterViewInit(): void {
+    if (!isPlatformBrowser(this.platformId)) {
+      return;
+    }
+
+    window.addEventListener('scroll', this.onScroll, { passive: true });
+    this.onScroll();
+  }
+
+  ngOnDestroy(): void {
     if (isPlatformBrowser(this.platformId)) {
-      this.isScrolled.set(window.scrollY > 60);
+      window.removeEventListener('scroll', this.onScroll);
     }
   }
+
+  private readonly onScroll = (): void => {
+    this.isScrolled.set(window.scrollY > 60);
+  };
 
   toggleMenu(): void { this.isMenuOpen.update((v) => !v); }
   closeMenu(): void  { this.isMenuOpen.set(false); }

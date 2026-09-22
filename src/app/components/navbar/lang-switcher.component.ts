@@ -1,6 +1,6 @@
 import {
   Component, inject, signal, computed,
-  HostListener, ElementRef, OnDestroy,
+  ElementRef, OnDestroy, AfterViewInit,
 } from '@angular/core';
 import { I18nService, Lang } from '../../services/i18n.service';
 
@@ -89,13 +89,26 @@ const LANGS: LangOption[] = [
   `,
   styleUrls: ['./lang-switcher.component.css'],
 })
-export class LangSwitcherComponent implements OnDestroy {
+export class LangSwitcherComponent implements AfterViewInit, OnDestroy {
   protected readonly i18n = inject(I18nService);
   private readonly elRef = inject(ElementRef);
 
   langs = LANGS;
   isOpen = signal(false);
   focusedIdx = signal(0);
+
+  ngAfterViewInit(): void {
+    if (typeof document === 'undefined') {
+      return;
+    }
+    document.addEventListener('click', this.onDocumentClick);
+  }
+
+  private readonly onDocumentClick = (e: Event): void => {
+    if (!this.elRef.nativeElement.contains(e.target)) {
+      this.isOpen.set(false);
+    }
+  };
 
   currentShort = computed(() =>
     LANGS.find(l => l.code === this.i18n.currentLang())?.short ?? 'ES'
@@ -178,13 +191,10 @@ export class LangSwitcherComponent implements OnDestroy {
     }
   }
 
-  // Close when clicking outside
-  @HostListener('document:click', ['$event'])
-  onDocClick(e: MouseEvent): void {
-    if (!this.elRef.nativeElement.contains(e.target)) {
-      this.isOpen.set(false);
+  ngOnDestroy(): void {
+    if (typeof document !== 'undefined') {
+      document.removeEventListener('click', this.onDocumentClick);
     }
+    this.isOpen.set(false);
   }
-
-  ngOnDestroy(): void { this.isOpen.set(false); }
 }

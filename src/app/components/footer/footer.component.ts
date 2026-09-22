@@ -1,5 +1,4 @@
 import { Component, inject } from '@angular/core';
-import { NgOptimizedImage } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { I18nService } from '../../services/i18n.service';
 import { IconComponent } from '../ui/icon.component';
@@ -8,13 +7,13 @@ import { CookieConsentService } from '../../services/cookie-consent.service';
 @Component({
   selector: 'app-footer',
   standalone: true,
-  imports: [IconComponent, NgOptimizedImage, RouterLink],
+  imports: [IconComponent, RouterLink],
   template: `
     <footer class="footer" role="contentinfo">
       <div class="container footer__grid">
         <div class="footer__brand">
           <img
-            ngSrc="https://www.soulhousebermeo.com/imgs/logo-soulhousebermeo-VT.webp"
+            src="https://www.soulhousebermeo.com/imgs/logo-soulhousebermeo-VT.webp"
             alt="Soul House Bermeo"
             class="footer__brand-logo"
             width="56"
@@ -36,12 +35,12 @@ import { CookieConsentService } from '../../services/cookie-consent.service';
           <h3>{{ t().footer.contactHeading }}</h3>
           <address>
             <a href="mailto:info@soulhousebermeo.com" aria-label="info@soulhousebermeo.com">
-              <app-icon name="mail" [size]="13" style="vertical-align:middle;margin-right:.35rem" />
+              <app-icon name="mail" [size]="13" class="footer__mail-icon" />
               info&#64;soulhousebermeo.com
             </a>
           </address>
           <p>
-            <a [routerLink]="'/reservar'" class="btn btn--teal btn--sm" style="margin-top:1rem;display:inline-block;">
+            <a [routerLink]="'/reservar'" class="btn btn--teal btn--sm footer__cta">
               {{ t().footer.bookNow }}
             </a>
           </p>

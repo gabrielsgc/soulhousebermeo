@@ -1,5 +1,5 @@
-import { Component, inject, input, computed } from '@angular/core';
-import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
+import { AfterViewInit, Component, ElementRef, PLATFORM_ID, effect, inject, input, viewChild } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 
 /** Nautical-editorial stroke icon library — 24×24 viewBox, fill="none" */
 const ICONS: Record<string, string> = {
@@ -204,23 +204,43 @@ const ICONS: Record<string, string> = {
       stroke-linejoin="round"
       class="icon"
       aria-hidden="true"
-      [innerHTML]="svgContent()"
-    ></svg>
+    >
+      <g #iconContent></g>
+    </svg>
   `,
   styles: [`
     :host { display: inline-flex; align-items: center; justify-content: center; line-height: 1; }
     .icon { flex-shrink: 0; }
   `],
 })
-export class IconComponent {
+export class IconComponent implements AfterViewInit {
+  private readonly platformId = inject(PLATFORM_ID);
+  private readonly iconContent = viewChild<ElementRef<SVGGElement>>('iconContent');
   name   = input.required<string>();
   size   = input<number>(20);
   weight = input<number>(1.5);
 
-  private sanitizer = inject(DomSanitizer);
+  constructor() {
+    effect(() => {
+      if (!isPlatformBrowser(this.platformId)) {
+        return;
+      }
 
-  svgContent = computed((): SafeHtml => {
-    const raw = ICONS[this.name()] ?? `<circle cx="12" cy="12" r="9"/>`;
-    return this.sanitizer.bypassSecurityTrustHtml(raw);
-  });
+      const content = this.iconContent();
+      if (content) {
+        content.nativeElement.innerHTML = ICONS[this.name()] ?? `<circle cx="12" cy="12" r="9"/>`;
+      }
+    });
+  }
+
+  ngAfterViewInit(): void {
+    if (!isPlatformBrowser(this.platformId)) {
+      return;
+    }
+
+    const content = this.iconContent();
+    if (content) {
+      content.nativeElement.innerHTML = ICONS[this.name()] ?? `<circle cx="12" cy="12" r="9"/>`;
+    }
+  }
 }

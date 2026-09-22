@@ -77,7 +77,7 @@
         } @else {
           <form [formGroup]="form" (ngSubmit)="onSubmit()" novalidate
             [attr.aria-label]="t().contact.formAriaLabel">
-            <fieldset style="border:none;padding:0;margin:0;">
+            <fieldset class="form__fieldset">
               <legend class="form__legend">{{ t().contact.formLegend }}</legend>
 
               <div class="form__row">
@@ -225,7 +225,7 @@
               </div>
 
               <!-- Honeypot -->
-              <div aria-hidden="true" style="position:absolute;left:-9999px;opacity:0;pointer-events:none;" tabindex="-1">
+              <div aria-hidden="true" class="form__honeypot" tabindex="-1">
                 <input type="text" formControlName="hpot" tabindex="-1" autocomplete="off" />
               </div>
 

@@ -1,20 +1,50 @@
-﻿import { Component, inject, signal } from '@angular/core';
-import { NgOptimizedImage } from '@angular/common';
+﻿import { AfterViewInit, Component, PLATFORM_ID, effect, inject, signal, viewChild, ElementRef } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 import { I18nService } from '../../services/i18n.service';
 import { IconComponent } from '../ui/icon.component';
 
 @Component({
   selector: 'app-gallery',
   standalone: true,
-  imports: [IconComponent, NgOptimizedImage],
+  imports: [IconComponent],
   templateUrl: './gallery.component.html',
 })
-export class GalleryComponent {
+export class GalleryComponent implements AfterViewInit {
+  private readonly platformId = inject(PLATFORM_ID);
   private readonly siteUrl = 'https://www.soulhousebermeo.com/';
   protected readonly t = inject(I18nService).t;
+  private readonly sliderTrack = viewChild<ElementRef<HTMLDivElement>>('sliderTrack');
   sliderIndex = signal<number>(0);
   activeIndex = signal<number | null>(null);
   private touchStartX = 0;
+
+  constructor() {
+    effect(() => {
+      if (!isPlatformBrowser(this.platformId)) {
+        return;
+      }
+
+      const track = this.sliderTrack();
+      if (!track) {
+        return;
+      }
+
+      track.nativeElement.style.transform = `translateX(-${this.sliderIndex() * 100}%)`;
+    });
+  }
+
+  ngAfterViewInit(): void {
+    if (!isPlatformBrowser(this.platformId)) {
+      return;
+    }
+
+    const track = this.sliderTrack();
+    if (!track) {
+      return;
+    }
+
+    track.nativeElement.style.transform = `translateX(-${this.sliderIndex() * 100}%)`;
+  }
 
   prevSlide(): void {
     this.sliderIndex.update(i => (i - 1 + this.t().gallery.items.length) % this.t().gallery.items.length);

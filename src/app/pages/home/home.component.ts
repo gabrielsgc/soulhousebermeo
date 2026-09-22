@@ -18,11 +18,11 @@ import { CookieConsentComponent } from '../../components/cookie-consent/cookie-c
       <app-hero />
       @defer (on viewport; prefetch on idle) {
         <app-highlights />
-      } @placeholder { <div style="min-height:400px"></div> }
+      } @placeholder { <div class="defer__placeholder defer__placeholder--large"></div> }
     </main>
     @defer (on viewport; prefetch on idle) {
       <app-footer />
-    } @placeholder { <div style="min-height:200px"></div> }
+    } @placeholder { <div class="defer__placeholder defer__placeholder--small"></div> }
     <app-cookie-consent />
   `,
 })
