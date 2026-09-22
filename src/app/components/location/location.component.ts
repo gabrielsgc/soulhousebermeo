@@ -17,7 +17,7 @@ import { IconComponent } from '../ui/icon.component';
         <div class="location__layout">
           <div class="location__map" [attr.aria-label]="t().location.mapLabel">
             <iframe
-              src="https://www.google.com/maps?q=43.417188,-2.723940&z=16&output=embed"
+              src="https://www.google.com/maps?q=43.417199,-2.723924&z=16&output=embed"
               width="100" height="400" class="location__iframe"
               allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade"
               [attr.title]="t().location.mapLabel"
