@@ -12,17 +12,15 @@ export class CookieConsentComponent {
   protected readonly t  = inject(I18nService).t;
   protected readonly cs = inject(CookieConsentService);
 
-  showPanel  = signal(false);
   prefToggle = signal(true);
 
-  openPanel(): void { this.showPanel.set(true); }
-  closePanel(): void { this.showPanel.set(false); }
+  openPanel(): void { this.cs.showPanel.set(true); }
+  closePanel(): void { this.cs.showPanel.set(false); }
 
   acceptAll(): void { this.cs.acceptAll(); }
   acceptNecessary(): void { this.cs.acceptNecessaryOnly(); }
 
   savePreferences(): void {
     this.cs.savePreferences(this.prefToggle());
-    this.showPanel.set(false);
   }
 }

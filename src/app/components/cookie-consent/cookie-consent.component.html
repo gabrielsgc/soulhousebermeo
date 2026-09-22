@@ -1,5 +1,5 @@
 @if (cs.showBanner()) {
-  @if (showPanel()) {
+  @if (cs.showPanel()) {
     <div class="cc-backdrop" (click)="closePanel()" aria-hidden="true"></div>
   }
 
@@ -7,7 +7,7 @@
        role="dialog"
        aria-modal="true"
        [attr.aria-label]="t().cookieBanner.title"
-       [class.cc-banner--expanded]="showPanel()">
+       [class.cc-banner--expanded]="cs.showPanel()">
 
     <!-- ── Compact bar ── -->
     <div class="cc-bar">
@@ -16,27 +16,27 @@
         <p class="cc-bar__msg">{{ t().cookieBanner.message }}</p>
       </div>
       <div class="cc-bar__actions">
-        <button class="cc-btn cc-btn--ghost"
+        <button type="button" class="cc-btn cc-btn--ghost"
                 (click)="openPanel()"
-                [attr.aria-expanded]="showPanel()"
+                [attr.aria-expanded]="cs.showPanel()"
                 [attr.aria-controls]="'cc-panel'">
           {{ t().cookieBanner.manage }}
         </button>
-        <button class="cc-btn cc-btn--secondary" (click)="acceptNecessary()">
+        <button type="button" class="cc-btn cc-btn--secondary" (click)="acceptNecessary()">
           {{ t().cookieBanner.necessaryOnly }}
         </button>
-        <button class="cc-btn cc-btn--primary" (click)="acceptAll()">
+        <button type="button" class="cc-btn cc-btn--primary" (click)="acceptAll()">
           {{ t().cookieBanner.acceptAll }}
         </button>
       </div>
     </div>
 
     <!-- ── Preferences panel ── -->
-    @if (showPanel()) {
+    @if (cs.showPanel()) {
       <div class="cc-panel" id="cc-panel" role="region" [attr.aria-label]="t().cookieBanner.panelTitle">
         <div class="cc-panel__header">
           <h2 class="cc-panel__title">{{ t().cookieBanner.panelTitle }}</h2>
-          <button class="cc-panel__close"
+          <button type="button" class="cc-panel__close"
                   (click)="closePanel()"
                   [attr.aria-label]="t().cookieBanner.panelClose">×</button>
         </div>
@@ -69,7 +69,7 @@
         </div>
 
         <div class="cc-panel__footer">
-          <button class="cc-btn cc-btn--primary" (click)="savePreferences()">
+          <button type="button" class="cc-btn cc-btn--primary" (click)="savePreferences()">
             {{ t().cookieBanner.save }}
           </button>
         </div>

@@ -13,6 +13,7 @@ const STORAGE_KEY = 'soulhouse_cookies';
 export class CookieConsentService {
   private readonly platformId = inject(PLATFORM_ID);
   readonly showBanner = signal<boolean>(this._load() === null);
+  readonly showPanel = signal<boolean>(false);
   readonly consent    = signal<CookieConsent | null>(this._load());
 
   private _load(): CookieConsent | null {
@@ -33,6 +34,7 @@ export class CookieConsentService {
     }
     try { localStorage.setItem(STORAGE_KEY, JSON.stringify(c)); } catch { /* quota exceeded */ }
     this.consent.set(c);
+    this.showPanel.set(false);
     this.showBanner.set(false);
   }
 
@@ -54,6 +56,7 @@ export class CookieConsentService {
     }
     try { localStorage.removeItem(STORAGE_KEY); } catch { /* ignore */ }
     this.consent.set(null);
+    this.showPanel.set(false);
     this.showBanner.set(true);
   }
 
