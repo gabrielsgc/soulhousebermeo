@@ -43,6 +43,17 @@
   line-height: 1.8;
 }
 
+.guide__answer {
+  margin-top: 1.25rem;
+  padding: 1rem 1.15rem;
+  border-left: 3px solid var(--teal, #176f68);
+  background: rgba(23, 111, 104, .08);
+  color: var(--ink, #173238);
+  line-height: 1.65;
+}
+
+.guide__answer strong { color: var(--teal, #176f68); }
+
 .guide__section ul {
   margin: 1rem 0 0;
   padding-left: 1.25rem;

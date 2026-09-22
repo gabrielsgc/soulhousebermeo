@@ -5,7 +5,7 @@
     <header class="guide__header">
       <span class="section-tag">Soul House Bermeo</span>
       <h1>{{ guide().title }}</h1>
-      <p class="guide__intro">{{ guide().intro }}</p>
+      <p class="guide__answer"><strong>{{ quickAnswerLabel() }}.</strong> {{ guide().intro }}</p>
     </header>
 
     <div class="guide__sections">
@@ -60,4 +60,4 @@
   </article>
 </main>
 <app-footer />
-<app-cookie-consent />
+<app-cookie-consent ngSkipHydration />

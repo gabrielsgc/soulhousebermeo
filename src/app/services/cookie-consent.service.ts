@@ -12,9 +12,10 @@ const STORAGE_KEY = 'soulhouse_cookies';
 @Injectable({ providedIn: 'root' })
 export class CookieConsentService {
   private readonly platformId = inject(PLATFORM_ID);
-  readonly showBanner = signal<boolean>(this._load() === null);
+  private readonly initialConsent = this._load();
+  readonly showBanner = signal<boolean>(this.initialConsent === null);
   readonly showPanel = signal<boolean>(false);
-  readonly consent    = signal<CookieConsent | null>(this._load());
+  readonly consent    = signal<CookieConsent | null>(this.initialConsent);
 
   private _load(): CookieConsent | null {
     if (!isPlatformBrowser(this.platformId)) {
@@ -22,7 +23,21 @@ export class CookieConsentService {
     }
     try {
       const raw = localStorage.getItem(STORAGE_KEY);
-      return raw ? (JSON.parse(raw) as CookieConsent) : null;
+      if (!raw) {
+        return null;
+      }
+
+      const parsed = JSON.parse(raw) as Partial<CookieConsent>;
+      if (
+        parsed.necessary !== true ||
+        typeof parsed.preferences !== 'boolean' ||
+        typeof parsed.timestamp !== 'number'
+      ) {
+        localStorage.removeItem(STORAGE_KEY);
+        return null;
+      }
+
+      return parsed as CookieConsent;
     } catch {
       return null;
     }

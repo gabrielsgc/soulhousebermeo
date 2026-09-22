@@ -130,7 +130,7 @@ const es: Translations = {
     tag: 'Alojamiento en Bermeo', heading: 'Apartamento para 6 personas',
     intro: 'Una vivienda turística junto al puerto de Bermeo, pensada para familias y grupos que buscan dónde dormir en Bermeo con el mar siempre cerca.',
     items: [
-      { emoji: 'bed', title: 'Habitación Principal', desc: 'Amplia habitación con cama de matrimonio, armario empotrado y vistas a la montaña al despertar.', features: ['Cama doble 150×200', 'Vistas al mar', 'Armario empotrado', 'Luz natural'] },
+      { emoji: 'bed', title: 'Habitación Principal', desc: 'Amplia habitación con cama de matrimonio, armario empotrado y vistas a la montaña al despertar.', features: ['Cama doble 150×200', 'Vistas a la montaña', 'Armario empotrado', 'Luz natural'] },
       { emoji: 'anchor', title: 'Habitación Marinera', desc: 'Decorada con elementos náuticos auténticos. Dos camas individuales, perfecta para niños o amigos viajeros.', features: ['2 camas individuales', 'Decoración marinera', 'Armario doble', 'Escritorio'] },
       { emoji: 'leaf', title: 'Habitación Urdaibai', desc: 'La más tranquila de la casa. Tonos verdes que evocan la biosfera, ideales para desconectar en pareja.', features: ['Cama doble 135×190', 'Ambiente natural', 'Estantes y mesillas', 'Ropa de cama incluida'] },
       { emoji: 'cooking', title: 'Salón-Cocina', desc: 'Cocina completamente equipada y salón con sofá cama adicional para 2 personas. El corazón de la casa.', features: ['Cocina equipada', 'Sofá cama 2 plazas', 'Smart TV', 'WiFi fibra óptica'] },
@@ -235,9 +235,9 @@ const es: Translations = {
     exploreHeading: 'Explorar', contactHeading: 'Contacto', legalHeading: 'Información legal',
     bookNow: 'Solicitar reserva',
     navLinks: [
-      { href: '#inicio', label: 'Inicio' }, { href: '#habitaciones', label: 'Habitaciones' },
-      { href: '#galeria', label: 'Galería' }, { href: '#comodidades', label: 'Comodidades' },
-      { href: '#ubicacion', label: 'Ubicación' }, { href: '#preguntas', label: 'FAQ' },
+      { href: '#inicio', label: 'Inicio' }, { href: '#alojamiento', label: 'Habitaciones' },
+      { href: '#galeria', label: 'Galería' }, { href: '#servicios', label: 'Comodidades' },
+      { href: '#ubicacion', label: 'Ubicación' }, { href: '#faq', label: 'FAQ' },
       { href: '#contacto', label: 'Contacto' },
     ],
     legal: ['VT nº EBI02583 (Gobierno Vasco)', 'Check-in: 16:00 · Check-out: 11:00', 'Capacidad máxima: 6 personas'],
@@ -311,7 +311,7 @@ const eu: Translations = {
     tag: 'Ostatua', heading: '3 logela · 6 leku',
     intro: 'Egonaldi bakoitza etxean bezala sentitzeko pentsatua dago, itsasoa beti gertu.',
     items: [
-      { emoji: 'bed', title: 'Logela Nagusia', desc: 'Matrimonio-ohea, armairua eta esnatzean mendiaren ikuspegiarekin logela zabala.', features: ['Bikoitza 150×200', 'Itsasoaren ikuspegia', 'Armairua', 'Argi naturala'] },
+      { emoji: 'bed', title: 'Logela Nagusia', desc: 'Matrimonio-ohea, armairua eta esnatzean mendiaren ikuspegiarekin logela zabala.', features: ['Bikoitza 150×200', 'Mendiaren ikuspegia', 'Armairua', 'Argi naturala'] },
       { emoji: 'anchor', title: 'Itsasoko Logela', desc: 'Itsas elementu autentikoekin apaindurik. Bi oheak banaka, umeentzat edo lagunei egokia.', features: ['2 ohe banaka', 'Itsas apaindurak', 'Armairua', 'Mahai-idazketa'] },
       { emoji: 'leaf', title: 'Urdaibai Logela', desc: 'Etxeko logela lasaiena. Tonu berdeek biosfera ebakatzen dute, bikoteentzat deskonektatzeko bikaina.', features: ['Bikoitza 135×190', 'Ingurune naturala', 'Apalak eta gaumahaiak', 'Oheko arropa barne'] },
       { emoji: 'cooking', title: 'Egongela-Sukaldea', desc: 'Guztiz hornitutako sukaldea eta bi pertsonarentzako sofa-ohea duen egongela. Etxearen bihotza.', features: ['Sukalde osoa', 'Sofa-ohea 2 lekukoa', 'Smart TB', 'WiFi zuntz optikoa'] },
@@ -416,9 +416,9 @@ const eu: Translations = {
     exploreHeading: 'Arakatu', contactHeading: 'Kontaktua', legalHeading: 'Informazio legala',
     bookNow: 'Erreserba eskatu',
     navLinks: [
-      { href: '#inicio', label: 'Hasiera' }, { href: '#habitaciones', label: 'Logelak' },
-      { href: '#galeria', label: 'Galeria' }, { href: '#comodidades', label: 'Erosotasunak' },
-      { href: '#ubicacion', label: 'Kokapena' }, { href: '#preguntas', label: 'FAQ' },
+      { href: '#inicio', label: 'Hasiera' }, { href: '#alojamiento', label: 'Logelak' },
+      { href: '#galeria', label: 'Galeria' }, { href: '#servicios', label: 'Erosotasunak' },
+      { href: '#ubicacion', label: 'Kokapena' }, { href: '#faq', label: 'FAQ' },
       { href: '#contacto', label: 'Kontaktua' },
     ],
     legal: ['ET zk. EBI02583 (Eusko Jaurlaritza)', 'Check-in: 16:00 · Check-out: 11:00', 'Gehienezko edukiera: 6 pertsona'],
@@ -492,7 +492,7 @@ const en: Translations = {
     tag: 'Accommodation', heading: '3 bedrooms · 6 guests',
     intro: 'Every room has been designed to feel like home, with the sea always nearby.',
     items: [
-      { emoji: 'bed', title: 'Master Bedroom', desc: 'Spacious room with double bed, built-in wardrobe and mountain views upon waking.', features: ['Double bed 150×200', 'Sea views', 'Built-in wardrobe', 'Natural light'] },
+      { emoji: 'bed', title: 'Master Bedroom', desc: 'Spacious room with double bed, built-in wardrobe and mountain views upon waking.', features: ['Double bed 150×200', 'Mountain views', 'Built-in wardrobe', 'Natural light'] },
       { emoji: 'anchor', title: 'Sailor\'s Room', desc: 'Decorated with authentic nautical elements. Two single beds, perfect for children or travelling friends.', features: ['2 single beds', 'Nautical décor', 'Double wardrobe', 'Desk'] },
       { emoji: 'leaf', title: 'Urdaibai Room', desc: 'The quietest room in the house. Green tones evoking the biosphere, ideal for couples unwinding.', features: ['Double bed 135×190', 'Natural atmosphere', 'Shelves & bedside tables', 'Linen included'] },
       { emoji: 'cooking', title: 'Living-Kitchen', desc: 'Fully equipped kitchen and living room with additional sofa bed for 2 people. The heart of the house.', features: ['Fully equipped kitchen', 'Sofa bed for 2', 'Smart TV', 'Fibre optic WiFi'] },
@@ -597,9 +597,9 @@ const en: Translations = {
     exploreHeading: 'Explore', contactHeading: 'Contact', legalHeading: 'Legal',
     bookNow: 'Request a booking',
     navLinks: [
-      { href: '#inicio', label: 'Home' }, { href: '#habitaciones', label: 'Bedrooms' },
-      { href: '#galeria', label: 'Gallery' }, { href: '#comodidades', label: 'Amenities' },
-      { href: '#ubicacion', label: 'Location' }, { href: '#preguntas', label: 'FAQ' },
+      { href: '#inicio', label: 'Home' }, { href: '#alojamiento', label: 'Bedrooms' },
+      { href: '#galeria', label: 'Gallery' }, { href: '#servicios', label: 'Amenities' },
+      { href: '#ubicacion', label: 'Location' }, { href: '#faq', label: 'FAQ' },
       { href: '#contacto', label: 'Contact' },
     ],
     legal: ['VT no. EBI02583 (Basque Government)', 'Check-in: 16:00 · Check-out: 11:00', 'Max. capacity: 6 guests'],
@@ -673,7 +673,7 @@ const fr: Translations = {
     tag: 'Hébergement', heading: '3 chambres · 6 personnes',
     intro: 'Chaque séjour a été pensé pour que vous vous sentiez comme à la maison, la mer toujours proche.',
     items: [
-      { emoji: 'bed', title: 'Chambre principale', desc: 'Grande chambre avec lit double, armoire encastrée et vue sur la montagne au réveil.', features: ['Lit double 150×200', 'Vue mer', 'Armoire encastrée', 'Lumière naturelle'] },
+      { emoji: 'bed', title: 'Chambre principale', desc: 'Grande chambre avec lit double, armoire encastrée et vue sur la montagne au réveil.', features: ['Lit double 150×200', 'Vue sur la montagne', 'Armoire encastrée', 'Lumière naturelle'] },
       { emoji: 'anchor', title: 'Chambre du marin', desc: 'Décorée d\'éléments nautiques authentiques. Deux lits simples, idéale pour enfants ou amis voyageurs.', features: ['2 lits simples', 'Décor nautique', 'Armoire double', 'Bureau'] },
       { emoji: 'leaf', title: 'Chambre Urdaibai', desc: 'La plus calme de la maison. Des tons verts évoquant la biosphère, parfaite pour se ressourcer en couple.', features: ['Lit double 135×190', 'Ambiance naturelle', 'Étagères et chevets', 'Linge de lit inclus'] },
       { emoji: 'cooking', title: 'Salon-cuisine', desc: 'Cuisine entièrement équipée et salon avec canapé-lit supplémentaire pour 2 personnes. Le cœur de la maison.', features: ['Cuisine équipée', 'Canapé-lit 2 places', 'Smart TV', 'WiFi fibre optique'] },
@@ -778,9 +778,9 @@ const fr: Translations = {
     exploreHeading: 'Explorer', contactHeading: 'Contact', legalHeading: 'Mentions légales',
     bookNow: 'Demander une réservation',
     navLinks: [
-      { href: '#inicio', label: 'Accueil' }, { href: '#habitaciones', label: 'Chambres' },
-      { href: '#galeria', label: 'Galerie' }, { href: '#comodidades', label: 'Services' },
-      { href: '#ubicacion', label: 'Localisation' }, { href: '#preguntas', label: 'FAQ' },
+      { href: '#inicio', label: 'Accueil' }, { href: '#alojamiento', label: 'Chambres' },
+      { href: '#galeria', label: 'Galerie' }, { href: '#servicios', label: 'Services' },
+      { href: '#ubicacion', label: 'Localisation' }, { href: '#faq', label: 'FAQ' },
       { href: '#contacto', label: 'Contact' },
     ],
     legal: ['VT n° EBI02583 (Gouvernement basque)', 'Check-in : 16h00 · Check-out : 11h00', 'Capacité max. : 6 personnes'],
@@ -852,7 +852,7 @@ const de: Translations = {
     tag: 'Unterkunft', heading: '3 Schlafzimmer · 6 Schlafplätze',
     intro: 'Jeder Raum wurde so gestaltet, dass Sie sich wie zu Hause fühlen und das Meer immer in der Nähe ist.',
     items: [
-      { emoji: 'bed', title: 'Hauptschlafzimmer', desc: 'Geräumiges Zimmer mit Doppelbett, Einbauschrank und Bergblick.', features: ['Doppelbett 150×200', 'Meerblick', 'Einbauschrank', 'Tageslicht'] },
+      { emoji: 'bed', title: 'Hauptschlafzimmer', desc: 'Geräumiges Zimmer mit Doppelbett, Einbauschrank und Bergblick.', features: ['Doppelbett 150×200', 'Bergblick', 'Einbauschrank', 'Tageslicht'] },
       { emoji: 'anchor', title: 'Matrosenzimmer', desc: 'Mit authentischen maritimen Elementen dekoriert. Ideal für Kinder oder Freunde.', features: ['2 Einzelbetten', 'Maritime Dekoration', 'Doppelschrank', 'Schreibtisch'] },
       { emoji: 'leaf', title: 'Urdaibai-Zimmer', desc: 'Das ruhigste Zimmer des Hauses mit natürlichen Grüntönen zum Entspannen.', features: ['Doppelbett 135×190', 'Natürliche Atmosphäre', 'Regale und Nachttische', 'Bettwäsche inklusive'] },
       { emoji: 'cooking', title: 'Wohnküche', desc: 'Voll ausgestattete Küche und Wohnzimmer mit Schlafsofa für zwei Personen.', features: ['Komplett ausgestattete Küche', 'Schlafsofa für 2', 'Smart-TV', 'Glasfaser-WLAN'] },
@@ -929,7 +929,7 @@ const de: Translations = {
   footer: {
     tagline: 'Bermeo · Bizkaia · Baskenland', desc: 'Exklusive Ferienunterkunft im Herzen des Hafens von Bermeo. 3 Schlafzimmer · 6 Schlafplätze. Direktbuchung ohne Provisionen.',
     exploreHeading: 'Entdecken', contactHeading: 'Kontakt', legalHeading: 'Rechtliche Hinweise', bookNow: 'Buchung anfragen',
-    navLinks: [{ href: '#inicio', label: 'Startseite' }, { href: '#habitaciones', label: 'Schlafzimmer' }, { href: '#galeria', label: 'Galerie' }, { href: '#comodidades', label: 'Ausstattung' }, { href: '#ubicacion', label: 'Lage' }, { href: '#preguntas', label: 'FAQ' }, { href: '#contacto', label: 'Kontakt' }],
+    navLinks: [{ href: '#inicio', label: 'Startseite' }, { href: '#alojamiento', label: 'Schlafzimmer' }, { href: '#galeria', label: 'Galerie' }, { href: '#servicios', label: 'Ausstattung' }, { href: '#ubicacion', label: 'Lage' }, { href: '#faq', label: 'FAQ' }, { href: '#contacto', label: 'Kontakt' }],
     legal: ['VT Nr. EBI02583 (Baskische Regierung)', 'Check-in: 16:00 · Check-out: 11:00', 'Maximale Kapazität: 6 Personen'],
   },
   cookieBanner: {

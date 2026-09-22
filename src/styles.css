@@ -115,6 +115,11 @@ h1,h2,h3 { font-family: var(--font-display); line-height: 1.15; letter-spacing: 
   padding: .7rem 0;
   backdrop-filter: blur(12px);
 }
+.navbar--solid {
+  background: rgba(7,10,13,.97);
+  box-shadow: 0 1px 0 rgba(255,255,255,.08);
+  backdrop-filter: blur(12px);
+}
 .navbar__inner {
   max-width: var(--container); margin-inline: auto;
   padding-inline: 1.5rem; display: flex; align-items: center; justify-content: space-between;

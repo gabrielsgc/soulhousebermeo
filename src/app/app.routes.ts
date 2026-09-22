@@ -2,7 +2,7 @@ import { Routes } from '@angular/router';
 
 const baseUrl = 'https://www.soulhousebermeo.com';
 const logoUrl = `${baseUrl}/imgs/logo-soulhousebermeo-VT.webp`;
-const coverImageUrl = `${baseUrl}/assets/images/og-image.jpg`;
+const coverImageUrl = `${baseUrl}/assets/images/hero-facade.png`;
 
 const lodgingBusinessJsonLd = {
   '@context': 'https://schema.org',
@@ -55,11 +55,58 @@ const reservarJsonLd = {
   },
 };
 
+const faqJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: [
+    {
+      '@type': 'Question',
+      name: '¿Cuáles son las horas de check-in y check-out?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'El check-in es a partir de las 16:00 h y el check-out hasta las 11:00 h.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: '¿Se permiten mascotas?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Las mascotas pequeñas son bienvenidas bajo petición previa. Es necesario indicarlo en el formulario de contacto.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: '¿Puedo llegar en transporte público?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Sí. La estación de EuskoTren de Bermeo está a 100 metros del alojamiento.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: '¿Qué incluye el precio?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'La estancia incluye ropa de cama, toallas, WiFi de fibra, agua caliente y calefacción. El parking se consulta aparte.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: '¿Cuál es la política de cancelación?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'La cancelación es gratuita hasta siete días antes de la llegada. Para fechas especiales conviene consultar las condiciones.',
+      },
+    },
+  ],
+};
+
 export const routes: Routes = [
   {
     path: '',
     loadComponent: () => import('./pages/home/home.component').then((m) => m.HomeComponent),
-    title: 'Alojamiento en Bermeo | Apartamento turístico junto al puerto',
+    title: 'Soul House Bermeo | Alojamiento turístico en Bermeo para 6 personas',
     data: {
       description:
         'Apartamento turístico en Bermeo para 6 personas, junto al puerto y cerca de Urdaibai y San Juan de Gaztelugatxe. Reserva directa sin comisiones en Soul House Bermeo.',
@@ -70,10 +117,10 @@ export const routes: Routes = [
     path: 'la-casa',
     loadComponent: () =>
       import('./pages/la-casa/la-casa.component').then((m) => m.LaCasaComponent),
-    title: 'Apartamento para 6 personas en Bermeo | Soul House',
+    title: 'La casa: apartamento para 6 personas en Bermeo',
     data: {
       description:
-        'Descubre este apartamento para 6 personas en Bermeo: 3 habitaciones, vistas al Cantábrico y todo lo necesario para una escapada familiar en Bizkaia.',
+        'Conoce Soul House Bermeo: apartamento turístico con 3 habitaciones, capacidad para 6 personas y espacios preparados para familias y grupos junto al puerto.',
       jsonLd: lodgingBusinessJsonLd,
     },
   },
@@ -81,49 +128,50 @@ export const routes: Routes = [
     path: 'galeria',
     loadComponent: () =>
       import('./pages/galeria/galeria.component').then((m) => m.GaleriaComponent),
-    title: 'Galería de Soul House Bermeo | Fotos de la vivienda turística',
+    title: 'Fotos del apartamento turístico Soul House Bermeo',
     data: {
       description:
-        'Explora la galería de Soul House Bermeo con fotos de habitaciones, salón, cocina y entorno costero en el puerto de Bermeo.',
+        'Consulta las fotos de Soul House Bermeo: habitaciones, salón, cocina, baño, fachada y lugares cercanos del puerto y la costa vasca.',
     },
   },
   {
     path: 'servicios',
     loadComponent: () =>
       import('./pages/servicios/servicios.component').then((m) => m.ServiciosComponent),
-    title: 'Servicios y equipamiento | Soul House Bermeo',
+    title: 'Servicios del apartamento turístico en Bermeo',
     data: {
       description:
-        'Consulta todos los servicios y amenities de Soul House Bermeo: cocina equipada, WiFi, confort y equipamiento para 6 plazas.',
+        'Descubre los servicios de Soul House Bermeo: WiFi, cocina equipada, lavadora, ropa de cama, calefacción y comodidades para seis personas.',
     },
   },
   {
     path: 'ubicacion',
     loadComponent: () =>
       import('./pages/ubicacion/ubicacion.component').then((m) => m.UbicacionComponent),
-    title: 'Alojamiento cerca de Gaztelugatxe y Urdaibai | Bermeo',
+    title: 'Dónde alojarse para visitar Gaztelugatxe y Urdaibai',
     data: {
       description:
-        'Descubre dónde alojarse para visitar Urdaibai y San Juan de Gaztelugatxe: Soul House está en el puerto de Bermeo, cerca de Mundaka y Bilbao.',
+        'Soul House está junto al puerto de Bermeo, a poca distancia de la estación, restaurantes y servicios, y es una base práctica para Urdaibai y Gaztelugatxe.',
     },
   },
   {
     path: 'faq',
     loadComponent: () => import('./pages/faq/faq.component').then((m) => m.FaqPageComponent),
-    title: 'Preguntas frecuentes | Soul House Bermeo',
+    title: 'Preguntas frecuentes sobre Soul House Bermeo',
     data: {
       description:
-        'Resuelve tus dudas sobre reservas, check-in, cancelaciones y estancia en Soul House Bermeo.',
+        'Resuelve tus dudas sobre reservas, check-in, check-out, cancelación, mascotas, parking, servicios y estancia en Soul House Bermeo.',
+      jsonLd: faqJsonLd,
     },
   },
   {
     path: 'reservar',
     loadComponent: () =>
       import('./pages/reservar/reservar.component').then((m) => m.ReservarComponent),
-    title: 'Reservar en Soul House Bermeo | Disponibilidad y contacto directo',
+    title: 'Reservar alojamiento en Bermeo | Soul House',
     data: {
       description:
-        'Solicita disponibilidad y reserva directa en Soul House Bermeo sin comisiones, con respuesta rápida del alojamiento.',
+        'Consulta disponibilidad y reserva directamente tu estancia en Soul House Bermeo, alojamiento para 6 personas junto al puerto y cerca de Urdaibai.',
       jsonLd: reservarJsonLd,
     },
   },
@@ -131,142 +179,115 @@ export const routes: Routes = [
   {
     path: 'guia/que-ver-en-bermeo',
     loadComponent: () => import('./pages/guias/guias.component').then((m) => m.GuiasComponent),
-    title: 'Qué ver en Bermeo | Guía completa para visitar la joya de Urdaibai',
+    title: 'Qué ver en Bermeo: 10 lugares y consejos locales',
     data: {
       guide: 'que-ver-en-bermeo',
       description:
-        'Descubre qué ver en Bermeo: puerto pesquero, casco histórico, Urdaibai, Isla de Izaro y San Juan de Gaztelugatxe. Guía completa para organizar tu escapada.',
+        'Descubre qué ver y hacer en Bermeo: puerto viejo, casco histórico, museo, playas, gastronomía y excursiones a Urdaibai y Gaztelugatxe.',
     },
   },
   {
     path: 'guia/bermeo-en-dos-dias',
     loadComponent: () => import('./pages/guias/guias.component').then((m) => m.GuiasComponent),
-    title: 'Bermeo en dos días | Ruta y guía local',
+    title: 'Bermeo en 2 días: itinerario por puerto y costa',
     data: {
       guide: 'bermeo-en-dos-dias',
       description:
-        'Planifica qué hacer en Bermeo en dos días: puerto, casco histórico, gastronomía, San Juan de Gaztelugatxe y costa de Bizkaia.',
+        'Planifica una escapada de dos días en Bermeo con un itinerario por el puerto, casco histórico, gastronomía, costa y San Juan de Gaztelugatxe.',
     },
   },
   {
     path: 'guia/donde-alojarse-en-bermeo',
     loadComponent: () => import('./pages/guias/guias.component').then((m) => m.GuiasComponent),
-    title: 'Dónde alojarse en Bermeo | Soul House',
+    title: 'Dónde alojarse en Bermeo: zonas y apartamento para 6',
     data: {
       guide: 'donde-alojarse-en-bermeo',
       description:
-        'Descubre dónde alojarse en Bermeo para disfrutar del puerto, Urdaibai, Mundaka, las playas de Bizkaia y San Juan de Gaztelugatxe.',
+        'Descubre dónde alojarse en Bermeo según tu viaje y por qué Soul House es una opción práctica para familias y grupos de hasta 6 personas.',
     },
   },
   {
     path: 'guia/playas-cerca-de-bermeo',
     loadComponent: () => import('./pages/guias/guias.component').then((m) => m.GuiasComponent),
-    title: 'Playas cerca de Bermeo | Laga, Laida y Urdaibai',
+    title: 'Playas cerca de Bermeo: Laga, Laida y Aritzatxu',
     data: {
       guide: 'playas-cerca-de-bermeo',
       description:
-        'Conoce las mejores playas cerca de Bermeo, como Laga y Laida, y organiza una escapada por la costa de Urdaibai.',
+        'Conoce las mejores playas cerca de Bermeo: Aritzatxu, Laga y Laida, con distancias, acceso, servicios y consejos para organizar la visita.',
     },
   },
   {
     path: 'guia/visitar-gaztelugatxe-desde-bermeo',
     loadComponent: () => import('./pages/guias/guias.component').then((m) => m.GuiasComponent),
-    title: 'Visitar Gaztelugatxe desde Bermeo | Guía práctica',
+    title: 'Visitar Gaztelugatxe desde Bermeo: guía práctica',
     data: {
       guide: 'visitar-gaztelugatxe-desde-bermeo',
       description:
-        'Guía para visitar San Juan de Gaztelugatxe desde Bermeo: acceso, planificación, transporte y otros planes en la costa vasca.',
+        'Guía práctica para visitar San Juan de Gaztelugatxe desde Bermeo: acceso, reserva, transporte, aparcamiento y consejos para planificar la excursión.',
     },
   },
   {
     path: 'guia/donde-dormir-cerca-de-gaztelugatxe',
     loadComponent: () => import('./pages/guias/guias.component').then((m) => m.GuiasComponent),
-    title: 'Dónde dormir cerca de Gaztelugatxe | Soul House',
+    title: 'Dónde dormir cerca de Gaztelugatxe: Bermeo como base',
     data: {
       guide: 'donde-dormir-cerca-de-gaztelugatxe',
       description:
-        'Descubre dónde dormir cerca de Gaztelugatxe y por qué Bermeo es una base cómoda para visitar el islote y Urdaibai.',
+        'Compara dónde dormir cerca de Gaztelugatxe y descubre por qué Bermeo ofrece servicios, restaurantes y una base cómoda para la excursión.',
     },
   },
   {
     path: 'guia/gaztelugatxe-y-bermeo-en-un-fin-de-semana',
     loadComponent: () => import('./pages/guias/guias.component').then((m) => m.GuiasComponent),
-    title: 'Gaztelugatxe y Bermeo en un fin de semana | Ruta',
+    title: 'Gaztelugatxe y Bermeo en un fin de semana',
     data: {
       guide: 'gaztelugatxe-y-bermeo-en-un-fin-de-semana',
       description:
-        'Organiza un fin de semana en Bermeo y Gaztelugatxe con una ruta por el puerto, el casco histórico y la costa vasca.',
+        'Organiza un fin de semana combinando Bermeo y Gaztelugatxe con una ruta por el puerto, el casco histórico, la costa y la gastronomía vasca.',
     },
   },
   {
     path: 'guia/que-ver-en-urdaibai',
     loadComponent: () => import('./pages/guias/guias.component').then((m) => m.GuiasComponent),
-    title: 'Qué ver en Urdaibai | Guía de lugares imprescindibles',
+    title: 'Qué ver en Urdaibai: pueblos, playas y naturaleza',
     data: {
       guide: 'que-ver-en-urdaibai',
       description:
-        'Descubre qué ver en Urdaibai: Mundaka, Gernika, las playas de Laga y Laida, el cabo Ogoño y los pueblos de la reserva.',
+        'Descubre qué ver en Urdaibai: Mundaka, Gernika, Laga, Laida, Bermeo, miradores y pueblos de la Reserva de la Biosfera.',
     },
   },
   {
     path: 'guia/ruta-por-urdaibai',
     loadComponent: () => import('./pages/guias/guias.component').then((m) => m.GuiasComponent),
-    title: 'Ruta por Urdaibai | Itinerario desde Bermeo',
+    title: 'Ruta por Urdaibai desde Bermeo: itinerario completo',
     data: {
       guide: 'ruta-por-urdaibai',
       description:
-        'Organiza una ruta por Urdaibai desde Bermeo con paradas en Mundaka, Laga, Laida, Gernika y los paisajes de la reserva.',
+        'Organiza una ruta por Urdaibai desde Bermeo con paradas en Mundaka, Laga, Laida, Gernika y los paisajes de la Reserva de la Biosfera.',
     },
   },
   {
     path: 'guia/donde-alojarse-en-urdaibai',
     loadComponent: () => import('./pages/guias/guias.component').then((m) => m.GuiasComponent),
-    title: 'Dónde alojarse en Urdaibai | Soul House Bermeo',
+    title: 'Dónde alojarse en Urdaibai: Bermeo como base',
     data: {
       guide: 'donde-alojarse-en-urdaibai',
       description:
-        'Descubre dónde alojarse en Urdaibai y por qué Bermeo es una base cómoda para conocer playas, pueblos y naturaleza.',
+        'Descubre dónde alojarte para visitar Urdaibai y por qué Bermeo es una base práctica para combinar playas, pueblos, naturaleza y gastronomía.',
     },
   },
   {
     path: 'guia/urdaibai-con-ninos',
     loadComponent: () => import('./pages/guias/guias.component').then((m) => m.GuiasComponent),
-    title: 'Urdaibai con niños | Planes en familia',
+    title: 'Urdaibai con niños: playas y planes en familia',
     data: {
       guide: 'urdaibai-con-ninos',
       description:
-        'Ideas para visitar Urdaibai con niños: playas, paseos por Bermeo y Mundaka, pueblos marineros y excursiones familiares.',
+        'Ideas para visitar Urdaibai con niños: playas, paseos sencillos, pueblos marineros, naturaleza y excursiones familiares desde Bermeo.',
     },
   },
-  {
-    path: 'guias/bermeo',
-    loadComponent: () => import('./pages/guias/guias.component').then((m) => m.GuiasComponent),
-    title: 'Qué ver en Bermeo en 2 días | Guía local',
-    data: {
-      guide: 'bermeo',
-      description:
-        'Guía para descubrir Bermeo en dos días: puerto pesquero, casco histórico, isla de Ízaro y gastronomía vasca.',
-    },
-  },
-  {
-    path: 'guias/gaztelugatxe',
-    loadComponent: () => import('./pages/guias/guias.component').then((m) => m.GuiasComponent),
-    title: 'Cómo visitar San Juan de Gaztelugatxe desde Bermeo',
-    data: {
-      guide: 'gaztelugatxe',
-      description:
-        'Consejos para visitar San Juan de Gaztelugatxe desde Bermeo y disfrutar de la costa vasca con Soul House como base.',
-    },
-  },
-  {
-    path: 'guias/urdaibai',
-    loadComponent: () => import('./pages/guias/guias.component').then((m) => m.GuiasComponent),
-    title: 'Dónde alojarse para visitar Urdaibai | Guía local',
-    data: {
-      guide: 'urdaibai',
-      description:
-        'Descubre dónde alojarte para visitar Urdaibai: naturaleza, playas, pueblos marineros y gastronomía desde Bermeo.',
-    },
-  },
+  { path: 'guias/bermeo', redirectTo: 'guia/que-ver-en-bermeo', pathMatch: 'full' },
+  { path: 'guias/gaztelugatxe', redirectTo: 'guia/visitar-gaztelugatxe-desde-bermeo', pathMatch: 'full' },
+  { path: 'guias/urdaibai', redirectTo: 'guia/que-ver-en-urdaibai', pathMatch: 'full' },
   { path: '**', redirectTo: '' },
 ];

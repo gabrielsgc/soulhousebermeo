@@ -1,6 +1,7 @@
 ﻿import { AfterViewInit, Component, inject, OnDestroy, signal, PLATFORM_ID } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
-import { RouterLink } from '@angular/router';
+import { NavigationEnd, Router, RouterLink } from '@angular/router';
+import { filter, Subscription } from 'rxjs';
 import { I18nService } from '../../services/i18n.service';
 import { LangSwitcherComponent } from './lang-switcher.component';
 
@@ -10,7 +11,7 @@ import { LangSwitcherComponent } from './lang-switcher.component';
   imports: [LangSwitcherComponent, RouterLink],
   template: `
     <header id="site-header" role="banner">
-      <nav class="navbar" [class.scrolled]="isScrolled()" [attr.aria-label]="t().nav.ariaNav">
+      <nav class="navbar" [class.scrolled]="isScrolled()" [class.navbar--solid]="isGuidePage()" [attr.aria-label]="t().nav.ariaNav">
         <div class="container navbar__inner">
 
           <a class="navbar__brand" [routerLink]="'/'" [attr.aria-label]="t().nav.ariaBrand" (click)="closeMenu()">
@@ -64,22 +65,30 @@ import { LangSwitcherComponent } from './lang-switcher.component';
 })
 export class NavbarComponent implements AfterViewInit, OnDestroy {
   private readonly platformId = inject(PLATFORM_ID);
+  private readonly router = inject(Router);
   protected readonly i18n = inject(I18nService);
   protected readonly t = this.i18n.t;
 
   isScrolled = signal(false);
   isMenuOpen = signal(false);
+  isGuidePage = signal(this.router.url.startsWith('/guia'));
+  private routerSubscription?: Subscription;
 
   ngAfterViewInit(): void {
     if (!isPlatformBrowser(this.platformId)) {
       return;
     }
 
+    this.routerSubscription = this.router.events
+      .pipe(filter((event) => event instanceof NavigationEnd))
+      .subscribe((event) => this.isGuidePage.set((event as NavigationEnd).urlAfterRedirects.startsWith('/guia')));
+
     window.addEventListener('scroll', this.onScroll, { passive: true });
     this.onScroll();
   }
 
   ngOnDestroy(): void {
+    this.routerSubscription?.unsubscribe();
     if (isPlatformBrowser(this.platformId)) {
       window.removeEventListener('scroll', this.onScroll);
     }

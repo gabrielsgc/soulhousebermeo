@@ -9,6 +9,7 @@ type JsonLdValue = Record<string, unknown> | Array<Record<string, unknown>>;
 interface SeoRouteData {
   description?: string;
   jsonLd?: JsonLdValue;
+  guide?: string;
 }
 
 @Injectable({ providedIn: 'root' })
@@ -37,22 +38,105 @@ export class SeoService {
     const path = this.router.url.split('?')[0].split('#')[0] || '/';
     const canonicalPath = path === '/' ? '/' : `${path.replace(/\/+$/, '')}/`;
     const canonicalUrl = `${this.siteUrl}${canonicalPath}`;
+    const language = this.doc.documentElement.lang || 'es';
 
     if (title) {
       this.titleSvc.setTitle(title);
       this.meta.updateTag({ property: 'og:title', content: title });
+      this.meta.updateTag({ name: 'twitter:title', content: title }, 'name="twitter:title"');
     }
 
     if (description) {
       this.meta.updateTag({ name: 'description', content: description });
       this.meta.updateTag({ property: 'og:description', content: description });
+      this.meta.updateTag({ name: 'twitter:description', content: description }, 'name="twitter:description"');
     }
 
     this.meta.updateTag({ name: 'robots', content: 'index,follow,max-image-preview:large' });
 
     this.meta.updateTag({ property: 'og:url', content: canonicalUrl });
+    this.meta.updateTag({ property: 'og:type', content: data.guide ? 'article' : 'website' });
+    this.meta.updateTag({ property: 'og:locale', content: this.toOgLocale(language) });
+    this.meta.updateTag(
+      { property: 'og:image', content: `${this.siteUrl}/assets/images/hero-facade.png` },
+    );
+    this.meta.updateTag(
+      { name: 'twitter:image', content: `${this.siteUrl}/assets/images/hero-facade.png` },
+      'name="twitter:image"',
+    );
     this.upsertCanonicalLink(canonicalUrl);
-    this.upsertJsonLd(data.jsonLd);
+    this.upsertJsonLd(this.buildJsonLd(data, title, description, canonicalUrl, language));
+  }
+
+  private buildJsonLd(
+    data: SeoRouteData,
+    title: string,
+    description: string,
+    canonicalUrl: string,
+    language: string,
+  ): JsonLdValue | undefined {
+    const values: Array<Record<string, unknown>> = [];
+
+    if (data.jsonLd) {
+      values.push(...(Array.isArray(data.jsonLd) ? data.jsonLd : [data.jsonLd]));
+    }
+
+    if (this.router.url !== '/') {
+      values.push({
+        '@context': 'https://schema.org',
+        '@type': 'BreadcrumbList',
+        '@id': `${canonicalUrl}#breadcrumb`,
+        itemListElement: [
+          {
+            '@type': 'ListItem',
+            position: 1,
+            name: 'Inicio',
+            item: `${this.siteUrl}/`,
+          },
+          {
+            '@type': 'ListItem',
+            position: 2,
+            name: title,
+            item: canonicalUrl,
+          },
+        ],
+      });
+    }
+
+    if (data.guide) {
+      values.push({
+        '@context': 'https://schema.org',
+        '@type': 'Article',
+        '@id': `${canonicalUrl}#article`,
+        headline: title,
+        description,
+        mainEntityOfPage: { '@type': 'WebPage', '@id': canonicalUrl },
+        image: `${this.siteUrl}/assets/images/hero-facade.png`,
+        author: { '@type': 'Organization', name: 'Soul House Bermeo' },
+        publisher: {
+          '@type': 'Organization',
+          name: 'Soul House Bermeo',
+          logo: {
+            '@type': 'ImageObject',
+            url: `${this.siteUrl}/imgs/logo-soulhousebermeo-VT.webp`,
+          },
+        },
+        inLanguage: language,
+      });
+    }
+
+    return values.length ? values : undefined;
+  }
+
+  private toOgLocale(language: string): string {
+    const locales: Record<string, string> = {
+      es: 'es_ES',
+      eu: 'eu_ES',
+      en: 'en_GB',
+      fr: 'fr_FR',
+      de: 'de_DE',
+    };
+    return locales[language] ?? 'es_ES';
   }
 
   private getDeepestRoute(): ActivatedRoute {

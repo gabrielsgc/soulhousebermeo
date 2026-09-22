@@ -26,6 +26,10 @@ export class GuiasComponent {
   protected readonly guideMapTitle = computed(() =>
     this.i18n.currentLang() === 'es' ? 'Mapa de Bermeo y sus alrededores' : 'Map of Bermeo and surroundings',
   );
+  protected readonly quickAnswerLabel = computed(() => ({
+    es: 'Respuesta rápida', eu: 'Erantzun azkarra', en: 'Quick answer',
+    fr: 'Réponse rapide', de: 'Schnelle Antwort',
+  })[this.i18n.currentLang()]);
   protected readonly guideMapUrl = computed(() => {
     const mapUrl = this.guide().mapUrl;
     return mapUrl ? this.sanitizer.bypassSecurityTrustResourceUrl(mapUrl) : null;
